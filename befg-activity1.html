@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ethical Perspectives & Decision Process — Business Ethics Field Guide</title>
+<style>
+:root {
+  --ink:       #1E1C18;
+  --paper:     #FFFEF9;
+  --pine:      #2A4A2F;
+  --amber:     #C47D0E;
+  --sienna:    #7B2D2A;
+  --smoke:     #F1EDE4;
+  --mist:      #E8E3D8;
+  --ink-soft:  rgba(30,28,24,.55);
+  --pine-light:#EBF2EC;
+  --amber-light:#FDF3E0;
+  --sienna-light:#FAE9E8;
+  --correct:   #1A6B3A;
+  --correct-bg:#E6F4EC;
+  --wrong:     #92400E;
+  --wrong-bg:  #FEF3C7;
+  --radius:    10px;
+  --shadow:    0 2px 8px rgba(30,28,24,.10), 0 1px 2px rgba(30,28,24,.06);
+  --shadow-md: 0 4px 16px rgba(30,28,24,.13), 0 2px 4px rgba(30,28,24,.08);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink:#EDE8DF; --paper:#18160F; --pine:#5FA066; --amber:#E09A20;
+    --sienna:#C05848; --smoke:#242118; --mist:#2E2A22;
+    --ink-soft:rgba(237,232,223,.5); --pine-light:#1A2C1C;
+    --amber-light:#2A2010; --sienna-light:#2C1412;
+    --correct:#5FA066; --correct-bg:#162218; --wrong:#E09A20; --wrong-bg:#251D08;
+  }
+}
+:root[data-theme="dark"] {
+  --ink:#EDE8DF; --paper:#18160F; --pine:#5FA066; --amber:#E09A20;
+  --sienna:#C05848; --smoke:#242118; --mist:#2E2A22;
+  --ink-soft:rgba(237,232,223,.5); --pine-light:#1A2C1C;
+  --amber-light:#2A2010; --sienna-light:#2C1412;
+  --correct:#5FA066; --correct-bg:#162218; --wrong:#E09A20; --wrong-bg:#251D08;
+}
+:root[data-theme="light"] {
+  --ink:#1E1C18; --paper:#FFFEF9; --pine:#2A4A2F; --amber:#C47D0E;
+  --sienna:#7B2D2A; --smoke:#F1EDE4; --mist:#E8E3D8;
+  --ink-soft:rgba(30,28,24,.55); --pine-light:#EBF2EC;
+  --amber-light:#FDF3E0; --sienna-light:#FAE9E8;
+  --correct:#1A6B3A; --correct-bg:#E6F4EC; --wrong:#92400E; --wrong-bg:#FEF3C7;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:var(--smoke);color:var(--ink);font-size:16px;line-height:1.6;padding-top:88px;padding-bottom:76px;min-height:100vh}
+h1,h2,h3,h4{font-family:Georgia,'Times New Roman',serif;text-wrap:balance;line-height:1.25}
+button{cursor:pointer;border:none;background:none;font:inherit}
+a{color:var(--pine)}
+
+header{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--paper);border-bottom:1px solid var(--mist);box-shadow:0 1px 0 var(--mist)}
+.header-top{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:48px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='48'%3E%3Cellipse cx='100' cy='24' rx='90' ry='18' fill='none' stroke='%232A4A2F' stroke-width='0.6' opacity='0.08'/%3E%3Cellipse cx='100' cy='24' rx='70' ry='12' fill='none' stroke='%232A4A2F' stroke-width='0.6' opacity='0.08'/%3E%3Cellipse cx='100' cy='24' rx='50' ry='7' fill='none' stroke='%232A4A2F' stroke-width='0.6' opacity='0.08'/%3E%3Cellipse cx='180' cy='10' rx='40' ry='14' fill='none' stroke='%232A4A2F' stroke-width='0.6' opacity='0.06'/%3E%3Cellipse cx='20' cy='38' rx='40' ry='14' fill='none' stroke='%232A4A2F' stroke-width='0.6' opacity='0.06'/%3E%3C/svg%3E");background-repeat:repeat-x;background-size:200px 48px}
+.brand{font-family:Georgia,serif;font-size:12px;font-weight:bold;letter-spacing:.06em;text-transform:uppercase;color:var(--sienna)}
+.activity-title{font-family:Georgia,serif;font-size:13px;color:var(--ink-soft)}
+.theme-toggle{font-size:17px;padding:4px;border-radius:6px;transition:background .2s}
+.theme-toggle:hover{background:var(--smoke)}
+.trail-bar{padding:8px 24px 10px;overflow-x:auto;scrollbar-width:none}
+.trail-bar::-webkit-scrollbar{display:none}
+.trail{display:flex;align-items:center;gap:0;min-width:max-content}
+.waypoint{display:flex;flex-direction:column;align-items:center;position:relative}
+.waypoint-dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--mist);background:var(--paper);display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-size:9px;font-weight:bold;color:var(--ink-soft);transition:all .3s;flex-shrink:0}
+.waypoint.done .waypoint-dot{background:var(--pine);border-color:var(--pine);color:#fff}
+.waypoint.active .waypoint-dot{background:var(--amber);border-color:var(--amber);color:#fff;box-shadow:0 0 0 3px var(--amber-light)}
+.trail-line{width:18px;height:2px;background:var(--mist);flex-shrink:0;transition:background .3s}
+.trail-line.done{background:var(--pine)}
+
+.screens-wrap{position:relative}
+.screen{position:absolute;top:0;left:0;right:0;opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .3s ease,transform .3s ease}
+.screen.active{position:relative;opacity:1;transform:translateY(0);pointer-events:all}
+.content{max-width:680px;margin:0 auto;padding:36px 24px 48px}
+
+.screen-eyebrow{font-family:'Courier New',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+.screen-title{font-size:26px;color:var(--ink);margin-bottom:8px}
+.screen-sub{color:var(--ink-soft);font-size:15px;margin-bottom:28px;max-width:56ch}
+
+.card{background:var(--paper);border:1.5px solid var(--mist);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);transition:box-shadow .2s,border-color .2s,transform .15s}
+.card:hover{box-shadow:var(--shadow-md)}
+.card.selectable{cursor:pointer}
+.card.selectable:hover{border-color:var(--pine);transform:translateY(-1px)}
+.card.selected{border-color:var(--pine);background:var(--pine-light);box-shadow:0 0 0 3px var(--pine-light),var(--shadow)}
+.card.correct-state{border-color:var(--correct);background:var(--correct-bg)}
+.card.wrong-state{border-color:var(--wrong);background:var(--wrong-bg)}
+
+.badge{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--amber);color:#fff;font-family:'Courier New',monospace;font-weight:bold;font-size:11px;flex-shrink:0}
+.badge-pine{background:var(--pine)}
+.badge-sienna{background:var(--sienna)}
+.badge-sm{width:22px;height:22px;font-size:10px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 28px;border-radius:var(--radius);font-weight:600;font-size:15px;transition:all .2s;white-space:nowrap}
+.btn-primary{background:var(--pine);color:#fff}
+.btn-primary:hover{filter:brightness(1.1)}
+.btn-primary:disabled{background:var(--mist);color:var(--ink-soft);cursor:not-allowed;filter:none}
+.btn-ghost{background:transparent;color:var(--ink-soft);border:1.5px solid var(--mist)}
+.btn-ghost:hover{border-color:var(--pine);color:var(--pine)}
+.btn-sm{padding:8px 16px;font-size:13px}
+
+.bottom-bar{position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--paper);border-top:1px solid var(--mist);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.screen-counter{font-family:'Courier New',monospace;font-size:12px;color:var(--ink-soft)}
+
+.scenario-box{background:var(--pine-light);border-left:3px solid var(--pine);border-radius:0 var(--radius) var(--radius) 0;padding:16px 18px;margin-bottom:20px;font-size:15px;line-height:1.7;color:var(--ink)}
+
+.accordion-item{border:1.5px solid var(--mist);border-radius:var(--radius);overflow:hidden;margin-bottom:8px;background:var(--paper)}
+.accordion-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;padding:14px 18px;font-family:Georgia,serif;font-size:15px;font-weight:bold;color:var(--ink);text-align:left;transition:background .2s}
+.accordion-trigger:hover{background:var(--smoke)}
+.accordion-trigger.opened{background:var(--pine-light);color:var(--pine)}
+.accordion-num{font-family:'Courier New',monospace;font-size:11px;font-weight:bold;color:var(--amber);margin-right:10px;flex-shrink:0}
+.chevron{width:18px;height:18px;color:var(--ink-soft);transition:transform .25s;flex-shrink:0}
+.chevron.open{transform:rotate(180deg)}
+.accordion-body{max-height:0;overflow:hidden;transition:max-height .4s ease;font-size:15px;line-height:1.7;color:var(--ink)}
+.accordion-body.open{max-height:1200px}
+.accordion-body-inner{padding:14px 18px 16px;border-top:1px solid var(--mist)}
+
+.option-btn{width:100%;text-align:left;padding:14px 16px;border:1.5px solid var(--mist);border-radius:var(--radius);background:var(--paper);color:var(--ink);font-size:15px;line-height:1.5;margin-bottom:8px;transition:all .2s;display:flex;align-items:center;gap:12px}
+.option-btn:hover:not(:disabled){border-color:var(--pine);background:var(--pine-light)}
+.option-btn.selected{border-color:var(--pine);background:var(--pine-light)}
+.option-btn.opt-correct{border-color:var(--correct);background:var(--correct-bg);color:var(--correct)}
+.option-btn.opt-wrong{border-color:#D97706;background:var(--wrong-bg);color:var(--wrong)}
+.option-btn:disabled{cursor:default}
+.opt-letter{width:28px;height:28px;border-radius:50%;background:var(--smoke);display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-size:11px;font-weight:bold;flex-shrink:0}
+
+.feedback{padding:14px 16px;border-radius:var(--radius);font-size:14px;line-height:1.6;margin-top:12px;display:none}
+.feedback.show{display:block}
+.feedback.correct{background:var(--correct-bg);border:1px solid var(--correct);color:var(--correct)}
+.feedback.wrong{background:var(--wrong-bg);border:1px solid #D97706;color:var(--wrong)}
+.feedback.neutral{background:var(--pine-light);border:1px solid var(--pine);color:var(--pine)}
+
+.slider-wrap{margin-bottom:24px}
+.slider-labels{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-soft);margin-bottom:6px}
+input[type=range]{-webkit-appearance:none;width:100%;height:6px;border-radius:3px;background:var(--mist);outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--paper);border:3px solid var(--pine);cursor:grab;box-shadow:0 1px 4px rgba(0,0,0,.15)}
+input[type=range]:active::-webkit-slider-thumb{cursor:grabbing}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--paper);border:3px solid var(--pine)}
+.slider-readout{font-size:12px;color:var(--pine);font-style:italic;margin-top:5px;min-height:18px;transition:all .2s}
+.slider-label{font-family:Georgia,serif;font-size:14px;font-weight:600;margin-bottom:6px;color:var(--ink)}
+
+.chip-pool{display:flex;flex-wrap:wrap;gap:8px;padding:14px;background:var(--smoke);border-radius:var(--radius);border:1.5px dashed var(--mist);min-height:54px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:var(--paper);border:1.5px solid var(--mist);border-radius:20px;font-size:13px;font-weight:600;cursor:grab;user-select:none;box-shadow:var(--shadow);transition:box-shadow .15s,transform .15s;white-space:nowrap}
+.chip:hover{box-shadow:var(--shadow-md);transform:translateY(-1px)}
+.chip:active{cursor:grabbing}
+.chip.chip-selected{background:var(--amber);color:#fff;border-color:var(--amber);cursor:pointer}
+.chip.chip-correct{background:var(--correct-bg);border-color:var(--correct);color:var(--correct);cursor:default}
+.chip.chip-wrong{background:var(--wrong-bg);border-color:#D97706;color:var(--wrong)}
+.chip.chip-placed{opacity:.35;pointer-events:none;cursor:default}
+
+.fw-slot{border:1.5px solid var(--mist);border-radius:var(--radius);background:var(--paper);padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;gap:12px;min-height:64px;transition:background .2s,border-color .2s}
+.fw-slot.drag-over{border-color:var(--pine);background:var(--pine-light);outline:2px dashed var(--pine);outline-offset:2px}
+.fw-slot.slot-correct{border-color:var(--correct);background:var(--correct-bg)}
+.fw-slot.slot-wrong{border-color:#D97706;background:var(--wrong-bg)}
+.fw-slot-label{flex:0 0 200px;font-family:Georgia,serif;font-size:13px;font-weight:bold;color:var(--ink)}
+.fw-slot-sub{font-size:11px;font-weight:normal;color:var(--ink-soft);display:block;margin-top:1px}
+.fw-slot-zone{flex:1;min-height:36px;border:2px dashed var(--mist);border-radius:6px;display:flex;align-items:center;padding:6px 10px;font-size:13px;color:var(--ink-soft);transition:all .15s}
+.fw-slot-zone.has-chip{border-style:solid;border-color:var(--pine);background:var(--smoke)}
+
+.t-chart{display:flex;gap:0;margin-bottom:16px;border:1.5px solid var(--mist);border-radius:var(--radius);overflow:hidden}
+.t-col{flex:1;padding:12px}
+.t-col-header{font-family:Georgia,serif;font-size:13px;font-weight:600;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.t-divider{width:1.5px;background:var(--mist);flex-shrink:0}
+.t-col-zone{min-height:56px;border:2px dashed var(--mist);border-radius:6px;display:flex;align-items:center;justify-content:center;padding:8px;font-size:13px;color:var(--ink-soft);transition:border-color .15s,background .15s;text-align:center}
+.t-col-zone.drag-over{border-color:var(--amber);background:var(--amber-light)}
+.t-col-zone.filled{border-style:solid;border-color:var(--pine);background:var(--pine-light);color:var(--ink);font-weight:600;font-size:14px}
+
+.tabs-bar{display:flex;gap:4px;border-bottom:2px solid var(--mist);margin-bottom:20px;flex-wrap:wrap}
+.tab-btn{padding:9px 14px;font-size:13px;font-weight:600;color:var(--ink-soft);border-bottom:2px solid transparent;margin-bottom:-2px;border-radius:6px 6px 0 0;transition:all .2s}
+.tab-btn:hover{color:var(--ink);background:var(--smoke)}
+.tab-btn.active{color:var(--pine);border-bottom-color:var(--pine);background:var(--pine-light)}
+.tab-btn.tab-done{color:var(--correct)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+.ref-table{width:100%;border-collapse:collapse}
+.ref-table th{background:var(--sienna);color:#fff;font-family:Georgia,serif;font-size:13px;font-weight:bold;padding:10px 12px;text-align:left}
+.ref-table td{padding:9px 12px;font-size:13px;border-bottom:1px solid var(--mist);vertical-align:top}
+.ref-table tr:nth-child(even) td{background:var(--smoke)}
+.ref-num{font-family:'Courier New',monospace;font-weight:bold;color:var(--amber)}
+
+.callout{padding:14px 16px;background:var(--pine-light);border-left:3px solid var(--pine);border-radius:0 8px 8px 0;font-size:14px;line-height:1.6;color:var(--ink);margin-top:16px}
+.round-counter{font-family:'Courier New',monospace;font-size:12px;color:var(--amber);font-weight:bold;letter-spacing:.05em;text-transform:uppercase;margin-bottom:16px}
+.divider{border:none;border-top:1px solid var(--mist);margin:24px 0}
+
+.welcome-wrap{min-height:calc(100vh - 164px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 24px}
+.welcome-kicker{font-family:'Courier New',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
+.welcome-title{font-size:38px;color:var(--ink);margin-bottom:18px}
+.welcome-body{font-size:16px;color:var(--ink-soft);max-width:48ch;line-height:1.7;margin-bottom:36px}
+
+.step-card{background:var(--paper);border:1.5px solid var(--mist);border-radius:var(--radius);padding:20px;margin-bottom:12px;box-shadow:var(--shadow)}
+.step-card.step-done{border-color:var(--correct);background:var(--correct-bg)}
+.step-card.step-active{border-color:var(--pine);box-shadow:0 0 0 3px var(--pine-light),var(--shadow)}
+.step-num-badge{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--pine);color:#fff;font-family:'Courier New',monospace;font-weight:bold;font-size:13px;flex-shrink:0;margin-right:10px}
+.step-num-badge.done-badge{background:var(--correct)}
+.step-title{font-family:Georgia,serif;font-size:16px;font-weight:bold;margin-bottom:4px}
+.step-prompt{font-size:14px;color:var(--ink-soft);margin-bottom:14px;line-height:1.6}
+
+.drag-ghost{position:fixed;pointer-events:none;z-index:9999;opacity:.88;transform:rotate(3deg) scale(1.04)}
+
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}50%{transform:translateX(6px)}80%{transform:translateX(-4px)}}
+.shake{animation:shake .4s ease}
+
+@media (max-width:560px){
+  .fw-slot-label{flex:0 0 140px;font-size:12px}
+  .screen-title{font-size:22px}
+  .welcome-title{font-size:28px}
+}
+
+/* ─── Video Placeholder ──────────────────────── */
+.video-placeholder{position:relative;background:#141a14;border-radius:var(--radius);overflow:hidden;margin-bottom:20px;aspect-ratio:16/9;cursor:pointer;user-select:none;width:100%}
+.vp-texture{position:absolute;inset:0;background:radial-gradient(ellipse at 28% 55%,rgba(42,74,47,.35) 0%,transparent 58%),radial-gradient(ellipse at 75% 25%,rgba(196,125,14,.12) 0%,transparent 48%),linear-gradient(170deg,#1c2a1c 0%,#0e1210 100%)}
+.vp-badge-top{position:absolute;top:12px;left:12px;font-family:'Courier New',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);background:rgba(0,0,0,.65);padding:3px 8px;border-radius:4px;border:1px solid rgba(196,125,14,.5)}
+.vp-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.vp-play{width:60px;height:60px;background:var(--amber);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.5),0 0 0 8px rgba(196,125,14,.18);transition:transform .2s,box-shadow .2s}
+.video-placeholder:hover .vp-play{transform:scale(1.08);box-shadow:0 4px 24px rgba(0,0,0,.6),0 0 0 12px rgba(196,125,14,.25)}
+.vp-play-icon{width:0;height:0;border-style:solid;border-width:10px 0 10px 18px;border-color:transparent transparent transparent #fff;margin-left:4px}
+.vp-bottom{position:absolute;bottom:0;left:0;right:0;padding:32px 14px 12px;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,transparent 100%);display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+.vp-title{font-family:Georgia,serif;font-size:14px;color:#fff;line-height:1.3;text-shadow:0 1px 4px rgba(0,0,0,.7);flex:1}
+.vp-dur{font-family:'Courier New',monospace;font-size:11px;color:rgba(255,255,255,.85);background:rgba(0,0,0,.6);padding:2px 7px;border-radius:4px;flex-shrink:0}
+.vp-bar{position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(255,255,255,.15)}
+
+@media print {
+  header,.bottom-bar,.no-print,button:not(.print-btn){display:none !important}
+  body{background:white;padding:0}
+  .screen{position:static !important;opacity:1 !important;transform:none !important;pointer-events:all !important;display:none}
+  #screen-12{display:block !important}
+  .ref-table th{background:#7B2D2A !important;-webkit-print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-top">
+    <span class="brand">Merit Leadership</span>
+    <span class="activity-title">Ethical Perspectives &amp; Decision Process</span>
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">◐</button>
+  </div>
+  <div class="trail-bar"><div class="trail" id="trail"></div></div>
+</header>
+
+<main class="screens-wrap" id="screens-wrap">
+
+<!-- S0: Welcome -->
+<div class="screen active" id="screen-0">
+  <div class="welcome-wrap">
+    <p class="welcome-kicker">Business Ethics Field Guide · Activity 1</p>
+    <h1 class="welcome-title">Frameworks &amp; the 8-Step Process</h1>
+    <p class="welcome-body">Ethical frameworks aren't just theories — they're tools. This activity teaches five perspectives that experienced leaders draw on, plus an eight-step decision process that puts them to work.</p>
+    <div class="video-placeholder" style="max-width:480px;margin:0 auto 28px">
+      <div class="vp-texture"></div>
+      <span class="vp-badge-top">Teaching Video</span>
+      <div class="vp-center"><div class="vp-play"><div class="vp-play-icon"></div></div></div>
+      <div class="vp-bottom"><div class="vp-title">An Introduction to Ethical Frameworks</div><div class="vp-dur">1:45</div></div>
+      <div class="vp-bar"></div>
+    </div>
+    <button class="btn btn-primary" onclick="goTo(1)">Begin →</button>
+  </div>
+</div>
+
+<!-- S1: What is an ethical framework? -->
+<div class="screen" id="screen-1">
+  <div class="content">
+    <p class="screen-eyebrow">Teaching · What Is a Framework?</p>
+    <h2 class="screen-title">Framework or Gut Reaction?</h2>
+    <p class="screen-sub">One of these statements reflects an ethical framework — a reasoned principle that could apply consistently across situations. Tap the one you think it is.</p>
+    <div id="s1-cards" style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+      <button class="option-btn" onclick="s1Pick('A',this)" data-val="A">
+        <span class="opt-letter">A</span>
+        <span>"I just feel uncomfortable with it. Something about this situation doesn't sit right with me."</span>
+      </button>
+      <button class="option-btn" onclick="s1Pick('B',this)" data-val="B">
+        <span class="opt-letter">B</span>
+        <span>"Before I decide, I ask myself: if every leader in my company acted this way in similar situations, would I want to work there?"</span>
+      </button>
+      <button class="option-btn" onclick="s1Pick('C',this)" data-val="C">
+        <span class="opt-letter">C</span>
+        <span>"My director approved this approach last quarter, and the clients didn't complain, so I think we're fine."</span>
+      </button>
+    </div>
+    <div class="feedback" id="s1-feedback"></div>
+    <div id="s1-explain" style="display:none;margin-top:18px">
+      <div class="callout">
+        <strong>Why frameworks matter.</strong> Gut reactions are real — but they can mislead, especially under pressure. Precedent-based reasoning ("we've done it before") can lock in bad norms. An ethical framework gives you a principled basis that holds up under scrutiny, can be explained to others, and can be applied consistently — not just when it's convenient.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S2: The 5 Frameworks — Teaching -->
+<div class="screen" id="screen-2">
+  <div class="content">
+    <p class="screen-eyebrow">Teaching · The Five Perspectives</p>
+    <h2 class="screen-title">Five Ways to See an Ethical Situation</h2>
+    <p class="screen-sub">The field guide presents five ethical perspectives that scholars and practitioners have refined over centuries. Open each one and read its scenario example. Open all five to continue.</p>
+    <div class="video-placeholder">
+      <div class="vp-texture"></div>
+      <span class="vp-badge-top">Teaching Video</span>
+      <div class="vp-center"><div class="vp-play"><div class="vp-play-icon"></div></div></div>
+      <div class="vp-bottom"><div class="vp-title">Five Perspectives, One Situation</div><div class="vp-dur">2:10</div></div>
+      <div class="vp-bar"></div>
+    </div>
+    <div id="s2-progress" style="font-family:'Courier New',monospace;font-size:12px;color:var(--amber);margin-bottom:14px;font-weight:bold">0 of 5 opened</div>
+    <div id="s2-accordions"></div>
+    <div class="callout" style="margin-top:16px">
+      <strong>Use them together.</strong> The field guide notes that no single framework will lead you to the right answer on its own. The value is in running your options through multiple lenses — each one reveals something the others might miss.
+    </div>
+  </div>
+</div>
+
+<!-- S3: Match the Framework -->
+<div class="screen" id="screen-3">
+  <div class="content">
+    <p class="screen-eyebrow">Module 1 · Apply It</p>
+    <h2 class="screen-title">Match the Statement to Its Framework</h2>
+    <p class="screen-sub">Each statement below reflects one of the five frameworks. Drag each chip to the framework it represents — or tap a chip to select it (turns amber), then tap a framework slot.</p>
+    <div class="chip-pool" id="s3-pool" style="margin-bottom:16px"></div>
+    <div id="s3-slots"></div>
+    <button class="btn btn-ghost no-print" id="s3-check-btn" style="display:none;margin-top:12px" onclick="checkS3()">Check My Matches</button>
+    <div id="s3-result" style="margin-top:12px"></div>
+  </div>
+</div>
+
+<!-- S4: Apply Deontology -->
+<div class="screen" id="screen-4">
+  <div class="content">
+    <p class="screen-eyebrow">Module 2 · Deontology in Practice</p>
+    <h2 class="screen-title">Identify the Duty</h2>
+    <p class="screen-sub">Deontology says certain duties bind us regardless of consequences. Read the scenario, then drag or tap each chip to the correct side of the T-chart.</p>
+
+    <div class="video-placeholder">
+      <div class="vp-texture"></div>
+      <span class="vp-badge-top">Field Scenario</span>
+      <div class="vp-center"><div class="vp-play"><div class="vp-play-icon"></div></div></div>
+      <div class="vp-bottom"><div class="vp-title">The HIPAA Violation</div><div class="vp-dur">1:20</div></div>
+      <div class="vp-bar"></div>
+    </div>
+    <div class="scenario-box">
+      <strong>Scenario.</strong> You manage IT at a regional hospital. A physician colleague — someone you've worked alongside for years — has been accessing patient records outside their clinical scope. You've confirmed it: a clear HIPAA violation. Reporting it triggers a formal investigation that could cost them their license. You know they're going through a difficult personal period.
+    </div>
+
+    <div class="t-chart" id="s4-chart" onclick="onS4ChartClick(event)" ondragover="onS4Dragover(event)" ondrop="onS4Drop(event)" ondragleave="onS4Dragleave(event)">
+      <div class="t-col" id="s4-col-left" data-col="left">
+        <div class="t-col-header">Rule-Based Duty</div>
+        <div class="t-col-zone" id="s4-zone-left">Drag or tap a chip here</div>
+      </div>
+      <div class="t-divider"></div>
+      <div class="t-col" id="s4-col-right" data-col="right">
+        <div class="t-col-header">Competing Interest</div>
+        <div class="t-col-zone" id="s4-zone-right">Drag or tap a chip here</div>
+      </div>
+    </div>
+    <p style="font-size:13px;font-family:Georgia,serif;font-weight:600;color:var(--ink-soft);margin-bottom:10px">Tap a chip to select it (amber), then tap a column — or drag directly.</p>
+    <div id="s4-chips" style="display:flex;flex-wrap:wrap;gap:9px;margin-bottom:16px"></div>
+    <button class="btn btn-ghost btn-sm no-print" onclick="clearS4()">Clear</button>
+    <button class="btn btn-primary" id="s4-check-btn" onclick="checkS4()" style="display:none;margin-left:8px">Check</button>
+    <div class="feedback" id="s4-feedback" style="margin-top:12px"></div>
+  </div>
+</div>
+
+<!-- S5: Apply Consequentialism -->
+<div class="screen" id="screen-5">
+  <div class="content">
+    <p class="screen-eyebrow">Module 3 · Consequentialism in Practice</p>
+    <h2 class="screen-title">Who Is Helped? Who Is Harmed?</h2>
+    <p class="screen-sub">Consequentialism asks you to assess outcomes for everyone affected. For each stakeholder below, drag the slider to show whether the proposed action helps or harms them.</p>
+
+    <div class="video-placeholder">
+      <div class="vp-texture"></div>
+      <span class="vp-badge-top">Field Scenario</span>
+      <div class="vp-center"><div class="vp-play"><div class="vp-play-icon"></div></div></div>
+      <div class="vp-bottom"><div class="vp-title">The Automation Decision</div><div class="vp-dur">1:15</div></div>
+      <div class="vp-bar"></div>
+    </div>
+    <div class="scenario-box">
+      <strong>Scenario.</strong> A regional manager is considering automating the customer service function. Automation will eliminate 12 positions immediately but will reduce customer wait times by 60% and cut operating costs — protecting the company's competitiveness and the remaining 200 jobs long-term.
+    </div>
+
+    <div id="s5-sliders"></div>
+    <div class="feedback" id="s5-feedback" style="display:none"></div>
+  </div>
+</div>
+
+<!-- S6: Apply Virtue Ethics -->
+<div class="screen" id="screen-6">
+  <div class="content">
+    <p class="screen-eyebrow">Module 4 · Virtue Ethics in Practice</p>
+    <h2 class="screen-title">What Would Good Character Require?</h2>
+    <p class="screen-sub">Virtue ethics asks: <em>What would a person of good character do?</em> Read the scenario, then select the <strong>two character traits</strong> most relevant to what this situation calls for.</p>
+
+    <div class="video-placeholder">
+      <div class="vp-texture"></div>
+      <span class="vp-badge-top">Field Scenario</span>
+      <div class="vp-center"><div class="vp-play"><div class="vp-play-icon"></div></div></div>
+      <div class="vp-bottom"><div class="vp-title">The Accountant's Discovery</div><div class="vp-dur">1:30</div></div>
+      <div class="vp-bar"></div>
+    </div>
+    <div class="scenario-box">
+      <strong>Scenario.</strong> You're a senior accountant reviewing your firm's quarterly financials. You find entries that appear to obscure certain liabilities — nothing provably illegal, but it doesn't look right. Your supervisor signed off on it. Raising it will create friction with leadership and slow the close.
+    </div>
+
+    <p style="font-size:13px;color:var(--ink-soft);margin-bottom:14px">Select 2 traits:</p>
+    <div id="s6-chips" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px"></div>
+    <button class="btn btn-primary" id="s6-check-btn" style="display:none" onclick="checkS6()">Check My Selection</button>
+    <div class="feedback" id="s6-feedback" style="margin-top:12px"></div>
+  </div>
+</div>
+
+<!-- S7: Apply Social Contracts -->
+<div class="screen" id="screen-7">
+  <div class="content">
+    <p class="screen-eyebrow">Module 5 · Social Contracts in Practice</p>
+    <h2 class="screen-title">Would Everyone Agree to This Rule?</h2>
+    <p class="screen-sub">Social contract thinking asks whether a practice could be universally agreed upon — by all parties, including those most affected. Read the scenario, then answer.</p>
+
+    <div class="video-placeholder">
+      <div class="vp-texture"></div>
+      <span class="vp-badge-top">Field Scenario</span>
+      <div class="vp-center"><div class="vp-play"><div class="vp-play-icon"></div></div></div>
+      <div class="vp-bottom"><div class="vp-title">Leading With Strengths</div><div class="vp-dur">0:58</div></div>
+      <div class="vp-bar"></div>
+    </div>
+    <div class="scenario-box">
+      <strong>Scenario.</strong> Your sales team has a standard practice: highlight product benefits during demos and avoid mentioning known limitations unless the customer asks directly. Leadership calls it "leading with strengths." Your best closers do it consistently.
+    </div>
+
+    <p style="font-family:Georgia,serif;font-size:16px;font-weight:bold;margin-bottom:16px">Could every party — including customers — agree to this as a standard rule of engagement?</p>
+    <div id="s7-options"></div>
+    <div class="feedback" id="s7-feedback" style="margin-top:12px"></div>
+  </div>
+</div>
+
+<!-- S8: Apply Ethics of Care -->
+<div class="screen" id="screen-8">
+  <div class="content">
+    <p class="screen-eyebrow">Module 6 · Ethics of Care in Practice</p>
+    <h2 class="screen-title">What Do Your Relationships Require?</h2>
+    <p class="screen-sub">Ethics of care says our obligations aren't equal — specific relationships create specific duties. Read the scenario, then place each chip on the side of the T-chart it belongs to.</p>
+
+    <div class="video-placeholder">
+      <div class="vp-texture"></div>
+      <span class="vp-badge-top">Field Scenario</span>
+      <div class="vp-center"><div class="vp-play"><div class="vp-play-icon"></div></div></div>
+      <div class="vp-bottom"><div class="vp-title">The Loyal Employee</div><div class="vp-dur">1:25</div></div>
+      <div class="vp-bar"></div>
+    </div>
+    <div class="scenario-box">
+      <strong>Scenario.</strong> Dana manages a team of six. Rodrigo has been her most loyal employee for five years. Over the past two months, his performance has declined significantly — missed deadlines, errors in client deliverables. Two teammates have quietly raised concerns. Company policy requires a formal performance improvement plan after three documented misses. Rodrigo has now missed three.
+    </div>
+
+    <div class="t-chart" id="s8-chart" onclick="onS8ChartClick(event)" ondragover="onS8Dragover(event)" ondrop="onS8Drop(event)" ondragleave="onS8Dragleave(event)">
+      <div class="t-col" id="s8-col-left" data-col="left">
+        <div class="t-col-header">Closest Obligation</div>
+        <div class="t-col-zone" id="s8-zone-left">Drag or tap a chip here</div>
+      </div>
+      <div class="t-divider"></div>
+      <div class="t-col" id="s8-col-right" data-col="right">
+        <div class="t-col-header">Competing Obligation</div>
+        <div class="t-col-zone" id="s8-zone-right">Drag or tap a chip here</div>
+      </div>
+    </div>
+    <p style="font-size:13px;font-family:Georgia,serif;font-weight:600;color:var(--ink-soft);margin-bottom:10px">Tap a chip to select it (amber), then tap a column — or drag directly.</p>
+    <div id="s8-chips" style="display:flex;flex-wrap:wrap;gap:9px;margin-bottom:16px"></div>
+    <button class="btn btn-ghost btn-sm no-print" onclick="clearS8()">Clear</button>
+    <button class="btn btn-primary" id="s8-check-btn" onclick="checkS8()" style="display:none;margin-left:8px">Check</button>
+    <div class="feedback" id="s8-feedback" style="margin-top:12px"></div>
+  </div>
+</div>
+
+<!-- S9: Same Dilemma, 5 Lenses -->
+<div class="screen" id="screen-9">
+  <div class="content">
+    <p class="screen-eyebrow">Module 7 · One Situation, Five Frameworks</p>
+    <h2 class="screen-title">Same Dilemma — Five Different Lenses</h2>
+    <p class="screen-sub">The same situation looks different through each framework. For each tab, select what that framework would focus on. Complete all five to continue.</p>
+
+    <div class="scenario-box">
+      <strong>Scenario.</strong> Priya is a procurement manager who controls a $2M annual contract with her company's most important supplier. The supplier has offered her concert tickets worth $400 as a "thank-you." Company policy only requires disclosure for gifts over $500.
+    </div>
+
+    <div id="s9-done-count" class="round-counter">0 of 5 frameworks completed</div>
+    <div class="tabs-bar" id="s9-tabs"></div>
+    <div id="s9-panels"></div>
+  </div>
+</div>
+
+<!-- S10: The 8-Step Process — Teaching -->
+<div class="screen" id="screen-10">
+  <div class="content">
+    <p class="screen-eyebrow">Teaching · The Eight-Step Process</p>
+    <h2 class="screen-title">A Process for Any Ethical Dilemma</h2>
+    <p class="screen-sub">The field guide presents an eight-step decision process developed from decades of business ethics scholarship. Open each step and read it before moving on. Open all eight to continue.</p>
+    <div class="video-placeholder">
+      <div class="vp-texture"></div>
+      <span class="vp-badge-top">Teaching Video</span>
+      <div class="vp-center"><div class="vp-play"><div class="vp-play-icon"></div></div></div>
+      <div class="vp-bottom"><div class="vp-title">Eight Steps in Practice</div><div class="vp-dur">2:30</div></div>
+      <div class="vp-bar"></div>
+    </div>
+    <div id="s10-progress" style="font-family:'Courier New',monospace;font-size:12px;color:var(--amber);margin-bottom:14px;font-weight:bold">0 of 8 opened</div>
+    <div id="s10-accordions"></div>
+    <div class="callout" style="margin-top:16px">
+      <strong>Use the process before the pressure hits.</strong> The field guide notes that practicing these steps in advance makes them available when stakes are highest — and when shortcuts are most tempting.
+    </div>
+  </div>
+</div>
+
+<!-- S11: Walk the 8 Steps -->
+<div class="screen" id="screen-11">
+  <div class="content">
+    <p class="screen-eyebrow">Module 8 · Walk the Process</p>
+    <h2 class="screen-title">Apply All Eight Steps</h2>
+    <p class="screen-sub">Work through the eight-step process with a real scenario. Each step unlocks after you complete the one before it.</p>
+
+    <div class="video-placeholder">
+      <div class="vp-texture"></div>
+      <span class="vp-badge-top">Field Scenario</span>
+      <div class="vp-center"><div class="vp-play"><div class="vp-play-icon"></div></div></div>
+      <div class="vp-bottom"><div class="vp-title">Marcus and the Side Business</div><div class="vp-dur">1:40</div></div>
+      <div class="vp-bar"></div>
+    </div>
+    <div class="scenario-box" id="s11-scenario">
+      <strong>Scenario.</strong> You manage a regional sales office. Marcus, your top performer, brings in 30% of your revenue and has been with the company eight years. You've confirmed he has been using company servers, support staff time, and branded materials to run a side consulting business. HR says it's a terminable offense. His largest deal of the year closes next week.
+    </div>
+
+    <div id="s11-steps"></div>
+  </div>
+</div>
+
+<!-- S12: Reference Card -->
+<div class="screen" id="screen-12">
+  <div class="content">
+    <p class="screen-eyebrow">Your Field Guide</p>
+    <h2 class="screen-title">Keep This</h2>
+    <p class="screen-sub">Five frameworks and eight steps — your tools for any ethical situation.</p>
+
+    <h3 style="font-family:Georgia,serif;font-size:17px;margin-bottom:12px">Five Ethical Perspectives</h3>
+    <div style="overflow-x:auto;margin-bottom:28px">
+      <table class="ref-table">
+        <thead><tr><th>Framework</th><th>Core Question</th><th>Key Tool</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Deontology</strong></td><td>What duties or rules bind me here, regardless of outcome?</td><td>Universalizability · Rights · Golden Rule · Justice</td></tr>
+          <tr><td><strong>Consequentialism</strong></td><td>What action produces the greatest benefit for everyone affected?</td><td>Identify all stakeholders · Weigh outcomes · Act utilitarianism vs. rule utilitarianism</td></tr>
+          <tr><td><strong>Virtue Ethics</strong></td><td>What would a person of good character do?</td><td>Mirror test · Pillow test · Disclosure test</td></tr>
+          <tr><td><strong>Social Contracts</strong></td><td>What rule could all parties — including those most affected — agree to?</td><td>Rawls' veil of ignorance · Fairness of process and outcome</td></tr>
+          <tr><td><strong>Ethics of Care</strong></td><td>What do my specific relationships require of me here?</td><td>Identify closest obligations · Balance relationships · Watch for proximity bias</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="divider">
+    <h3 style="font-family:Georgia,serif;font-size:17px;margin-bottom:14px">The Eight-Step Decision Process</h3>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:flex-start;gap:14px"><span class="badge">1</span><span style="font-size:15px;padding-top:3px">Identify the important facts.</span></div>
+      <div style="display:flex;align-items:flex-start;gap:14px"><span class="badge">2</span><span style="font-size:15px;padding-top:3px">Identify the ethical issue(s) and the values in tension.</span></div>
+      <div style="display:flex;align-items:flex-start;gap:14px"><span class="badge">3</span><span style="font-size:15px;padding-top:3px">Identify the stakeholders — obvious and non-obvious.</span></div>
+      <div style="display:flex;align-items:flex-start;gap:14px"><span class="badge">4</span><span style="font-size:15px;padding-top:3px">Identify potential solutions, including creative combinations.</span></div>
+      <div style="display:flex;align-items:flex-start;gap:14px"><span class="badge">5</span><span style="font-size:15px;padding-top:3px">Assess the solutions using the five ethical perspectives.</span></div>
+      <div style="display:flex;align-items:flex-start;gap:14px"><span class="badge">6</span><span style="font-size:15px;padding-top:3px">Assess any new solutions that emerged from step 5.</span></div>
+      <div style="display:flex;align-items:flex-start;gap:14px"><span class="badge">7</span><span style="font-size:15px;padding-top:3px">Act in accordance with your ethical analysis.</span></div>
+      <div style="display:flex;align-items:flex-start;gap:14px"><span class="badge">8</span><span style="font-size:15px;padding-top:3px">Assess your actions and the outcomes. What did you learn?</span></div>
+    </div>
+
+    <hr class="divider">
+    <h3 style="font-family:Georgia,serif;font-size:15px;margin-bottom:10px">Questions to Ask Yourself Every Time</h3>
+    <ul style="font-size:14px;line-height:1.9;padding-left:18px;color:var(--ink-soft)">
+      <li>Am I protecting others' rights and dignity?</li>
+      <li>Would I be willing to be the other party in this transaction?</li>
+      <li>Who benefits and who is harmed by my decision?</li>
+      <li>What kind of person would this action make me?</li>
+      <li>How would I feel if my reasoning appeared on the news?</li>
+      <li>Am I fulfilling my obligations to those closest to me and most vulnerable?</li>
+    </ul>
+
+    <div style="margin-top:32px;text-align:center">
+      <button class="btn btn-ghost print-btn no-print" onclick="window.print()">⬇ Print This Card</button>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<div class="bottom-bar no-print">
+  <button class="btn btn-ghost" id="back-btn" onclick="goBack()">← Back</button>
+  <span class="screen-counter" id="screen-counter">Screen 1 of 13</span>
+  <button class="btn btn-primary" id="continue-btn" onclick="goNext()" disabled>Continue →</button>
+</div>
+
+<script>
+/* ═══════════════════════════ DATA ═══════════════════════════ */
+
+const FRAMEWORKS = [
+  {
+    id:'deontology',
+    name:'Deontology',
+    sub:'Duty & Rules',
+    desc:'Ethics based on unwavering adherence to duties and rules. Some actions are right or wrong regardless of their consequences.',
+    example:'A purchasing manager refuses a supplier\'s gift even though rejecting it feels awkward — because the rule against conflicts of interest applies regardless of her intentions or the gift\'s value.',
+    tools:'Universalizability ("Would I want everyone to act this way?") · Rights · Golden Rule (Reversibility) · Justice & Fairness',
+    video:{title:'The Gift She Couldn\'t Keep',dur:'1:20'}
+  },
+  {
+    id:'consequentialism',
+    name:'Consequentialism',
+    sub:'Outcomes & Welfare',
+    desc:'The rightness of an action is judged by its outcomes. Produce the greatest benefit for the greatest number.',
+    example:'A manager delays a product launch after calculating that the cost of fixing a known defect now — in time and money — is far less than the harm that could result from releasing it.',
+    tools:'Identify all affected parties · Weigh benefits and harms · Act utilitarianism vs. rule utilitarianism · Avoid egoism',
+    video:{title:'The Launch They Delayed',dur:'1:15'}
+  },
+  {
+    id:'virtue',
+    name:'Virtue Ethics',
+    sub:'Character',
+    desc:'Ask: "What would a person of good character do?" Ethics lives in who you are becoming, not just what you do.',
+    example:'A young analyst chooses to flag a discrepancy in a report even though her senior colleague doesn\'t want to revisit it — because integrity means being consistent whether or not anyone is watching.',
+    tools:'Mirror test · Pillow test · Disclosure/Sunshine test (Would I be comfortable if this appeared publicly?)',
+    video:{title:'Consistent Either Way',dur:'1:25'}
+  },
+  {
+    id:'social',
+    name:'Social Contracts',
+    sub:'Fairness & Legitimacy',
+    desc:'Actions that create a harmonious society. What rules could all parties — including those most affected — reasonably agree to?',
+    example:'A CEO evaluates a new bonus structure by asking whether the employees receiving smaller bonuses — if they didn\'t know their role in advance — could still view it as fair.',
+    tools:'Rawls\' veil of ignorance · Legal duties · Contractual duties · Moral duties as a member of society',
+    video:{title:'The Bonus No One Agreed To',dur:'1:10'}
+  },
+  {
+    id:'care',
+    name:'Ethics of Care',
+    sub:'Relationships & Context',
+    desc:'Our duties to people are not equal. Specific relationships — mentors, direct reports, long-term clients — create specific obligations.',
+    example:'A manager advocates strongly for a team member during a downsizing review, not because they\'re the most senior, but because she has made implicit commitments to them over three years of development.',
+    tools:'Identify your most important relationships · Map obligations · Watch for proximity bias (treating "similar to us" as more important)',
+    video:{title:'Three Years of Development',dur:'1:20'}
+  }
+];
+
+const MATCH_CHIPS = [
+  { id:'deon', text:'"I can\'t sign off on this — I made a promise to our original vendor, and a promise binds me regardless of the financial benefit."', fw:'deontology' },
+  { id:'conseq', text:'"Restructuring now will hurt 8 people temporarily, but it will protect 40 jobs and serve our 500 clients better for years."', fw:'consequentialism' },
+  { id:'virt', text:'"I keep asking myself: what would a leader I truly admire do in this situation? That question is guiding my decision."', fw:'virtue' },
+  { id:'social', text:'"I\'m asking whether we\'d be comfortable if every company in our industry operated this way — and whether our customers could agree to that."', fw:'social' },
+  { id:'care', text:'"Marcus has been my mentor for seven years. That relationship creates obligations I don\'t have to others."', fw:'care' }
+];
+
+const EIGHT_STEPS = [
+  { n:1, title:'Identify the important facts', body:'What do you know for certain? What other information could you quickly obtain? The goal is to separate confirmed facts from assumptions, fears, and rumors before you begin to reason.' },
+  { n:2, title:'Identify the ethical issue(s)', body:'What about this situation gives it moral weight? Write down the values you want your decision to honor — and note how those values may compete. Try to name the type of dilemma you\'re facing (loyalty, intervention, repair, etc.).' },
+  { n:3, title:'Identify the stakeholders', body:'Who will be affected — directly and indirectly? Stakeholders include decision makers, actors, and those impacted by the outcome. Don\'t skip non-obvious ones: families, bystanders, future parties, institutions.' },
+  { n:4, title:'Identify potential solutions', body:'List every alternative you can think of — then use your creativity to find more. Could a combination of solutions produce a better result? Remember: "choose to do nothing for now" is also a decision.' },
+  { n:5, title:'Assess the solutions using ethical perspectives', body:'Run your options through the five frameworks in this activity. No single framework will give you the final answer, but together they supply principled rationales — and surface tensions you might otherwise miss.' },
+  { n:6, title:'Assess any new potential solutions', body:'Working through the frameworks often generates new possibilities. Add them to your list and weigh them. Which options bring you a sense of wholeness or peace?' },
+  { n:7, title:'Act in accordance with your ethical analysis', body:'Here\'s where you do the thing you decided was right. This can be uncomfortable — but it is often easier than you anticipate after doing this much preparation work.' },
+  { n:8, title:'Assess your actions and the outcomes', body:'How did it go? How do you feel? If you can, discuss the situation with someone you trust. Write down what you learned — this knowledge becomes part of your judgment on the next dilemma.' }
+];
+
+const S9_LENSES = [
+  {
+    fw:'Deontology', short:'Deontology',
+    q:'What would a deontological thinker focus on first?',
+    opts:[
+      { t:'Whether accepting the gift violates any duty, rule, or implicit obligation she holds — regardless of whether anyone finds out.', correct:true },
+      { t:'Whether Priya will genuinely enjoy the concert and benefit from the relationship.', correct:false },
+      { t:'Whether the supplier expected anything in return, or intended it purely as a gesture.', correct:false }
+    ],
+    explain:'Deontology focuses on duties and rules that bind us regardless of outcomes. A deontological thinker asks whether accepting crosses a line of obligation — not whether the outcome will be good or bad.'
+  },
+  {
+    fw:'Consequentialism', short:'Consequentialism',
+    q:'What would a consequentialist focus on?',
+    opts:[
+      { t:'The concrete outcomes — does accepting this gift actually affect Priya\'s future decisions, and who is helped or harmed?', correct:true },
+      { t:'What the gift says about the kind of professional Priya chooses to be.', correct:false },
+      { t:'Whether the $500 policy threshold is fair to all suppliers.', correct:false }
+    ],
+    explain:'Consequentialism asks about actual outcomes. A consequentialist assesses whether accepting or declining produces the best result for everyone affected — Priya, the supplier, the company, and future clients.'
+  },
+  {
+    fw:'Virtue Ethics', short:'Virtue Ethics',
+    q:'What would a virtue ethicist focus on?',
+    opts:[
+      { t:'What accepting or declining says about the kind of procurement professional Priya is choosing to become.', correct:true },
+      { t:'Whether the gift was priced at or just under the $500 policy threshold.', correct:false },
+      { t:'Whether the supplier offers similar gifts to all their procurement contacts.', correct:false }
+    ],
+    explain:'Virtue ethics asks: "Will this act help me become the person I want to be?" A virtue ethicist focuses on what the decision reveals about character — not just the action itself.'
+  },
+  {
+    fw:'Social Contracts', short:'Social Contracts',
+    q:'What would a social contract thinker focus on?',
+    opts:[
+      { t:'Whether a standard allowing procurement officers to accept supplier gifts — if universally adopted — is one all parties could reasonably agree to.', correct:true },
+      { t:'The quality of Priya\'s personal relationship with the supplier contact.', correct:false },
+      { t:'The revenue this supplier generates for the company each year.', correct:false }
+    ],
+    explain:'Social contract thinking asks: could all parties — including those in the weaker position — agree to this as a rule? If customers knew procurement officers routinely accepted gifts from their vendors, would they consent to that arrangement?'
+  },
+  {
+    fw:'Ethics of Care', short:'Ethics of Care',
+    q:'What would an ethics of care thinker focus on?',
+    opts:[
+      { t:'The specific relationship between Priya and the supplier — its history, its implicit commitments, and what accepting or declining would mean for it.', correct:true },
+      { t:'Whether there are other suppliers who would also like to give Priya gifts.', correct:false },
+      { t:'Priya\'s obligation to follow the $500 disclosure rule precisely.', correct:false }
+    ],
+    explain:'Ethics of care focuses on the particular relationship and what it requires. A care ethicist asks what Priya\'s specific history with this supplier means — not what policy says or what any buyer in her position should do in the abstract.'
+  }
+];
+
+const S11_STEPS = [
+  {
+    n:1, title:'Identify the important facts',
+    prompt:'Which of these are confirmed facts — not assumptions — about Marcus\'s situation? Select all that apply.',
+    type:'multiselect',
+    opts:[
+      { t:'Marcus has been using company servers, support staff, and branded materials for a side business.', correct:true },
+      { t:'This conduct violates HR policy and is a terminable offense.', correct:true },
+      { t:'Marcus generates 30% of the office\'s annual revenue.', correct:true },
+      { t:'Marcus knew this conduct was prohibited when he began.', correct:false, note:'Not confirmed — this is an assumption.' },
+      { t:'The side business is harming company clients.', correct:false, note:'Not confirmed — it hasn\'t been established.' },
+      { t:'Marcus will resign if confronted before the deal closes.', correct:false, note:'Not confirmed — this is speculation.' }
+    ],
+    correctSet:[0,1,2],
+    explain:'Distinguishing facts from assumptions matters because decisions grounded in speculation are far more likely to be unfair — and to backfire.'
+  },
+  {
+    n:2, title:'Identify the ethical issue',
+    prompt:'What is the core ethical tension in this situation?',
+    type:'single',
+    opts:[
+      { t:'Fairness to other employees and the organization versus protecting the revenue Marcus provides.', correct:true },
+      { t:'Whether Marcus is technically guilty under the policy.', correct:false },
+      { t:'Whether you personally like Marcus or want to protect your relationship with him.', correct:false }
+    ],
+    explain:'The tension isn\'t about guilt — that\'s already established. It\'s between organizational fairness and financial self-interest. Naming it clearly keeps the decision honest.'
+  },
+  {
+    n:3, title:'Identify the stakeholders',
+    prompt:'Who is genuinely affected by how you handle this? Select all that apply.',
+    type:'multiselect',
+    opts:[
+      { t:'Marcus', correct:true },
+      { t:'Your other sales team members', correct:true },
+      { t:'The company\'s clients', correct:true },
+      { t:'Marcus\'s side business clients', correct:true, note:'Non-obvious — they may be receiving services using company resources.' },
+      { t:'You and your standing as a manager', correct:true },
+      { t:'The board of directors', correct:false, note:'Too remote — not a direct stakeholder in this immediate decision.' }
+    ],
+    correctSet:[0,1,2,3,4],
+    explain:'Marcus\'s side business clients are easy to miss — but they may be benefiting from resources that don\'t belong to them, which creates its own set of obligations.'
+  },
+  {
+    n:4, title:'Identify potential solutions',
+    prompt:'Which represents a complete and honest list of real options?',
+    type:'single',
+    opts:[
+      { t:'Fire Marcus immediately — policy is clear.', correct:false },
+      { t:'Ignore it until after the deal closes, then address it.', correct:false },
+      { t:'Options include: immediate termination, a formal warning with a remediation plan, a documented private conversation before formal action, or delayed formal action pending the deal — each with different ethical implications.', correct:true }
+    ],
+    explain:'Identifying solutions means genuinely listing all viable options, not just the easiest or most obvious one. Creative combinations sometimes reveal paths no single option provides.'
+  },
+  {
+    n:5, title:'Assess using ethical perspectives',
+    prompt:'Which framework is most useful for evaluating the fairness dimension — what other employees see and experience?',
+    type:'single',
+    opts:[
+      { t:'Ethics of Care — what Marcus\'s long tenure requires of you.', correct:false },
+      { t:'Social Contracts — what rule all employees could agree to if they didn\'t know their role in advance.', correct:true },
+      { t:'Virtue Ethics — what a manager with good character would do.', correct:false }
+    ],
+    explain:'Social contract thinking is especially useful for fairness questions. If employees didn\'t know in advance whether they were Marcus or a peer watching this situation, what standard would they want applied?'
+  },
+  {
+    n:6, title:'Assess any new solutions',
+    prompt:'After applying the frameworks, what option might now seem worth adding?',
+    type:'single',
+    opts:[
+      { t:'Handle it quietly with no documentation — protect Marcus and the revenue.', correct:false },
+      { t:'A documented private conversation that begins the formal process — regardless of when the deal closes.', correct:true },
+      { t:'Leak the situation to the team to establish a public example.', correct:false }
+    ],
+    explain:'The frameworks often surface options that weren\'t on the original list. Initiating the process privately but formally honors organizational fairness while treating Marcus with dignity.'
+  },
+  {
+    n:7, title:'Act in accordance with your analysis',
+    prompt:'Which action is most consistent with the ethical analysis you\'ve done?',
+    type:'single',
+    opts:[
+      { t:'Delay all action until after the deal closes to protect revenue.', correct:false },
+      { t:'Confront Marcus privately, document the conversation, and initiate the formal HR process — regardless of deal timing.', correct:true },
+      { t:'Refer it entirely to HR and remove yourself from the process.', correct:false }
+    ],
+    explain:'Acting in accordance with your analysis means doing what the work pointed toward — not what\'s convenient. The field guide notes this can be uncomfortable, but is often less hard than anticipated after thorough preparation.'
+  },
+  {
+    n:8, title:'Assess your actions and the outcomes',
+    prompt:'After acting, which two questions most belong in your reflection? Select 2.',
+    type:'multiselect2',
+    opts:[
+      { t:'Did I act consistently with my values — even when it was hard?', correct:true },
+      { t:'Did I get the outcome I personally wanted?', correct:false },
+      { t:'What would I do differently, or better, next time?', correct:true },
+      { t:'Did Marcus deserve what happened?', correct:false },
+      { t:'Was the revenue loss worth it?', correct:false }
+    ],
+    correctSet:[0,2],
+    explain:'Step 8 is about learning, not scoring. The field guide asks: "How do you feel? What did you learn?" — not "Did it work out for me?" Good ethical reasoning improves over time because leaders reflect honestly on what they did and what they\'d do differently.'
+  }
+];
+
+/* ═══════════════════════════ STATE ═══════════════════════════ */
+let current = 0;
+const TOTAL = 13;
+let screenOk = new Array(TOTAL).fill(false);
+screenOk[0] = true;
+
+// S1
+let s1Done = false;
+// S2
+let s2Opened = new Set();
+// S3
+let s3Dragging = null, s3Pending = null, s3Placed = {}, s3Done = false;
+// S4
+let s4Pending = null, s4Left = null, s4Right = null, s4Done = false, s4Dragging = null;
+// S5
+let s5Moved = new Set();
+// S6
+let s6Selected = new Set(), s6Done = false;
+// S7
+let s7Done = false;
+// S8
+let s8Pending = null, s8Left = null, s8Right = null, s8Done = false, s8Dragging = null;
+// S9
+let s9Done = new Set();
+// S10
+let s10Opened = new Set();
+// S11
+let s11CurrentStep = 0, s11StepDone = new Array(8).fill(false), s11MultiSel = new Set(), s11Done = false;
+
+/* ═══════════════════════════ NAV ═══════════════════════════ */
+function goTo(n) {
+  document.getElementById('screen-'+current).classList.remove('active');
+  current = n;
+  const scr = document.getElementById('screen-'+current);
+  scr.classList.add('active');
+  window.scrollTo(0,0);
+  updateUI();
+  if(n===12) unlock(12);
+  const builders = {1:null,2:buildS2,3:buildS3,4:buildS4,5:buildS5,6:buildS6,7:buildS7,8:buildS8,9:buildS9,10:buildS10,11:buildS11,12:null};
+  if(builders[n]) builders[n]();
+}
+function goNext(){ if(current<TOTAL-1) goTo(current+1); }
+function goBack(){ if(current>0) goTo(current-1); }
+function unlock(n){ screenOk[n]=true; if(current===n) document.getElementById('continue-btn').disabled=false; }
+function updateUI(){
+  document.getElementById('continue-btn').disabled=!screenOk[current];
+  document.getElementById('back-btn').style.visibility=current===0?'hidden':'visible';
+  document.getElementById('screen-counter').textContent='Screen '+(current+1)+' of '+TOTAL;
+  buildTrail();
+}
+
+function buildTrail(){
+  const t=document.getElementById('trail'); t.innerHTML='';
+  const labels=['Start','Framework?','5 Frameworks','Match','Deontology','Consequentialism','Virtue','Social','Care','5 Lenses','8 Steps','Walk Steps','Reference'];
+  labels.forEach((lbl,i)=>{
+    const wp=document.createElement('div');
+    wp.className='waypoint'+(i<current?' done':i===current?' active':'');
+    const dot=document.createElement('div');
+    dot.className='waypoint-dot'; dot.textContent=i+1; dot.title=lbl;
+    wp.appendChild(dot); t.appendChild(wp);
+    if(i<labels.length-1){
+      const line=document.createElement('div');
+      line.className='trail-line'+(i<current?' done':'');
+      t.appendChild(line);
+    }
+  });
+}
+
+/* ═══════════════════════════ THEME ═══════════════════════════ */
+function toggleTheme(){
+  const h=document.documentElement;
+  h.setAttribute('data-theme',h.getAttribute('data-theme')==='dark'?'light':'dark');
+}
+
+/* ═══════════════════════════ S1 ═══════════════════════════ */
+function s1Pick(val, el){
+  if(s1Done) return;
+  document.querySelectorAll('#s1-cards .option-btn').forEach(b=>b.classList.remove('selected','opt-correct','opt-wrong'));
+  const fb=document.getElementById('s1-feedback');
+  if(val==='B'){
+    el.classList.add('opt-correct');
+    fb.className='feedback correct show';
+    fb.innerHTML='<strong>Yes.</strong> This statement uses universalizability — a deontological tool. It applies a consistent principle ("what if everyone did this?") rather than reacting to the moment. That\'s what an ethical framework looks like in practice.';
+    document.getElementById('s1-explain').style.display='block';
+    s1Done=true; unlock(1);
+  } else {
+    el.classList.add('opt-wrong');
+    fb.className='feedback wrong show';
+    if(val==='A') fb.innerHTML='<strong>Not quite.</strong> Gut reactions are real and worth paying attention to — but they\'re not a framework. They can mislead under pressure and are hard to explain to others. A framework provides a principled basis that holds up under scrutiny.';
+    else fb.innerHTML='<strong>Not quite.</strong> This is precedent-based reasoning, not a framework. "We\'ve done it before and no one complained" can lock in bad practices. A framework asks whether the action is right — not whether it\'s gone unnoticed.';
+    el.classList.add('shake');
+    setTimeout(()=>el.classList.remove('shake'),400);
+  }
+}
+
+/* ═══════════════════════════ S2 ═══════════════════════════ */
+function buildS2(){
+  const wrap=document.getElementById('s2-accordions');
+  if(wrap.children.length) return;
+  FRAMEWORKS.forEach((fw,i)=>{
+    const item=document.createElement('div'); item.className='accordion-item';
+    const id='s2acc-'+i;
+    item.innerHTML=`
+      <button class="accordion-trigger" id="${id}-trigger" onclick="toggleS2Acc(${i})">
+        <span><span class="accordion-num">0${i+1}</span>${fw.name} — <em style="font-weight:normal">${fw.sub}</em></span>
+        <svg class="chevron" id="${id}-chev" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div class="accordion-body" id="${id}-body">
+        <div class="accordion-body-inner">
+          <div class="video-placeholder" style="margin-bottom:14px">
+            <div class="vp-texture"></div>
+            <span class="vp-badge-top">Field Scenario</span>
+            <div class="vp-center"><div class="vp-play"><div class="vp-play-icon"></div></div></div>
+            <div class="vp-bottom"><div class="vp-title">${fw.video.title}</div><div class="vp-dur">${fw.video.dur}</div></div>
+            <div class="vp-bar"></div>
+          </div>
+          <p style="margin-bottom:10px">${fw.desc}</p>
+          <div class="scenario-box" style="margin-bottom:10px;font-family:Georgia,serif;font-style:italic">"${fw.example}"</div>
+          <p style="font-size:13px;color:var(--ink-soft)"><strong>Tools:</strong> ${fw.tools}</p>
+        </div>
+      </div>`;
+    wrap.appendChild(item);
+  });
+}
+function toggleS2Acc(i){
+  const id='s2acc-'+i;
+  const body=document.getElementById(id+'-body');
+  const chev=document.getElementById(id+'-chev');
+  const trig=document.getElementById(id+'-trigger');
+  const isOpen=body.classList.contains('open');
+  body.classList.toggle('open');
+  chev.classList.toggle('open');
+  trig.classList.toggle('opened');
+  if(!isOpen){ s2Opened.add(i); document.getElementById('s2-progress').textContent=s2Opened.size+' of 5 opened'; }
+  if(s2Opened.size===5) unlock(2);
+}
+
+/* ═══════════════════════════ S3 — Framework Match ═══════════════════════════ */
+function buildS3(){
+  if(s3Done) return;
+  // Pool
+  const pool=document.getElementById('s3-pool'); pool.innerHTML='';
+  MATCH_CHIPS.forEach(c=>{
+    const chip=document.createElement('div');
+    chip.className='chip'; chip.id='mchip-'+c.id;
+    chip.textContent=c.text; chip.draggable=true;
+    chip.style.cursor='pointer'; chip.style.maxWidth='340px'; chip.style.whiteSpace='normal'; chip.style.lineHeight='1.5';
+    chip.addEventListener('click',()=>s3ChipClick(c.id));
+    chip.addEventListener('dragstart',e=>{ s3Dragging=c.id; e.dataTransfer.effectAllowed='move'; setTimeout(()=>chip.style.opacity='.3',0); });
+    chip.addEventListener('dragend',()=>{ chip.style.opacity='1'; s3Dragging=null; });
+    pool.appendChild(chip);
+  });
+  // Slots
+  const wrap=document.getElementById('s3-slots'); wrap.innerHTML='';
+  FRAMEWORKS.forEach(fw=>{
+    const slot=document.createElement('div'); slot.className='fw-slot'; slot.id='fwslot-'+fw.id;
+    slot.innerHTML=`
+      <div class="fw-slot-label">${fw.name}<span class="fw-slot-sub">${fw.sub}</span></div>
+      <div class="fw-slot-zone" id="fwzone-${fw.id}">Drop here</div>`;
+    slot.addEventListener('dragover',e=>{ e.preventDefault(); slot.classList.add('drag-over'); });
+    slot.addEventListener('dragleave',()=>slot.classList.remove('drag-over'));
+    slot.addEventListener('drop',e=>{ e.preventDefault(); slot.classList.remove('drag-over'); if(s3Dragging) s3PlaceChip(s3Dragging,fw.id); });
+    slot.addEventListener('click',()=>{ if(s3Pending) s3PlaceChip(s3Pending,fw.id); });
+    wrap.appendChild(slot);
+  });
+}
+function s3ChipClick(id){
+  if(s3Done) return;
+  if(s3Placed[id]) return;
+  const chip=document.getElementById('mchip-'+id);
+  if(s3Pending===id){ chip.classList.remove('chip-selected'); s3Pending=null; return; }
+  if(s3Pending){ const prev=document.getElementById('mchip-'+s3Pending); if(prev) prev.classList.remove('chip-selected'); }
+  chip.classList.add('chip-selected'); s3Pending=id;
+}
+function s3PlaceChip(chipId, fwId){
+  if(s3Done) return;
+  // Remove from previous slot if re-placing
+  Object.keys(s3Placed).forEach(k=>{ if(s3Placed[k]===fwId && k!==chipId) { delete s3Placed[k]; const pc=document.getElementById('mchip-'+k); if(pc){pc.classList.remove('chip-placed');} } });
+  // Remove chip from its previous fw slot
+  if(s3Placed[chipId]){ const prev=document.getElementById('fwzone-'+s3Placed[chipId]); if(prev){prev.textContent='Drop here'; prev.classList.remove('has-chip');} }
+  s3Placed[chipId]=fwId;
+  const zone=document.getElementById('fwzone-'+fwId);
+  const chipData=MATCH_CHIPS.find(c=>c.id===chipId);
+  zone.textContent=chipData.text; zone.classList.add('has-chip');
+  const chipEl=document.getElementById('mchip-'+chipId);
+  chipEl.classList.remove('chip-selected'); chipEl.classList.add('chip-placed');
+  s3Pending=null;
+  if(Object.keys(s3Placed).length===5) document.getElementById('s3-check-btn').style.display='inline-flex';
+}
+function checkS3(){
+  let correct=0;
+  MATCH_CHIPS.forEach(c=>{
+    const placedFw=s3Placed[c.id];
+    const slot=document.getElementById('fwslot-'+placedFw);
+    if(placedFw===c.fw){ correct++; if(slot) slot.classList.add('slot-correct'); }
+    else{ if(slot) slot.classList.add('slot-wrong'); }
+  });
+  const res=document.getElementById('s3-result');
+  if(correct===5){
+    res.className='feedback correct show'; res.textContent='All five matched correctly. Each framework has a distinct logic — and learning to hear which one a speaker is using is a real skill.';
+    s3Done=true; unlock(3);
+  } else {
+    res.className='feedback wrong show'; res.innerHTML=`${correct} of 5 correct. Review the mismatched ones and try again. <button class="btn btn-ghost btn-sm" style="margin-top:8px;display:inline-flex" onclick="resetS3()">Reset</button>`;
+  }
+}
+function resetS3(){ s3Placed={}; s3Done=false; buildS3(); document.getElementById('s3-check-btn').style.display='none'; document.getElementById('s3-result').className='feedback'; }
+
+/* ═══════════════════════════ S4 — Deontology T-chart ═══════════════════════════ */
+const S4_CHIPS=[
+  {id:'hipa',text:'Legal duty to report HIPAA violations',side:'left'},
+  {id:'priv',text:'Privacy law protects patients',side:'left'},
+  {id:'loya',text:'Loyalty and compassion for a colleague',side:'right'},
+  {id:'harm',text:'Potential harm to the colleague\'s career',side:'right'}
+];
+function buildS4(){
+  if(s4Done) return;
+  const pool=document.getElementById('s4-chips'); pool.innerHTML='';
+  s4Left=null; s4Right=null;
+  const zL=document.getElementById('s4-zone-left'); zL.textContent='Drag or tap a chip here'; zL.className='t-col-zone';
+  const zR=document.getElementById('s4-zone-right'); zR.textContent='Drag or tap a chip here'; zR.className='t-col-zone';
+  S4_CHIPS.forEach(c=>{
+    const chip=document.createElement('div');
+    chip.className='chip'; chip.id='s4chip-'+c.id; chip.dataset.id=c.id;
+    chip.textContent=c.text; chip.draggable=true; chip.style.cursor='pointer';
+    chip.addEventListener('click',()=>s4ChipClick(c.id));
+    chip.addEventListener('dragstart',e=>{ s4Dragging=c.id; e.dataTransfer.effectAllowed='move'; setTimeout(()=>chip.style.opacity='.3',0); });
+    chip.addEventListener('dragend',()=>{ chip.style.opacity='1'; s4Dragging=null; });
+    pool.appendChild(chip);
+  });
+}
+function s4ChipClick(id){
+  if(s4Done) return;
+  const chip=document.getElementById('s4chip-'+id);
+  if(chip.classList.contains('chip-placed')) return;
+  if(s4Pending===id){ chip.classList.remove('chip-selected'); s4Pending=null; return; }
+  if(s4Pending){ const p=document.getElementById('s4chip-'+s4Pending); if(p) p.classList.remove('chip-selected'); }
+  chip.classList.add('chip-selected'); s4Pending=id;
+}
+function onS4ChartClick(e){
+  if(!s4Pending) return;
+  const zone=e.target.closest('.t-col-zone'); if(!zone) return;
+  const col=zone.id==='s4-zone-left'?'left':'right';
+  s4PlaceChip(s4Pending,col); s4Pending=null;
+}
+function onS4Dragover(e){ const z=e.target.closest('.t-col-zone'); if(z){e.preventDefault(); z.classList.add('drag-over');} }
+function onS4Drop(e){ const z=e.target.closest('.t-col-zone'); if(!z) return; e.preventDefault(); z.classList.remove('drag-over'); if(s4Dragging) s4PlaceChip(s4Dragging,'s4-zone-left'===z.id?'left':'right'); }
+function onS4Dragleave(e){ const z=e.target.closest('.t-col-zone'); if(z) z.classList.remove('drag-over'); }
+function s4PlaceChip(id,col){
+  const c=S4_CHIPS.find(x=>x.id===id); if(!c) return;
+  const zone=document.getElementById('s4-zone-'+col);
+  zone.textContent=c.text; zone.classList.add('filled');
+  const chip=document.getElementById('s4chip-'+id);
+  chip.classList.remove('chip-selected'); chip.classList.add('chip-placed');
+  if(col==='left') s4Left=id; else s4Right=id;
+  if(s4Left&&s4Right) document.getElementById('s4-check-btn').style.display='inline-flex';
+}
+function clearS4(){ buildS4(); document.getElementById('s4-check-btn').style.display='none'; document.getElementById('s4-feedback').className='feedback'; s4Left=null; s4Right=null; s4Pending=null; }
+function checkS4(){
+  const leftChip=S4_CHIPS.find(c=>c.id===s4Left);
+  const rightChip=S4_CHIPS.find(c=>c.id===s4Right);
+  const leftOk=leftChip&&leftChip.side==='left';
+  const rightOk=rightChip&&rightChip.side==='right';
+  const fb=document.getElementById('s4-feedback');
+  if(leftOk&&rightOk){
+    fb.className='feedback correct show';
+    fb.innerHTML='<strong>Exactly right.</strong> Deontology holds that your legal and professional duty to report a privacy violation binds you regardless of the personal cost to your colleague. The competing interest is real — but a deontologist would say that\'s what makes it hard, not what makes it wrong.';
+    s4Done=true; unlock(4);
+  } else {
+    fb.className='feedback wrong show';
+    fb.innerHTML='<strong>Not quite.</strong> Think about what deontology focuses on: a <em>rule-based duty</em> that applies regardless of consequences. The HIPAA requirement is that kind of duty. The loyalty and harm considerations are real — but in deontological terms, they belong on the "competing interest" side.';
+  }
+}
+
+/* ═══════════════════════════ S5 — Consequentialism Sliders ═══════════════════════════ */
+const S5_SLIDERS=[
+  {id:'empl',label:'The 12 displaced employees',left:'Severely harmed',right:'Modestly helped'},
+  {id:'cust',label:'Customers',left:'Significantly harmed',right:'Significantly helped'},
+  {id:'rest',label:'The 200 remaining employees',left:'Harmed (culture of fear)',right:'Protected (job security)'}
+];
+function buildS5(){
+  const wrap=document.getElementById('s5-sliders'); if(wrap.children.length) return;
+  S5_SLIDERS.forEach(s=>{
+    const div=document.createElement('div'); div.className='slider-wrap';
+    div.innerHTML=`
+      <div class="slider-label">${s.label}</div>
+      <div class="slider-labels"><span>${s.left}</span><span>${s.right}</span></div>
+      <input type="range" min="0" max="100" value="50" id="s5slider-${s.id}">
+      <div class="slider-readout" id="s5read-${s.id}">Move the slider to show your assessment</div>`;
+    wrap.appendChild(div);
+    const inp=div.querySelector('input');
+    inp.addEventListener('input',()=>{ s5OnMove(s.id,inp.value); });
+  });
+}
+function s5OnMove(id,val){
+  s5Moved.add(id);
+  const read=document.getElementById('s5read-'+id);
+  const v=parseInt(val);
+  if(v<30) read.textContent='Leans toward: harm';
+  else if(v>70) read.textContent='Leans toward: benefit';
+  else read.textContent='Mixed impact — genuine tradeoff';
+  if(s5Moved.size===3){
+    const fb=document.getElementById('s5-feedback');
+    fb.style.display='block'; fb.className='feedback neutral show';
+    fb.innerHTML='<strong>Consequentialism in action.</strong> Notice that the harm falls on a small, specific group while the benefit is broader and longer-term. A consequentialist weighs the aggregate — but also recognizes that real harm to specific people doesn\'t disappear because the total is positive. The field guide notes: you can\'t predict all outcomes. That\'s part of why using multiple frameworks matters.';
+    unlock(5);
+  }
+}
+
+/* ═══════════════════════════ S6 — Virtue Ethics Chips ═══════════════════════════ */
+const S6_TRAITS=['Courage','Integrity','Prudence','Loyalty','Justice','Humility'];
+const S6_CORRECT=['Courage','Integrity'];
+function buildS6(){
+  if(s6Done) return;
+  const wrap=document.getElementById('s6-chips'); wrap.innerHTML='';
+  s6Selected.clear();
+  S6_TRAITS.forEach(t=>{
+    const chip=document.createElement('button');
+    chip.className='chip'; chip.id='s6c-'+t; chip.textContent=t;
+    chip.style.cursor='pointer';
+    chip.addEventListener('click',()=>s6Toggle(t));
+    wrap.appendChild(chip);
+  });
+}
+function s6Toggle(t){
+  if(s6Done) return;
+  const chip=document.getElementById('s6c-'+t);
+  if(s6Selected.has(t)){ s6Selected.delete(t); chip.classList.remove('chip-selected'); }
+  else{ if(s6Selected.size>=2) return; s6Selected.add(t); chip.classList.add('chip-selected'); }
+  document.getElementById('s6-check-btn').style.display=s6Selected.size===2?'inline-flex':'none';
+}
+function checkS6(){
+  const sel=[...s6Selected];
+  const correct=sel.every(s=>S6_CORRECT.includes(s))&&sel.length===2;
+  const fb=document.getElementById('s6-feedback');
+  if(correct){
+    fb.className='feedback correct show';
+    fb.innerHTML='<strong>Well chosen.</strong> Virtue ethics asks what a person of good character would do. This situation calls especially for <strong>courage</strong> — acting despite friction — and <strong>integrity</strong> — maintaining honest professional standards even when no one is forcing you to. These traits define who the accountant is becoming, not just what they\'re doing.';
+    S6_TRAITS.forEach(t=>{ const c=document.getElementById('s6c-'+t); if(c){c.classList.remove('chip-selected'); c.classList.add(S6_CORRECT.includes(t)?'chip-correct':'chip-wrong'); c.disabled=true;} });
+    s6Done=true; unlock(6);
+  } else {
+    fb.className='feedback wrong show';
+    fb.innerHTML='<strong>Consider this.</strong> Virtue ethics asks which character traits this situation is specifically calling on — not which traits are admirable in general. In this scenario, raising a concern about questionable accounting requires two things above all: the willingness to act despite discomfort, and a commitment to honest standards. Which traits name those?';
+    sel.forEach(t=>{ const c=document.getElementById('s6c-'+t); if(c){c.classList.remove('chip-selected'); c.classList.add('chip-wrong');} });
+    setTimeout(()=>{ s6Selected.clear(); S6_TRAITS.forEach(t=>{ const c=document.getElementById('s6c-'+t); if(c){c.classList.remove('chip-selected','chip-wrong');}  }); document.getElementById('s6-check-btn').style.display='none'; },1200);
+  }
+}
+
+/* ═══════════════════════════ S7 — Social Contracts ═══════════════════════════ */
+const S7_OPTS=[
+  {val:'yes',text:'Yes — it\'s standard sales practice. Customers expect sellers to lead with strengths.'},
+  {val:'no',text:'No — if customers knew this was the rule, many would not agree to it as a fair standard.'},
+  {val:'depends',text:'It depends on what customers know to expect when entering the process.'}
+];
+function buildS7(){
+  const wrap=document.getElementById('s7-options'); if(wrap.children.length) return;
+  S7_OPTS.forEach((o,i)=>{
+    const btn=document.createElement('button'); btn.className='option-btn';
+    btn.innerHTML=`<span class="opt-letter">${String.fromCharCode(65+i)}</span><span>${o.text}</span>`;
+    btn.onclick=()=>s7Pick(o.val,btn);
+    wrap.appendChild(btn);
+  });
+}
+function s7Pick(val,el){
+  if(s7Done) return;
+  const fb=document.getElementById('s7-feedback');
+  document.querySelectorAll('#s7-options .option-btn').forEach(b=>{b.disabled=true;});
+  if(val==='no'){
+    el.classList.add('opt-correct'); fb.className='feedback correct show';
+    fb.innerHTML='<strong>Correct — and here\'s the test.</strong> Social contract thinking asks: if customers didn\'t know which role they were in — buyer or seller — would they agree to a rule allowing sellers to withhold known limitations? Most would not. That failure of the veil-of-ignorance test is the social contract signal that the practice is ethically questionable.';
+    s7Done=true; unlock(7);
+  } else if(val==='depends'){
+    el.classList.add('opt-correct'); fb.className='feedback neutral show';
+    fb.innerHTML='<strong>Thoughtful — and here\'s what the framework says.</strong> "It depends" gets at something real: context matters. But social contract thinking pushes you to name what the dependency is. If the practice only becomes acceptable when customers don\'t know about it, that\'s a signal. A rule that requires the other party\'s ignorance to work fails the test. The field guide\'s questions: "Would I be willing to be the other party?" and "Who benefits and who is harmed?"';
+    s7Done=true; unlock(7);
+  } else {
+    el.classList.add('opt-wrong'); fb.className='feedback wrong show';
+    fb.innerHTML='<strong>Reconsider.</strong> "Standard practice" is a claim of normalcy — which the field guide identifies as a neutralization technique. Social contract thinking asks whether the practice could be agreed upon by all parties, not whether it\'s common. A customer who knew sellers routinely withheld limitations might reasonably decline to agree to it as a rule. That gap is the issue.';
+    setTimeout(()=>{ document.querySelectorAll('#s7-options .option-btn').forEach(b=>{b.disabled=false; b.classList.remove('opt-wrong');}); fb.className='feedback'; },1500);
+  }
+}
+
+/* ═══════════════════════════ S8 — Ethics of Care T-chart ═══════════════════════════ */
+const S8_CHIPS=[
+  {id:'rod5',text:'Rodrigo\'s five years of loyalty and trust',side:'left'},
+  {id:'rodev',text:'Rodrigo\'s growth and development as a professional',side:'left'},
+  {id:'team',text:'The team\'s expectation of fair, consistent standards',side:'right'},
+  {id:'cli',text:'Clients who depend on team deliverables',side:'right'}
+];
+function buildS8(){
+  if(s8Done) return;
+  const pool=document.getElementById('s8-chips'); pool.innerHTML='';
+  s8Left=null; s8Right=null;
+  const zL=document.getElementById('s8-zone-left'); zL.textContent='Drag or tap a chip here'; zL.className='t-col-zone';
+  const zR=document.getElementById('s8-zone-right'); zR.textContent='Drag or tap a chip here'; zR.className='t-col-zone';
+  S8_CHIPS.forEach(c=>{
+    const chip=document.createElement('div');
+    chip.className='chip'; chip.id='s8chip-'+c.id;
+    chip.textContent=c.text; chip.draggable=true; chip.style.cursor='pointer';
+    chip.addEventListener('click',()=>s8ChipClick(c.id));
+    chip.addEventListener('dragstart',e=>{ s8Dragging=c.id; e.dataTransfer.effectAllowed='move'; setTimeout(()=>chip.style.opacity='.3',0); });
+    chip.addEventListener('dragend',()=>{ chip.style.opacity='1'; s8Dragging=null; });
+    pool.appendChild(chip);
+  });
+}
+function s8ChipClick(id){
+  if(s8Done) return;
+  const chip=document.getElementById('s8chip-'+id);
+  if(chip.classList.contains('chip-placed')) return;
+  if(s8Pending===id){ chip.classList.remove('chip-selected'); s8Pending=null; return; }
+  if(s8Pending){ const p=document.getElementById('s8chip-'+s8Pending); if(p) p.classList.remove('chip-selected'); }
+  chip.classList.add('chip-selected'); s8Pending=id;
+}
+function onS8ChartClick(e){
+  if(!s8Pending) return;
+  const zone=e.target.closest('.t-col-zone'); if(!zone) return;
+  const col=zone.id==='s8-zone-left'?'left':'right';
+  s8PlaceChip(s8Pending,col); s8Pending=null;
+}
+function onS8Dragover(e){ const z=e.target.closest('.t-col-zone'); if(z){e.preventDefault(); z.classList.add('drag-over');} }
+function onS8Drop(e){ const z=e.target.closest('.t-col-zone'); if(!z) return; e.preventDefault(); z.classList.remove('drag-over'); if(s8Dragging) s8PlaceChip(s8Dragging,'s8-zone-left'===z.id?'left':'right'); }
+function onS8Dragleave(e){ const z=e.target.closest('.t-col-zone'); if(z) z.classList.remove('drag-over'); }
+function s8PlaceChip(id,col){
+  const c=S8_CHIPS.find(x=>x.id===id); if(!c) return;
+  const zone=document.getElementById('s8-zone-'+col);
+  zone.textContent=c.text; zone.classList.add('filled');
+  const chip=document.getElementById('s8chip-'+id);
+  chip.classList.remove('chip-selected'); chip.classList.add('chip-placed');
+  if(col==='left') s8Left=id; else s8Right=id;
+  if(s8Left&&s8Right) document.getElementById('s8-check-btn').style.display='inline-flex';
+}
+function clearS8(){ buildS8(); document.getElementById('s8-check-btn').style.display='none'; document.getElementById('s8-feedback').className='feedback'; s8Left=null; s8Right=null; s8Pending=null; }
+function checkS8(){
+  const leftC=S8_CHIPS.find(c=>c.id===s8Left);
+  const rightC=S8_CHIPS.find(c=>c.id===s8Right);
+  const ok=leftC&&leftC.side==='left'&&rightC&&rightC.side==='right';
+  const fb=document.getElementById('s8-feedback');
+  if(ok){
+    fb.className='feedback correct show';
+    fb.innerHTML='<strong>Right.</strong> Ethics of care says Dana\'s specific relationship with Rodrigo — built over five years — creates an obligation she doesn\'t have to others in the abstract. But it also says Dana has obligations to her team and clients. The tension isn\'t between one real value and one fake one. Both sides are real. That\'s the dilemma ethics of care makes visible.';
+    s8Done=true; unlock(8);
+  } else {
+    fb.className='feedback wrong show';
+    fb.innerHTML='<strong>Not quite.</strong> Think about what ethics of care prioritizes: the <em>specific relationship</em> creates a closest obligation. Dana\'s years with Rodrigo, her role in his development — those belong on the left. The obligations she has to the broader team and to clients belong on the right.';
+  }
+}
+
+/* ═══════════════════════════ S9 — 5 Lenses ═══════════════════════════ */
+function buildS9(){
+  if(s9Done.size===5) return;
+  const tabsBar=document.getElementById('s9-tabs'); tabsBar.innerHTML='';
+  const panelsWrap=document.getElementById('s9-panels'); panelsWrap.innerHTML='';
+  S9_LENSES.forEach((lens,i)=>{
+    const tab=document.createElement('button'); tab.className='tab-btn'+(i===0?' active':''); tab.id='s9tab-'+i;
+    tab.textContent=lens.short+(s9Done.has(i)?' ✓':'');
+    tab.onclick=()=>s9SwitchTab(i);
+    tabsBar.appendChild(tab);
+
+    const panel=document.createElement('div'); panel.className='tab-panel'+(i===0?' active':''); panel.id='s9panel-'+i;
+    panel.innerHTML=`<p style="font-family:Georgia,serif;font-size:15px;font-weight:bold;margin-bottom:14px">${lens.q}</p>`;
+    lens.opts.forEach((opt,j)=>{
+      const btn=document.createElement('button'); btn.className='option-btn'; btn.id='s9opt-'+i+'-'+j;
+      btn.innerHTML=`<span class="opt-letter">${String.fromCharCode(65+j)}</span><span>${opt.t}</span>`;
+      btn.onclick=()=>s9Pick(i,j,opt.correct,btn);
+      if(s9Done.has(i)) btn.disabled=true;
+      panel.appendChild(btn);
+    });
+    const fb=document.createElement('div'); fb.className='feedback'+(s9Done.has(i)?' correct show':''); fb.id='s9fb-'+i;
+    if(s9Done.has(i)) fb.innerHTML='<strong>Correct.</strong> '+lens.explain;
+    panel.appendChild(fb);
+    panelsWrap.appendChild(panel);
+  });
+}
+function s9SwitchTab(i){
+  document.querySelectorAll('#s9-tabs .tab-btn').forEach((t,j)=>t.classList.toggle('active',j===i));
+  document.querySelectorAll('#s9-panels .tab-panel').forEach((p,j)=>p.classList.toggle('active',j===i));
+}
+function s9Pick(panelIdx,optIdx,isCorrect,btn){
+  if(s9Done.has(panelIdx)) return;
+  const panel=document.getElementById('s9panel-'+panelIdx);
+  panel.querySelectorAll('.option-btn').forEach(b=>b.disabled=true);
+  const fb=document.getElementById('s9fb-'+panelIdx);
+  if(isCorrect){
+    btn.classList.add('opt-correct'); fb.className='feedback correct show';
+    fb.innerHTML='<strong>Correct.</strong> '+S9_LENSES[panelIdx].explain;
+    s9Done.add(panelIdx);
+    const tab=document.getElementById('s9tab-'+panelIdx);
+    if(tab){ tab.classList.add('tab-done'); tab.textContent=S9_LENSES[panelIdx].short+' ✓'; }
+    document.getElementById('s9-done-count').textContent=s9Done.size+' of 5 frameworks completed';
+    if(s9Done.size===5) unlock(9);
+  } else {
+    btn.classList.add('opt-wrong'); fb.className='feedback wrong show';
+    fb.innerHTML='Not quite — think about what this specific framework focuses on most. Try another answer.';
+    setTimeout(()=>{ panel.querySelectorAll('.option-btn').forEach(b=>{b.disabled=false; b.classList.remove('opt-wrong');}); fb.className='feedback'; btn.classList.remove('opt-wrong'); },1400);
+  }
+}
+
+/* ═══════════════════════════ S10 — 8 Steps Teaching ═══════════════════════════ */
+function buildS10(){
+  const wrap=document.getElementById('s10-accordions'); if(wrap.children.length) return;
+  EIGHT_STEPS.forEach((step,i)=>{
+    const item=document.createElement('div'); item.className='accordion-item';
+    const id='s10acc-'+i;
+    item.innerHTML=`
+      <button class="accordion-trigger" id="${id}-trigger" onclick="toggleS10Acc(${i})">
+        <span><span class="accordion-num">STEP ${step.n}</span>${step.title}</span>
+        <svg class="chevron" id="${id}-chev" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div class="accordion-body" id="${id}-body">
+        <div class="accordion-body-inner"><p>${step.body}</p></div>
+      </div>`;
+    wrap.appendChild(item);
+  });
+}
+function toggleS10Acc(i){
+  const id='s10acc-'+i;
+  const body=document.getElementById(id+'-body');
+  const chev=document.getElementById(id+'-chev');
+  const trig=document.getElementById(id+'-trigger');
+  const isOpen=body.classList.contains('open');
+  body.classList.toggle('open'); chev.classList.toggle('open'); trig.classList.toggle('opened');
+  if(!isOpen){ s10Opened.add(i); document.getElementById('s10-progress').textContent=s10Opened.size+' of 8 opened'; }
+  if(s10Opened.size===8) unlock(10);
+}
+
+/* ═══════════════════════════ S11 — Walk the 8 Steps ═══════════════════════════ */
+function buildS11(){
+  if(s11Done) return;
+  const wrap=document.getElementById('s11-steps'); wrap.innerHTML='';
+  s11CurrentStep=0; s11StepDone.fill(false); s11MultiSel.clear();
+  renderS11Step(0);
+}
+function renderS11Step(idx){
+  const step=S11_STEPS[idx];
+  const card=document.createElement('div'); card.className='step-card step-active'; card.id='s11card-'+idx;
+  let inner=`<div style="display:flex;align-items:center;margin-bottom:8px"><span class="step-num-badge" id="s11badge-${idx}">${step.n}</span><div class="step-title">Step ${step.n}: ${step.title}</div></div><p class="step-prompt">${step.prompt}</p>`;
+  if(step.type==='multiselect'||step.type==='multiselect2'){
+    inner+=`<div id="s11opts-${idx}" style="display:flex;flex-direction:column;gap:8px">`;
+    step.opts.forEach((o,j)=>{
+      inner+=`<button class="option-btn" id="s11opt-${idx}-${j}" onclick="s11MultiToggle(${idx},${j})">`
+        +`<span class="opt-letter">${String.fromCharCode(65+j)}</span><span>${o.t}</span></button>`;
+    });
+    inner+=`</div><button class="btn btn-primary" id="s11chk-${idx}" style="margin-top:12px;display:none" onclick="checkS11Multi(${idx})">Check</button>`;
+  } else {
+    inner+=`<div id="s11opts-${idx}" style="display:flex;flex-direction:column;gap:8px">`;
+    step.opts.forEach((o,j)=>{
+      inner+=`<button class="option-btn" id="s11opt-${idx}-${j}" onclick="checkS11Single(${idx},${j},${o.correct})">`
+        +`<span class="opt-letter">${String.fromCharCode(65+j)}</span><span>${o.t}</span></button>`;
+    });
+    inner+=`</div>`;
+  }
+  inner+=`<div class="feedback" id="s11fb-${idx}" style="margin-top:12px"></div>`;
+  card.innerHTML=inner; document.getElementById('s11-steps').appendChild(card);
+}
+function s11MultiToggle(stepIdx,optIdx){
+  if(s11StepDone[stepIdx]) return;
+  const btn=document.getElementById('s11opt-'+stepIdx+'-'+optIdx);
+  const key=stepIdx+'-'+optIdx;
+  if(s11MultiSel.has(key)){ s11MultiSel.delete(key); btn.classList.remove('selected'); }
+  else{ s11MultiSel.add(key); btn.classList.add('selected'); }
+  const stepSels=[...s11MultiSel].filter(k=>k.startsWith(stepIdx+'-')).length;
+  document.getElementById('s11chk-'+stepIdx).style.display=stepSels>0?'inline-flex':'none';
+}
+function checkS11Multi(stepIdx){
+  const step=S11_STEPS[stepIdx];
+  const selected=new Set([...s11MultiSel].filter(k=>k.startsWith(stepIdx+'-')).map(k=>parseInt(k.split('-')[1])));
+  const correct=new Set(step.correctSet);
+  const allCorrectSelected=[...correct].every(i=>selected.has(i));
+  const noWrongSelected=[...selected].every(i=>correct.has(i));
+  const ok=allCorrectSelected&&noWrongSelected;
+  step.opts.forEach((o,j)=>{
+    const btn=document.getElementById('s11opt-'+stepIdx+'-'+j);
+    btn.disabled=true; btn.classList.remove('selected');
+    if(correct.has(j)) btn.classList.add('opt-correct');
+    else if(selected.has(j)) btn.classList.add('opt-wrong');
+  });
+  const fb=document.getElementById('s11fb-'+stepIdx);
+  fb.className=ok?'feedback correct show':'feedback wrong show';
+  fb.innerHTML=(ok?'<strong>Good.</strong> ':'<strong>Close.</strong> ')+step.explain;
+  document.getElementById('s11chk-'+stepIdx).style.display='none';
+  s11StepDone[stepIdx]=true;
+  const card=document.getElementById('s11card-'+stepIdx);
+  card.classList.remove('step-active'); card.classList.add('step-done');
+  document.getElementById('s11badge-'+stepIdx).classList.add('done-badge');
+  s11Advance(stepIdx);
+}
+function checkS11Single(stepIdx,optIdx,isCorrect){
+  if(s11StepDone[stepIdx]) return;
+  const step=S11_STEPS[stepIdx];
+  step.opts.forEach((o,j)=>{
+    const btn=document.getElementById('s11opt-'+stepIdx+'-'+j);
+    btn.disabled=true;
+    if(o.correct) btn.classList.add('opt-correct');
+    else if(j===optIdx) btn.classList.add('opt-wrong');
+  });
+  const fb=document.getElementById('s11fb-'+stepIdx);
+  fb.className=isCorrect?'feedback correct show':'feedback wrong show';
+  fb.innerHTML=(isCorrect?'<strong>Right.</strong> ':'<strong>Not quite.</strong> ')+step.explain;
+  s11StepDone[stepIdx]=true;
+  const card=document.getElementById('s11card-'+stepIdx);
+  card.classList.remove('step-active'); card.classList.add('step-done');
+  document.getElementById('s11badge-'+stepIdx).classList.add('done-badge');
+  s11Advance(stepIdx);
+}
+function s11Advance(doneIdx){
+  s11CurrentStep=doneIdx+1;
+  if(s11CurrentStep<S11_STEPS.length){
+    setTimeout(()=>{ renderS11Step(s11CurrentStep); document.getElementById('s11card-'+s11CurrentStep).scrollIntoView({behavior:'smooth',block:'start'}); },400);
+  } else {
+    s11Done=true; unlock(11);
+    setTimeout(()=>{ document.getElementById('continue-btn').scrollIntoView({behavior:'smooth',block:'center'}); },200);
+  }
+}
+
+/* ═══════════════════════════ INIT ═══════════════════════════ */
+updateUI();
+</script>
+</body>
+</html>

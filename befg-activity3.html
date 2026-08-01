@@ -1,0 +1,2133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Identifying Ethical Dilemmas — Business Ethics Field Guide</title>
+<style>
+/* ══════════════════════════════════════════════
+   DESIGN TOKENS
+══════════════════════════════════════════════ */
+:root {
+  --ink:       #1E1C18;
+  --paper:     #FFFEF9;
+  --pine:      #2A4A2F;
+  --amber:     #C47D0E;
+  --sienna:    #7B2D2A;
+  --smoke:     #F1EDE4;
+  --mist:      #E8E3D8;
+  --ink-soft:  rgba(30,28,24,.55);
+  --pine-light:#EBF2EC;
+  --amber-light:#FDF3E0;
+  --sienna-light:#FAE9E8;
+  --correct:   #1A6B3A;
+  --correct-bg:#E6F4EC;
+  --wrong:     #92400E;
+  --wrong-bg:  #FEF3C7;
+  --radius:    10px;
+  --shadow:    0 2px 8px rgba(30,28,24,.10), 0 1px 2px rgba(30,28,24,.06);
+  --shadow-md: 0 4px 16px rgba(30,28,24,.13), 0 2px 4px rgba(30,28,24,.08);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink:        #EDE8DF;
+    --paper:      #18160F;
+    --pine:       #5FA066;
+    --amber:      #E09A20;
+    --sienna:     #C05848;
+    --smoke:      #242118;
+    --mist:       #2E2A22;
+    --ink-soft:   rgba(237,232,223,.5);
+    --pine-light: #1A2C1C;
+    --amber-light:#2A2010;
+    --sienna-light:#2C1412;
+    --correct:    #5FA066;
+    --correct-bg: #162218;
+    --wrong:      #E09A20;
+    --wrong-bg:   #251D08;
+  }
+}
+:root[data-theme="dark"] {
+  --ink:        #EDE8DF;
+  --paper:      #18160F;
+  --pine:       #5FA066;
+  --amber:      #E09A20;
+  --sienna:     #C05848;
+  --smoke:      #242118;
+  --mist:       #2E2A22;
+  --ink-soft:   rgba(237,232,223,.5);
+  --pine-light: #1A2C1C;
+  --amber-light:#2A2010;
+  --sienna-light:#2C1412;
+  --correct:    #5FA066;
+  --correct-bg: #162218;
+  --wrong:      #E09A20;
+  --wrong-bg:   #251D08;
+}
+:root[data-theme="light"] {
+  --ink:       #1E1C18;
+  --paper:     #FFFEF9;
+  --pine:      #2A4A2F;
+  --amber:     #C47D0E;
+  --sienna:    #7B2D2A;
+  --smoke:     #F1EDE4;
+  --mist:      #E8E3D8;
+  --ink-soft:  rgba(30,28,24,.55);
+  --pine-light:#EBF2EC;
+  --amber-light:#FDF3E0;
+  --sienna-light:#FAE9E8;
+  --correct:   #1A6B3A;
+  --correct-bg:#E6F4EC;
+  --wrong:     #92400E;
+  --wrong-bg:  #FEF3C7;
+}
+
+/* ══════════════════════════════════════════════
+   BASE
+══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  background: var(--smoke);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-top: 88px;
+  padding-bottom: 76px;
+  min-height: 100vh;
+}
+h1,h2,h3,h4 {
+  font-family: Georgia, 'Times New Roman', serif;
+  text-wrap: balance;
+  line-height: 1.25;
+}
+button { cursor: pointer; border: none; background: none; font: inherit; }
+a { color: var(--pine); }
+
+/* ══════════════════════════════════════════════
+   HEADER — topographic texture
+══════════════════════════════════════════════ */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: var(--paper);
+  border-bottom: 1px solid var(--mist);
+  box-shadow: 0 1px 0 var(--mist);
+}
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 48px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='48'%3E%3Cellipse cx='100' cy='24' rx='90' ry='18' fill='none' stroke='%232A4A2F' stroke-width='0.6' opacity='0.08'/%3E%3Cellipse cx='100' cy='24' rx='70' ry='12' fill='none' stroke='%232A4A2F' stroke-width='0.6' opacity='0.08'/%3E%3Cellipse cx='100' cy='24' rx='50' ry='7' fill='none' stroke='%232A4A2F' stroke-width='0.6' opacity='0.08'/%3E%3Cellipse cx='180' cy='10' rx='40' ry='14' fill='none' stroke='%232A4A2F' stroke-width='0.6' opacity='0.06'/%3E%3Cellipse cx='20' cy='38' rx='40' ry='14' fill='none' stroke='%232A4A2F' stroke-width='0.6' opacity='0.06'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 200px 48px;
+}
+.brand {
+  font-family: Georgia, serif;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--sienna);
+}
+.activity-title {
+  font-family: Georgia, serif;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.theme-toggle {
+  font-size: 17px;
+  padding: 4px;
+  border-radius: 6px;
+  transition: background .2s;
+}
+.theme-toggle:hover { background: var(--smoke); }
+
+/* Trail progress */
+.trail-bar {
+  padding: 8px 24px 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.trail-bar::-webkit-scrollbar { display: none; }
+.trail {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  min-width: max-content;
+}
+.waypoint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.waypoint-dot {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--mist);
+  background: var(--paper);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Courier New', monospace;
+  font-size: 9px;
+  font-weight: bold;
+  color: var(--ink-soft);
+  transition: all .3s;
+  flex-shrink: 0;
+}
+.waypoint.done .waypoint-dot {
+  background: var(--pine);
+  border-color: var(--pine);
+  color: #fff;
+}
+.waypoint.active .waypoint-dot {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: #fff;
+  box-shadow: 0 0 0 3px var(--amber-light);
+}
+.trail-line {
+  width: 18px; height: 2px;
+  background: var(--mist);
+  flex-shrink: 0;
+  transition: background .3s;
+}
+.trail-line.done { background: var(--pine); }
+
+/* ══════════════════════════════════════════════
+   SCREENS
+══════════════════════════════════════════════ */
+.screens-wrap { position: relative; }
+.screen {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity .3s ease, transform .3s ease;
+}
+.screen.active {
+  position: relative;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+.content {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 36px 24px 48px;
+}
+
+/* Screen headings */
+.screen-eyebrow {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 6px;
+}
+.screen-title {
+  font-size: 26px;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.screen-sub {
+  color: var(--ink-soft);
+  font-size: 15px;
+  margin-bottom: 28px;
+  max-width: 56ch;
+}
+
+/* ══════════════════════════════════════════════
+   CARDS
+══════════════════════════════════════════════ */
+.card {
+  background: var(--paper);
+  border: 1.5px solid var(--mist);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  transition: box-shadow .2s, border-color .2s, transform .15s;
+}
+.card:hover { box-shadow: var(--shadow-md); }
+.card.selectable { cursor: pointer; }
+.card.selectable:hover { border-color: var(--pine); transform: translateY(-1px); }
+.card.selected {
+  border-color: var(--pine);
+  background: var(--pine-light);
+  box-shadow: 0 0 0 3px var(--pine-light), var(--shadow);
+}
+.card.correct-state {
+  border-color: var(--correct);
+  background: var(--correct-bg);
+}
+.card.wrong-state {
+  border-color: var(--wrong);
+  background: var(--wrong-bg);
+}
+
+/* Badge */
+.badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--amber);
+  color: #fff;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+.badge-pine { background: var(--pine); }
+.badge-sienna { background: var(--sienna); }
+.badge-sm { width: 22px; height: 22px; font-size: 10px; }
+
+/* Region colors */
+.region-authority { --rc: var(--pine); --rb: var(--pine-light); }
+.region-truth     { --rc: #2A7A6F;    --rb: #E8F5F3; }
+.region-relations { --rc: var(--sienna); --rb: var(--sienna-light); }
+.region-conseq    { --rc: var(--amber);  --rb: var(--amber-light); }
+
+/* ══════════════════════════════════════════════
+   BUTTONS
+══════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 28px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 15px;
+  transition: all .2s;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--pine);
+  color: #fff;
+}
+.btn-primary:hover { filter: brightness(1.1); }
+.btn-primary:disabled {
+  background: var(--mist);
+  color: var(--ink-soft);
+  cursor: not-allowed;
+  filter: none;
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1.5px solid var(--mist);
+}
+.btn-ghost:hover { border-color: var(--pine); color: var(--pine); }
+
+/* ══════════════════════════════════════════════
+   BOTTOM NAV BAR
+══════════════════════════════════════════════ */
+.bottom-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 100;
+  background: var(--paper);
+  border-top: 1px solid var(--mist);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.screen-counter {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+/* ══════════════════════════════════════════════
+   SCENARIO BOX
+══════════════════════════════════════════════ */
+.scenario-box {
+  background: var(--pine-light);
+  border-left: 3px solid var(--pine);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 16px 18px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+/* ══════════════════════════════════════════════
+   ACCORDION
+══════════════════════════════════════════════ */
+.accordion-item {
+  border: 1.5px solid var(--mist);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 8px;
+  background: var(--paper);
+}
+.accordion-trigger {
+  width: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 18px;
+  font-family: Georgia, serif;
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--ink);
+  text-align: left;
+  transition: background .2s;
+}
+.accordion-trigger:hover { background: var(--smoke); }
+.accordion-trigger.opened { background: var(--pine-light); color: var(--pine); }
+.accordion-num {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  font-weight: bold;
+  color: var(--amber);
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+.chevron {
+  width: 18px; height: 18px;
+  color: var(--ink-soft);
+  transition: transform .25s;
+  flex-shrink: 0;
+}
+.chevron.open { transform: rotate(180deg); }
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .3s ease;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink);
+}
+.accordion-body.open { max-height: 400px; }
+.accordion-body-inner { padding: 14px 18px 16px; border-top: 1px solid var(--mist); }
+.tension-callout {
+  margin-top: 10px;
+  padding: 12px 16px;
+  background: var(--amber-light);
+  border: 1.5px solid var(--amber);
+  border-radius: 8px;
+  font-family: Georgia, serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--ink);
+}
+.tension-callout span { color: var(--amber); }
+
+/* ══════════════════════════════════════════════
+   OPTION BUTTONS (tap to select)
+══════════════════════════════════════════════ */
+.option-btn {
+  width: 100%;
+  text-align: left;
+  padding: 14px 16px;
+  border: 1.5px solid var(--mist);
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+  transition: all .2s;
+  display: flex; align-items: center; gap: 12px;
+}
+.option-btn:hover:not(:disabled) { border-color: var(--pine); background: var(--pine-light); }
+.option-btn.selected { border-color: var(--pine); background: var(--pine-light); }
+.option-btn.opt-correct { border-color: var(--correct); background: var(--correct-bg); color: var(--correct); }
+.option-btn.opt-wrong   { border-color: #D97706; background: var(--wrong-bg); color: var(--wrong); }
+.option-btn:disabled { cursor: default; }
+.opt-letter {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--smoke);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+/* Feedback panel */
+.feedback {
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 12px;
+  display: none;
+}
+.feedback.show { display: block; }
+.feedback.correct { background: var(--correct-bg); border: 1px solid var(--correct); color: var(--correct); }
+.feedback.wrong   { background: var(--wrong-bg);   border: 1px solid #D97706; color: var(--wrong); }
+.feedback.neutral { background: var(--pine-light);  border: 1px solid var(--pine); color: var(--pine); }
+
+/* ══════════════════════════════════════════════
+   SLIDERS
+══════════════════════════════════════════════ */
+.slider-wrap { margin-bottom: 28px; }
+.slider-labels {
+  display: flex; justify-content: space-between;
+  font-size: 12px; color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%; height: 6px;
+  border-radius: 3px;
+  background: var(--mist);
+  outline: none; cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 3px solid var(--pine);
+  cursor: grab;
+  box-shadow: 0 1px 4px rgba(0,0,0,.15);
+}
+input[type=range]:active::-webkit-slider-thumb { cursor: grabbing; }
+input[type=range]::-moz-range-thumb {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--paper); border: 3px solid var(--pine);
+}
+.slider-readout {
+  font-size: 12px; color: var(--pine);
+  font-style: italic; margin-top: 5px;
+  min-height: 18px; transition: all .2s;
+}
+
+/* ══════════════════════════════════════════════
+   CHIPS (drag/tap)
+══════════════════════════════════════════════ */
+.chip-pool {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  padding: 14px; background: var(--smoke);
+  border-radius: var(--radius); border: 1.5px dashed var(--mist);
+  min-height: 54px;
+}
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 13px;
+  background: var(--paper);
+  border: 1.5px solid var(--mist);
+  border-radius: 20px;
+  font-size: 13px; font-weight: 600;
+  cursor: grab;
+  user-select: none;
+  box-shadow: var(--shadow);
+  transition: box-shadow .15s, transform .15s;
+  white-space: nowrap;
+}
+.chip:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
+.chip:active { cursor: grabbing; }
+.chip.chip-correct { background: var(--correct-bg); border-color: var(--correct); color: var(--correct); cursor: default; }
+.chip.chip-wrong   { background: var(--wrong-bg);   border-color: #D97706;        color: var(--wrong);   }
+.chip.vit-selected { background: var(--amber); color: #fff; border-color: var(--amber); }
+
+/* Drop zones */
+.drop-col {
+  flex: 1; min-width: 140px;
+  border: 1.5px solid var(--mist);
+  border-radius: var(--radius);
+  background: var(--paper);
+  padding: 12px;
+  min-height: 80px;
+  transition: background .2s, border-color .2s;
+}
+.drop-col.drag-over {
+  border-color: var(--pine);
+  background: var(--pine-light);
+  outline: 2px dashed var(--pine);
+  outline-offset: 2px;
+}
+.drop-col-header {
+  font-family: Georgia, serif;
+  font-size: 13px; font-weight: bold;
+  padding-bottom: 8px; margin-bottom: 8px;
+  border-bottom: 1.5px solid var(--mist);
+}
+.drop-col-chips { display: flex; flex-wrap: wrap; gap: 6px; min-height: 32px; }
+
+/* ══════════════════════════════════════════════
+   T-CHART (Values in Tension)
+══════════════════════════════════════════════ */
+.t-chart {
+  display: flex; gap: 0; margin-bottom: 16px;
+  border: 1.5px solid var(--mist);
+  border-radius: var(--radius); overflow: hidden;
+}
+.t-col { flex: 1; padding: 12px; }
+.t-col-header {
+  font-family: Georgia, serif; font-size: 13px; font-weight: 600;
+  color: var(--ink-soft); text-transform: uppercase;
+  letter-spacing: .06em; margin-bottom: 8px;
+}
+.t-divider { width: 1.5px; background: var(--mist); flex-shrink: 0; }
+.t-col-zone {
+  min-height: 48px; border: 2px dashed var(--mist);
+  border-radius: 6px; display: flex; align-items: center;
+  justify-content: center; padding: 8px; font-size: 13px;
+  color: var(--ink-soft); transition: border-color .15s, background .15s;
+  text-align: center;
+}
+.t-col-zone.drag-over { border-color: var(--amber); background: var(--amber-light); }
+.t-col-zone.filled {
+  border-style: solid; border-color: var(--pine);
+  background: var(--pine-light); color: var(--ink);
+  font-weight: 600; font-size: 14px;
+}
+
+/* ══════════════════════════════════════════════
+   GRID LAYOUTS
+══════════════════════════════════════════════ */
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+@media (max-width: 560px) {
+  .grid-3 { grid-template-columns: 1fr; }
+  .grid-2 { grid-template-columns: 1fr; }
+}
+
+/* Challenge mini cards */
+.challenge-card {
+  background: var(--paper);
+  border: 1.5px solid var(--mist);
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.challenge-card h4 {
+  font-family: Georgia, serif;
+  font-size: 13px;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.challenge-card p { font-size: 11px; color: var(--ink-soft); line-height: 1.4; }
+
+/* Region tap tiles */
+.region-tile {
+  padding: 16px 18px;
+  border-radius: var(--radius);
+  border: 2px solid var(--mist);
+  background: var(--paper);
+  cursor: pointer;
+  transition: all .2s;
+  text-align: left;
+}
+.region-tile:hover { border-color: var(--rc, var(--pine)); }
+.region-tile.selected { border-color: var(--rc, var(--pine)); background: var(--rb, var(--pine-light)); }
+.region-tile-name {
+  font-family: Georgia, serif;
+  font-size: 14px; font-weight: bold;
+  color: var(--rc, var(--pine));
+  margin-bottom: 2px;
+}
+.region-tile-sub { font-size: 12px; color: var(--ink-soft); }
+
+/* ══════════════════════════════════════════════
+   TABS
+══════════════════════════════════════════════ */
+.tabs-bar {
+  display: flex; gap: 4px;
+  border-bottom: 2px solid var(--mist);
+  margin-bottom: 20px;
+}
+.tab-btn {
+  padding: 9px 16px;
+  font-size: 14px; font-weight: 600;
+  color: var(--ink-soft);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  border-radius: 6px 6px 0 0;
+  transition: all .2s;
+}
+.tab-btn:hover { color: var(--ink); background: var(--smoke); }
+.tab-btn.active { color: var(--pine); border-bottom-color: var(--pine); background: var(--pine-light); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ══════════════════════════════════════════════
+   NARRATIVE / TURNING POINT
+══════════════════════════════════════════════ */
+.narrative {
+  font-size: 15px; line-height: 1.8;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1.5px solid var(--mist);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  margin-bottom: 20px;
+}
+
+/* Pair comparison */
+.pair-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+@media (max-width: 480px) { .pair-wrap { grid-template-columns: 1fr; } }
+.pair-card {
+  padding: 18px 16px;
+  background: var(--paper);
+  border: 2px solid var(--mist);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all .2s;
+}
+.pair-card:hover { border-color: var(--pine); box-shadow: var(--shadow-md); transform: translateY(-1px); }
+.pair-card.selected { border-color: var(--pine); background: var(--pine-light); }
+.pair-card h4 { font-family: Georgia, serif; font-size: 14px; margin-bottom: 5px; }
+.pair-card p  { font-size: 12px; color: var(--ink-soft); line-height: 1.5; }
+
+/* ══════════════════════════════════════════════
+   REFERENCE CARD (printable)
+══════════════════════════════════════════════ */
+.ref-table { width: 100%; border-collapse: collapse; }
+.ref-table th {
+  background: var(--sienna); color: #fff;
+  font-family: Georgia, serif;
+  font-size: 13px; font-weight: bold;
+  padding: 10px 12px; text-align: left;
+}
+.ref-table td {
+  padding: 9px 12px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--mist);
+  vertical-align: top;
+}
+.ref-table tr:nth-child(even) td { background: var(--smoke); }
+.ref-num { font-family: 'Courier New', monospace; font-weight: bold; color: var(--amber); }
+
+/* Stakeholder multi-select chips */
+.stake-chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 7px 13px;
+  border: 1.5px solid var(--mist);
+  border-radius: 20px;
+  background: var(--paper);
+  font-size: 13px; cursor: pointer;
+  transition: all .2s;
+  margin: 4px;
+}
+.stake-chip:hover { border-color: var(--pine); }
+.stake-chip.selected { border-color: var(--pine); background: var(--pine-light); font-weight: 600; }
+.stake-chip.revealed-yes { border-color: var(--correct); background: var(--correct-bg); color: var(--correct); }
+.stake-chip.revealed-missed { border-color: var(--amber); background: var(--amber-light); color: var(--amber); }
+
+/* Misc */
+.divider { border: none; border-top: 1px solid var(--mist); margin: 24px 0; }
+.callout {
+  padding: 14px 16px;
+  background: var(--pine-light);
+  border-left: 3px solid var(--pine);
+  border-radius: 0 8px 8px 0;
+  font-size: 14px; line-height: 1.6;
+  color: var(--ink); margin-top: 16px;
+}
+.round-counter {
+  font-family: 'Courier New', monospace;
+  font-size: 12px; color: var(--amber);
+  font-weight: bold; letter-spacing: .05em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+/* Shake */
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20%      { transform: translateX(-6px); }
+  50%      { transform: translateX(6px); }
+  80%      { transform: translateX(-4px); }
+}
+.shake { animation: shake .4s ease; }
+
+/* Drag ghost */
+.drag-ghost {
+  position: fixed; pointer-events: none; z-index: 9999;
+  opacity: .88; transform: rotate(3deg) scale(1.04);
+}
+
+/* Welcome screen */
+.welcome-wrap {
+  min-height: calc(100vh - 164px);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 48px 24px;
+}
+.welcome-kicker {
+  font-family: 'Courier New', monospace;
+  font-size: 11px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--amber);
+  margin-bottom: 12px;
+}
+.welcome-title { font-size: 38px; color: var(--ink); margin-bottom: 18px; }
+.welcome-body  { font-size: 16px; color: var(--ink-soft); max-width: 48ch; line-height: 1.7; margin-bottom: 36px; }
+
+/* ─── Video Placeholder ──────────────────────── */
+.video-placeholder{position:relative;background:#141a14;border-radius:var(--radius);overflow:hidden;margin-bottom:20px;aspect-ratio:16/9;cursor:pointer;user-select:none;width:100%}
+.vp-texture{position:absolute;inset:0;background:radial-gradient(ellipse at 28% 55%,rgba(42,74,47,.35) 0%,transparent 58%),radial-gradient(ellipse at 75% 25%,rgba(196,125,14,.12) 0%,transparent 48%),linear-gradient(170deg,#1c2a1c 0%,#0e1210 100%)}
+.vp-badge-top{position:absolute;top:12px;left:12px;font-family:'Courier New',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);background:rgba(0,0,0,.65);padding:3px 8px;border-radius:4px;border:1px solid rgba(196,125,14,.5)}
+.vp-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.vp-play{width:60px;height:60px;background:var(--amber);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.5),0 0 0 8px rgba(196,125,14,.18);transition:transform .2s,box-shadow .2s}
+.video-placeholder:hover .vp-play{transform:scale(1.08);box-shadow:0 4px 24px rgba(0,0,0,.6),0 0 0 12px rgba(196,125,14,.25)}
+.vp-play-icon{width:0;height:0;border-style:solid;border-width:10px 0 10px 18px;border-color:transparent transparent transparent #fff;margin-left:4px}
+.vp-bottom{position:absolute;bottom:0;left:0;right:0;padding:32px 14px 12px;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,transparent 100%);display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+.vp-title{font-family:Georgia,serif;font-size:14px;color:#fff;line-height:1.3;text-shadow:0 1px 4px rgba(0,0,0,.7);flex:1}
+.vp-dur{font-family:'Courier New',monospace;font-size:11px;color:rgba(255,255,255,.85);background:rgba(0,0,0,.6);padding:2px 7px;border-radius:4px;flex-shrink:0}
+.vp-bar{position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(255,255,255,.15)}
+
+/* Print */
+@media print {
+  header, .bottom-bar, .no-print, button:not(.print-btn) { display: none !important; }
+  body { background: white; padding: 0; }
+  .screen { position: static !important; opacity: 1 !important; transform: none !important; pointer-events: all !important; display: none; }
+  #screen-10 { display: block !important; }
+  .ref-table th { background: #7B2D2A !important; -webkit-print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════ HEADER -->
+<header>
+  <div class="header-top">
+    <span class="brand">Merit Leadership</span>
+    <span class="activity-title" style="display:none" id="act-title-mid">Identifying Ethical Dilemmas</span>
+    <button class="theme-toggle" id="theme-btn" title="Toggle theme" onclick="toggleTheme()">◐</button>
+  </div>
+  <div class="trail-bar">
+    <div class="trail" id="trail"></div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════ SCREENS -->
+<main class="screens-wrap" id="screens-wrap">
+
+<!-- ─── S0: Welcome ─────────────────────────────────── -->
+<div class="screen active" id="screen-0">
+  <div class="welcome-wrap">
+    <p class="welcome-kicker">Business Ethics Field Guide</p>
+    <h1 class="welcome-title">The Wilderness Awaits</h1>
+    <p class="welcome-body">The Business Ethics Field Guide identifies 13 common ethical dilemmas leaders face — called <strong>Wilderness Challenges</strong>. Before you can navigate them, you need to recognize them. This activity builds that skill.</p>
+    <div class="video-placeholder" style="max-width:480px;margin:0 auto 28px">
+      <div class="vp-texture"></div>
+      <span class="vp-badge-top">Teaching Video</span>
+      <div class="vp-center"><div class="vp-play"><div class="vp-play-icon"></div></div></div>
+      <div class="vp-bottom"><div class="vp-title">The 13 Wilderness Challenges</div><div class="vp-dur">1:55</div></div>
+      <div class="vp-bar"></div>
+    </div>
+    <button class="btn btn-primary" onclick="goTo(1)">Begin →</button>
+  </div>
+</div>
+
+<!-- ─── S1: Is This a Dilemma? ──────────────────────── -->
+<div class="screen" id="screen-1">
+  <div class="content">
+    <p class="screen-eyebrow">Teaching · What Is a Dilemma?</p>
+    <h2 class="screen-title">Three Things That Look Like Dilemmas — But Aren't</h2>
+    <p class="screen-sub">Only one of these is a genuine ethical dilemma. Tap the one you think qualifies.</p>
+
+    <div class="grid-3" id="s1-cards" style="margin-bottom:20px">
+      <button class="card selectable" onclick="s1Pick('A')" data-c="A">
+        <div class="badge" style="margin-bottom:12px">A</div>
+        <p style="font-size:14px;line-height:1.6">You need to choose between two vendors. One is cheaper with mixed reviews; the other costs more but is highly rated by peers. No moral stakes — just a business call.</p>
+      </button>
+      <button class="card selectable" onclick="s1Pick('B')" data-c="B">
+        <div class="badge" style="margin-bottom:12px">B</div>
+        <p style="font-size:14px;line-height:1.6">A colleague has been padding expense reports with personal charges for months. It is clearly wrong — no legitimate value pulls the other way. Your decision is whether and how to respond.</p>
+      </button>
+      <button class="card selectable" onclick="s1Pick('C')" data-c="C">
+        <div class="badge" style="margin-bottom:12px">C</div>
+        <p style="font-size:14px;line-height:1.6">You know the truth about a project delay will cost your company a major client — but the client is asking you directly what happened, and you genuinely believe in honesty.</p>
+      </button>
+    </div>
+
+    <div class="feedback" id="s1-feedback"></div>
+
+    <div id="s1-anatomy" style="display:none;margin-top:16px">
+      <div class="accordion-item">
+        <button class="accordion-trigger" onclick="toggleAcc('s1-acc','s1-chev')">
+          <span><span class="accordion-num">→</span> What Makes It a Genuine Dilemma?</span>
+          <svg id="s1-chev" class="chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="accordion-body" id="s1-acc">
+          <div class="accordion-body-inner">
+            <ul style="list-style:none;space-y:10px">
+              <li style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px">
+                <span class="badge badge-pine badge-sm" style="margin-top:2px;flex-shrink:0">✓</span>
+                <span style="font-size:14px">Two or more options, each protecting a real moral value</span>
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px">
+                <span class="badge badge-pine badge-sm" style="margin-top:2px;flex-shrink:0">✓</span>
+                <span style="font-size:14px">Choosing one value means compromising another</span>
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:10px">
+                <span class="badge badge-pine badge-sm" style="margin-top:2px;flex-shrink:0">✓</span>
+                <span style="font-size:14px">No path exists that causes no harm or requires no sacrifice</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── S2: The 13 Challenges ───────────────────────── -->
+<div class="screen" id="screen-2">
+  <div class="content">
+    <p class="screen-eyebrow">Teaching · The Wilderness Map</p>
+    <h2 class="screen-title">The 13 Wilderness Challenges</h2>
+    <p class="screen-sub">The Business Ethics Field Guide identifies 13 common ethical dilemmas. Learning to name what you're facing is the first move.</p>
+
+    <div class="video-placeholder">
+      <div class="vp-texture"></div>
+      <span class="vp-badge-top">Teaching Video</span>
+      <div class="vp-center"><div class="vp-play"><div class="vp-play-icon"></div></div></div>
+      <div class="vp-bottom"><div class="vp-title">Navigating Ethical Wilderness</div><div class="vp-dur">2:05</div></div>
+      <div class="vp-bar"></div>
+    </div>
+    <div class="grid-3" id="s2-challenges" style="margin-bottom:28px"></div>
+
+    <hr class="divider">
+    <p style="font-family:Georgia,serif;font-size:15px;font-weight:bold;margin-bottom:12px">Which region of challenges feels most familiar from your own leadership experience? Tap one.</p>
+    <div class="grid-2" id="s2-regions">
+      <button class="region-tile region-authority" onclick="s2Region('authority',this)">
+        <div class="region-tile-name">Authority &amp; Pressure</div>
+        <div class="region-tile-sub">Challenges 1, 6, 7 — someone or something is pushing you</div>
+      </button>
+      <button class="region-tile region-truth" onclick="s2Region('truth',this)">
+        <div class="region-tile-name" style="color:#2A7A6F">Truth &amp; Information</div>
+        <div class="region-tile-sub">Challenges 3, 5, 8 — what you know and what you say</div>
+      </button>
+      <button class="region-tile region-relations" onclick="s2Region('relations',this)">
+        <div class="region-tile-name">Relationships &amp; Obligation</div>
+        <div class="region-tile-sub">Challenges 2, 4, 9, 10 — who you owe something to</div>
+      </button>
+      <button class="region-tile region-conseq" onclick="s2Region('conseq',this)">
+        <div class="region-tile-name">Consequences &amp; Repair</div>
+        <div class="region-tile-sub">Challenges 11, 12, 13 — what happened and what to do now</div>
+      </button>
+    </div>
+    <div id="s2-msg" style="display:none;margin-top:12px" class="feedback neutral show">Noted. Keep that region in mind — we'll return to it.</div>
+  </div>
+</div>
+
+<!-- ─── S3: Values in Tension ────────────────────────── -->
+<div class="screen" id="screen-3">
+  <div class="content">
+    <p class="screen-eyebrow">Module 1 · What Makes It a Dilemma?</p>
+    <h2 class="screen-title">Values in Tension</h2>
+    <p class="screen-sub">A dilemma isn't just a hard decision — it's a conflict between two things that <em>both</em> matter. Read each situation, then place one value in each column of the T-chart.</p>
+
+    <div class="round-counter" id="vit-round-label">Situation 1 of 3</div>
+
+    <div id="vit-scenario" class="narrative" style="margin-bottom:18px"></div>
+
+    <div class="t-chart" onclick="onVITChartClick(event)" ondragover="onVITChartDragover(event)" ondrop="onVITChartDrop(event)" ondragleave="onVITChartDragleave(event)">
+      <div class="t-col" id="vit-col-a" data-col="a">
+        <div class="t-col-header">Value A</div>
+        <div class="t-col-zone" id="vit-zone-a">Drag or tap a value here</div>
+      </div>
+      <div class="t-divider"></div>
+      <div class="t-col" id="vit-col-b" data-col="b">
+        <div class="t-col-header">Value B</div>
+        <div class="t-col-zone" id="vit-zone-b">Drag or tap a value here</div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+      <p style="font-size:13px;font-family:Georgia,serif;font-weight:600;color:var(--ink-soft);letter-spacing:.02em">Tap a value to select it (turns amber), then tap a column — or drag directly.</p>
+      <button class="btn btn-ghost" style="font-size:12px;padding:6px 14px;flex-shrink:0;margin-left:12px" onclick="clearVITZones()">Clear</button>
+    </div>
+
+    <div id="vit-chips" style="display:flex;flex-wrap:wrap;gap:9px;margin:0 0 16px"></div>
+
+    <button class="btn btn-primary" id="vit-check-btn" onclick="checkVIT()" style="display:none">Check my thinking</button>
+
+    <div class="feedback" id="vit-feedback" style="margin-top:12px"></div>
+
+    <button class="btn btn-primary" id="vit-next-btn" onclick="nextVITRound()" style="display:none;margin-top:12px">Next situation →</button>
+  </div>
+</div>
+
+<!-- ─── S4: Anatomy of a Dilemma ────────────────────── -->
+<div class="screen" id="screen-4">
+  <div class="content">
+    <p class="screen-eyebrow">Teaching · Worked Example</p>
+    <h2 class="screen-title">How to See a Dilemma Clearly</h2>
+    <p class="screen-sub">Before you can navigate a dilemma, you have to see it. Work through this example — expand each step in order.</p>
+
+    <div class="scenario-box">
+      <strong>Challenge 1 — Standing Up to Power.</strong> Frank is a tax preparer. His boss Nathan asks him to delete an underpayment penalty from a client's return — a client who is important to the firm. Frank knows it's wrong, but Nathan is his direct supervisor and the relationship matters.
+    </div>
+
+    <div class="video-placeholder">
+      <div class="vp-texture"></div>
+      <span class="vp-badge-top">Worked Example</span>
+      <div class="vp-center"><div class="vp-play"><div class="vp-play-icon"></div></div></div>
+      <div class="vp-bottom"><div class="vp-title">Frank's Dilemma — Standing Up to Power</div><div class="vp-dur">1:45</div></div>
+      <div class="vp-bar"></div>
+    </div>
+    <div id="s3-steps"></div>
+    <p id="s3-hint" style="font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:8px">Tap each step to expand it. Open all four to continue.</p>
+  </div>
+</div>
+
+<!-- ─── S5: Spot the Tension ────────────────────────── -->
+<div class="screen" id="screen-5">
+  <div class="content">
+    <p class="screen-eyebrow">Module 1 · Spot the Tension</p>
+    <h2 class="screen-title">What's Really in Conflict?</h2>
+    <p class="screen-sub">For each dilemma, select the two values in tension — one on each side of the T-chart. Tap a value to select it, then tap the column where it belongs.</p>
+    <div class="video-placeholder">
+      <div class="vp-texture"></div>
+      <span class="vp-badge-top">Field Scenario</span>
+      <div class="vp-center"><div class="vp-play"><div class="vp-play-icon"></div></div></div>
+      <div class="vp-bottom"><div class="vp-title">Values in Conflict</div><div class="vp-dur">1:20</div></div>
+      <div class="vp-bar"></div>
+    </div>
+    <div class="round-counter" id="s4-round-label">Round 1 of 3</div>
+    <div id="s4-content"></div>
+  </div>
+</div>
+
+<!-- ─── S6: Tension Spectrum ─────────────────────────── -->
+<div class="screen" id="screen-6">
+  <div class="content">
+    <p class="screen-eyebrow">Module 2A · Tension Spectrum</p>
+    <h2 class="screen-title">Where Does the Tension Live?</h2>
+    <p class="screen-sub">For each dilemma, drag the marker to show where the tension sits. Dead center means equal pull; leaning one way means one value dominates.</p>
+    <div class="video-placeholder">
+      <div class="vp-texture"></div>
+      <span class="vp-badge-top">Field Scenario</span>
+      <div class="vp-center"><div class="vp-play"><div class="vp-play-icon"></div></div></div>
+      <div class="vp-bottom"><div class="vp-title">Where the Tension Lives</div><div class="vp-dur">1:05</div></div>
+      <div class="vp-bar"></div>
+    </div>
+    <div id="s5-sliders"></div>
+  </div>
+</div>
+
+<!-- ─── S7: Stakeholder Spotter ──────────────────────── -->
+<div class="screen" id="screen-7">
+  <div class="content">
+    <p class="screen-eyebrow">Module 2B · Stakeholder Spotter</p>
+    <h2 class="screen-title">Who's Affected?</h2>
+    <p class="screen-sub">For each dilemma, tap every stakeholder who is genuinely affected — including the non-obvious ones.</p>
+    <div class="video-placeholder">
+      <div class="vp-texture"></div>
+      <span class="vp-badge-top">Field Scenario</span>
+      <div class="vp-center"><div class="vp-play"><div class="vp-play-icon"></div></div></div>
+      <div class="vp-bottom"><div class="vp-title">Who Gets Caught in the Crossfire?</div><div class="vp-dur">1:30</div></div>
+      <div class="vp-bar"></div>
+    </div>
+    <div class="callout" style="margin-bottom:20px">
+      <strong>Why tension matters here:</strong> Ethical tension isn't just about values in the abstract — it's about people. Each stakeholder in a dilemma experiences the tension differently. Some are on the side of accountability; some are on the side of compassion. Identifying who's caught in the tension — and on which side — is the first move in navigating it responsibly.
+    </div>
+    <div id="s6-content"></div>
+  </div>
+</div>
+
+<!-- ─── S8: Field Map Sort ───────────────────────────── -->
+<div class="screen" id="screen-8">
+  <div class="content">
+    <p class="screen-eyebrow">Module 3 · Field Map Sort</p>
+    <h2 class="screen-title">Place Each Challenge on the Map</h2>
+    <p class="screen-sub">Drag each of the 13 Wilderness Challenges into the region where it belongs.</p>
+
+    <div class="callout" style="margin-bottom:16px">
+      <strong>What is a stakeholder?</strong> A stakeholder is anyone who has a real stake in how a situation unfolds — they may gain or lose, be helped or harmed, depending on the decision made. Stakeholders include obvious parties (the person asking you to act, the person affected) and non-obvious ones (bystanders, families, institutions, future parties).
+    </div>
+
+    <div class="chip-pool" id="s7-pool" style="margin-bottom:16px"></div>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+      <div class="drop-col" id="drop-authority" data-region="authority" style="border-top:3px solid var(--pine)">
+        <div class="drop-col-header" style="color:var(--pine)">Authority &amp; Pressure</div>
+        <div class="drop-col-chips" id="chips-authority"></div>
+      </div>
+      <div class="drop-col" id="drop-truth" data-region="truth" style="border-top:3px solid #2A7A6F">
+        <div class="drop-col-header" style="color:#2A7A6F">Truth &amp; Information</div>
+        <div class="drop-col-chips" id="chips-truth"></div>
+      </div>
+      <div class="drop-col" id="drop-relations" data-region="relations" style="border-top:3px solid var(--sienna)">
+        <div class="drop-col-header" style="color:var(--sienna)">Relationships &amp; Obligation</div>
+        <div class="drop-col-chips" id="chips-relations"></div>
+      </div>
+      <div class="drop-col" id="drop-conseq" data-region="conseq" style="border-top:3px solid var(--amber)">
+        <div class="drop-col-header" style="color:var(--amber)">Consequences &amp; Repair</div>
+        <div class="drop-col-chips" id="chips-conseq"></div>
+      </div>
+    </div>
+
+    <button class="btn btn-ghost no-print" id="s7-check-btn" onclick="checkMap()" style="display:none">Check My Map</button>
+    <div id="s7-result" style="margin-top:12px"></div>
+  </div>
+</div>
+
+
+<!-- ─── S10: Neutralization Connection ───────────────── -->
+<div class="screen" id="screen-9">
+  <div class="content">
+    <p class="screen-eyebrow">Module 8 · Connecting the Activities</p>
+    <h2 class="screen-title">How Do We Avoid These Dilemmas?</h2>
+    <p class="screen-sub">One reason dilemmas go unresolved is that leaders use neutralization techniques — rationalizations that make inaction feel acceptable. For each dilemma, drag the technique most likely to be used.</p>
+
+    <div class="video-placeholder">
+      <div class="vp-texture"></div>
+      <span class="vp-badge-top">Field Scenario</span>
+      <div class="vp-center"><div class="vp-play"><div class="vp-play-icon"></div></div></div>
+      <div class="vp-bottom"><div class="vp-title">The Rationalization We Didn't See</div><div class="vp-dur">1:15</div></div>
+      <div class="vp-bar"></div>
+    </div>
+    <div class="chip-pool" id="s12-pool" style="margin-bottom:20px"></div>
+
+    <div id="s12-slots"></div>
+
+    <button class="btn btn-ghost no-print" id="s12-check-btn" onclick="checkNeutralization()" style="display:none;margin-top:16px">Check</button>
+    <div id="s12-result" style="margin-top:12px"></div>
+    <div class="callout" id="s12-callout" style="display:none">Naming the rationalization is the first move in resisting it. The field guide: <em>"Luckily, awareness goes a long way in neutralizing the neutralization techniques."</em></div>
+  </div>
+</div>
+
+<!-- ─── S11: Reference Card ──────────────────────────── -->
+<div class="screen" id="screen-10">
+  <div class="content">
+    <p class="screen-eyebrow">Your Field Guide</p>
+    <h2 class="screen-title">Keep This</h2>
+    <p class="screen-sub">When you're facing a dilemma in the real world, start here.</p>
+
+    <div style="overflow-x:auto;margin-bottom:28px">
+      <table class="ref-table">
+        <thead>
+          <tr><th style="width:40px">#</th><th>Challenge</th><th>Core Situation</th></tr>
+        </thead>
+        <tbody id="ref-table-body"></tbody>
+      </table>
+    </div>
+
+    <hr class="divider">
+    <h3 style="font-family:Georgia,serif;font-size:17px;margin-bottom:14px">How to See a Dilemma Clearly</h3>
+    <div style="display:flex;flex-direction:column;gap:10px" id="ref-steps">
+      <div style="display:flex;align-items:flex-start;gap:14px">
+        <span class="badge">1</span>
+        <span style="font-size:15px;padding-top:3px">What are the options?</span>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:14px">
+        <span class="badge">2</span>
+        <span style="font-size:15px;padding-top:3px">What value does each option protect?</span>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:14px">
+        <span class="badge">3</span>
+        <span style="font-size:15px;padding-top:3px">What does each option cost?</span>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:14px">
+        <span class="badge">4</span>
+        <span style="font-size:15px;padding-top:3px">Name the tension.</span>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;text-align:center">
+      <button class="btn btn-ghost print-btn no-print" onclick="window.print()">⬇ Print This Card</button>
+    </div>
+    <p style="font-size:13px;color:var(--ink-soft);text-align:center;margin-top:20px;font-style:italic">The goal was never to find the right answer — it's to see clearly what's actually at stake.</p>
+  </div>
+</div>
+
+</main><!-- end screens-wrap -->
+
+<!-- ══════════════════════════════════════════ BOTTOM BAR -->
+<div class="bottom-bar no-print">
+  <button class="btn btn-ghost" id="back-btn" onclick="goBack()">← Back</button>
+  <span class="screen-counter" id="screen-counter">Screen 1 of 12</span>
+  <button class="btn btn-primary" id="continue-btn" onclick="goNext()" disabled>Continue →</button>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════
+   DATA
+══════════════════════════════════════════════ */
+const CHALLENGES = [
+  { n:1,  name:"Standing Up to Power",                      desc:"Someone in power is asking you to act unethically.",                                  region:"authority" },
+  { n:2,  name:"Made a Promise (and the World Has Changed)", desc:"Conflicting commitments force you to choose which one to honor.",                     region:"relations" },
+  { n:3,  name:"Intervention",                              desc:"You see something wrong and aren't sure whether to act.",                              region:"truth" },
+  { n:4,  name:"Conflicts of Interest",                     desc:"Multiple roles put you or your organization at cross purposes.",                      region:"relations" },
+  { n:5,  name:"Suspicions Without Enough Evidence",        desc:"You suspect something wrong is happening, but can't be certain.",                     region:"truth" },
+  { n:6,  name:"Playing Dirty",                             desc:"You could achieve justice by using an otherwise unethical method.",                   region:"authority" },
+  { n:7,  name:"Skirting the Rules",                        desc:"Bending a rule would produce a better outcome than following it.",                    region:"authority" },
+  { n:8,  name:"Dissemblance",                              desc:"Concealing or misrepresenting the truth might lead to a better outcome.",              region:"truth" },
+  { n:9,  name:"Loyalty",                                   desc:"You're uncertain how much loyalty requires you to sacrifice.",                        region:"relations" },
+  { n:10, name:"Sacrificing Personal Values",               desc:"Honoring your personal values may impose real costs on others.",                      region:"relations" },
+  { n:11, name:"Unfair Advantage",                          desc:"You could gain significantly through means others don't have access to.",              region:"conseq" },
+  { n:12, name:"Repair",                                    desc:"You made a mistake and must decide how to repair it.",                                region:"conseq" },
+  { n:13, name:"Showing Mercy",                             desc:"You could offer forgiveness or mercy, but aren't sure you should.",                   region:"conseq" },
+];
+
+const TENSION_ROUNDS = [
+  {
+    title:"Challenge 9 — Loyalty",
+    scenario:"Ellie is a longtime employee being forced out. A lawsuit might win her severance — but it would also damage the reputation of Paul, her former boss and mentor, who she genuinely cares about. Ellie must decide whether to pursue legal action.",
+    values:["Loyalty","Self-Interest","Legal Rights","Honesty","Compassion","Discretion"],
+    sideA:["Loyalty","Compassion","Honesty"],
+    sideB:["Self-Interest","Legal Rights"],
+    idealPair:["Loyalty","Self-Interest"],
+    feedback_good:"You've found the pull. Both values are genuinely at stake for Ellie.",
+    feedback_ideal:"Exactly — Ellie's loyalty to Paul and her own financial self-interest are pulling in opposite directions. Both are legitimate. That's the tension.",
+    feedback_miss:"Think about what Ellie owes Paul versus what she owes herself. Those two things don't point the same direction."
+  },
+  {
+    title:"Challenge 4 — Conflicts of Interest",
+    scenario:"Clyde is a new buyer at a department store. A supplier sends a gift — baby flatware for his newborn — worth more than company policy allows. His boss accepted a similar gift two weeks ago. Returning it might embarrass the supplier; keeping it is a policy violation.",
+    values:["Personal Gain","Professional Duty","Kindness","Fairness","Loyalty","Honesty"],
+    sideA:["Personal Gain","Kindness","Loyalty"],
+    sideB:["Professional Duty","Fairness","Honesty"],
+    idealPair:["Personal Gain","Professional Duty"],
+    feedback_good:"Right — you've spotted a real conflict. Both values have a claim on Clyde.",
+    feedback_ideal:"Yes — Clyde's personal interest in accepting a thoughtful gift is in direct tension with his professional duty to maintain objectivity and follow policy.",
+    feedback_miss:"Consider what Clyde gains personally versus what his professional role requires. They pull in different directions."
+  },
+  {
+    title:"Challenge 8 — Dissemblance",
+    scenario:"Physical therapist Jason knows his patient Mr. Bell will need knee surgery, but the referring doctor hasn't authorized that conversation. Eric, Jason's colleague, watches Mr. Bell make major life decisions based on incomplete information.",
+    values:["Patient Wellbeing","Professional Protocol","Honesty","Role Boundaries","Harm Prevention","Loyalty"],
+    sideA:["Patient Wellbeing","Honesty","Harm Prevention"],
+    sideB:["Professional Protocol","Role Boundaries","Loyalty"],
+    idealPair:["Patient Wellbeing","Professional Protocol"],
+    feedback_good:"You've found the core friction — one value pushes toward disclosure, the other toward restraint.",
+    feedback_ideal:"Exactly — Jason's duty to Mr. Bell's wellbeing conflicts directly with his obligation to stay within his professional role. Helping the individual means acting outside sanctioned boundaries.",
+    feedback_miss:"Think about what Jason owes his patient versus what his professional role permits. Those two things are in conflict here."
+  }
+];
+
+const SLIDERS = [
+  { title:"Challenge 3 — Intervention", scenario:"Eric knows his patient will need surgery, but Jason — the treating therapist — won't tell the patient. Eric isn't the treating professional. Should he intervene?", left:"Respect for Role Boundaries", right:"Duty to Prevent Harm", obs:"Most people lean toward Duty to Prevent Harm — but overstepping your professional role creates its own harms. That tension is what makes this a genuine dilemma." },
+  { title:"Challenge 12 — Repair", scenario:"A software glitch at Claire's company exposed clients' personal information to new hires. The glitch is fixed. No client has complained. Claire must decide whether to disclose.", left:"Protect Company Reputation", right:"Transparency with Clients", obs:"Most people lean toward Transparency — but leaders often underestimate the legal and reputational risk of disclosure itself, which is what makes this genuinely hard." },
+  { title:"Challenge 13 — Showing Mercy", scenario:"Alan has made many mistakes at Julie's law practice. His errors are starting to affect clients. But Alan has been loyal, he's going through a hard time, and Julie believes he has potential.", left:"Accountability & Standards", right:"Compassion & Second Chances", obs:"This one splits almost evenly. Neither compassion nor accountability is wrong — the dilemma is that both are right, and they pull opposite ways." },
+  { title:"Challenge 10 — Sacrificing Personal Values", scenario:"Arthur's company wants him to work with a client whose business conflicts with his personal values. It's legal. Refusing would be noticed by leadership.", left:"Personal Integrity", right:"Professional Role & Team Loyalty", obs:"People with strong personal values lean left here — but notice that 'professional role' is also a genuine value. The friction is between two things you believe in." },
+];
+
+const STAKEHOLDERS_DATA = [
+  {
+    title:"Challenge 3 — Intervention",
+    scenario:"Eric knows his patient needs surgery, but Jason (the treating therapist) won't tell him. Should Eric intervene?",
+    chips:[
+      { name:"The Patient", yes:true, why:"Most directly affected — has the most at stake." },
+      { name:"Jason (therapist)", yes:true, why:"His professional authority and judgment are at the center of this dilemma." },
+      { name:"Eric (colleague)", yes:true, why:"His decision shapes his professional identity and his relationship with Jason." },
+      { name:"The Referring Doctor", yes:true, why:"Non-obvious — the doctor's authority over treatment recommendations is implicated." },
+      { name:"Patient's Family", yes:true, why:"Will be affected by decisions the patient makes on incomplete information." },
+      { name:"The Hospital's Scheduler", yes:false, why:"" },
+    ],
+    missed_note:"The Patient's Family is easy to miss — they aren't in the room, but they're planning around what the patient tells them."
+  },
+  {
+    title:"Challenge 12 — Repair",
+    scenario:"A software glitch at Claire's company exposed client data to new hires. The glitch is fixed. Should she disclose?",
+    chips:[
+      { name:"Affected Clients", yes:true, why:"Their data was exposed — they have a direct stake." },
+      { name:"New Hires Who Saw Data", yes:true, why:"Non-obvious — they may have an obligation to act on what they saw, and their future conduct matters." },
+      { name:"Claire's Company", yes:true, why:"Reputational and legal exposure depends on how this is handled." },
+      { name:"Claire Herself", yes:true, why:"Her professional standing and integrity are on the line." },
+      { name:"Regulators", yes:true, why:"Depending on the data type, there may be legal disclosure requirements." },
+      { name:"The IT Vendor", yes:false, why:"" },
+    ],
+    missed_note:"New Hires Who Saw Data is the one most people miss — but they now have information about clients that they didn't earn, which creates its own ethical situation."
+  },
+  {
+    title:"Challenge 13 — Showing Mercy",
+    scenario:"Alan's many mistakes are starting to affect Julie's law practice. Should she give him another chance?",
+    chips:[
+      { name:"Alan", yes:true, why:"His livelihood and future are at stake." },
+      { name:"Julie", yes:true, why:"Her leadership judgment and professional standing are on the line." },
+      { name:"Julie's Other Employees", yes:true, why:"Non-obvious — if Alan faces no consequences, it signals something to the whole team about what standards actually apply." },
+      { name:"Clients of the Firm", yes:true, why:"Alan's mistakes have affected real clients." },
+      { name:"Alan's Family", yes:true, why:"His employment affects people who didn't choose to be in this dilemma." },
+      { name:"The Bar Association", yes:false, why:"" },
+    ],
+    missed_note:"Julie's Other Employees is easy to overlook — but the message a leader sends to a team through one decision can ripple broadly."
+  }
+];
+
+const NEUTR_CHIPS = [
+  "Denial of Responsibility",
+  "Postponement",
+  "Claim of Normalcy",
+  "Denial of Injury",
+  "Appeal to Higher Loyalties",
+  "Use of Euphemisms",
+];
+const NEUTR_SLOTS = [
+  { title:"Challenge 1 — Standing Up to Power", prompt:"What might a leader tell themselves to avoid acting?", correct:"Denial of Responsibility", exp:'"I was just following orders. This wasn\'t my call." — the leader distances themselves from the outcome.' },
+  { title:"Challenge 3 — Intervention",         prompt:"What might a bystander tell themselves to delay?",    correct:"Postponement",           exp:'"Let me wait until I have more information before doing anything." — waiting becomes a substitute for deciding.' },
+  { title:"Challenge 4 — Conflicts of Interest", prompt:"What might someone tell themselves to accept the gift?", correct:"Claim of Normalcy",   exp:'"Everyone in this industry has these kinds of relationships. It\'s standard practice." — normalizing removes the sense of personal responsibility.' },
+];
+
+/* ══════════════════════════════════════════════
+   APP STATE
+══════════════════════════════════════════════ */
+let current = 0;
+const TOTAL = 11;
+let screenOk = new Array(TOTAL).fill(false);
+screenOk[0] = true;
+
+// Per-screen state
+let s1Done = false;
+let s2Done = false;
+let s3Opened = new Set();
+let s4Round = 0; let s4Done = false; let s4Locked = false;
+let s5Moved = new Set(); let s5Done = false;
+let s6Revealed = 0; let s6Done = false;
+let s7Placed = {}; let s7Done = false;
+let s12Placed = {}; let s12Done = false;
+
+// VIT state
+let vitRound = 0;
+let vitDone = false;
+let vitDragging = null;
+let vitPendingChip = null;
+let vitZoneAName = null;
+let vitZoneBName = null;
+let vitLocked = false;
+
+/* ══════════════════════════════════════════════
+   NAVIGATION
+══════════════════════════════════════════════ */
+function goTo(n) {
+  document.getElementById('screen-'+current).classList.remove('active');
+  current = n;
+  const scr = document.getElementById('screen-'+current);
+  scr.classList.add('active');
+  scr.scrollIntoView ? scr.scrollIntoView({block:'start'}) : null;
+  window.scrollTo(0,0);
+  updateUI();
+  if(n===2) buildS2();
+  if(n===3) buildVIT();
+  if(n===4) buildS3();
+  if(n===5) buildS4();
+  if(n===6) buildS5();
+  if(n===7) buildS6();
+  if(n===8) buildS7();
+  if(n===9) buildS12();
+  if(n===10) buildRef();
+}
+function goNext() { if(current<TOTAL-1) goTo(current+1); }
+function goBack() { if(current>0) goTo(current-1); }
+
+function updateUI() {
+  document.getElementById('continue-btn').disabled = !screenOk[current];
+  document.getElementById('back-btn').style.visibility = current===0?'hidden':'visible';
+  document.getElementById('screen-counter').textContent = 'Screen '+(current+1)+' of '+TOTAL;
+  buildTrail();
+}
+function unlock(n) { screenOk[n]=true; if(current===n) document.getElementById('continue-btn').disabled=false; }
+
+/* Trail */
+function buildTrail() {
+  const t = document.getElementById('trail');
+  t.innerHTML = '';
+  const labels = ['Intro','Dilemma?','13 Challenges','Values in Tension','Anatomy','Tension','Spectrum','Stakeholders','Map Sort','Neutralize','Reference'];
+  labels.forEach((lbl,i)=>{
+    const wp = document.createElement('div');
+    wp.className='waypoint'+(i<current?' done':i===current?' active':'');
+    const dot = document.createElement('div');
+    dot.className='waypoint-dot'; dot.textContent=i+1;
+    dot.title=lbl;
+    wp.appendChild(dot);
+    t.appendChild(wp);
+    if(i<labels.length-1){
+      const line = document.createElement('div');
+      line.className='trail-line'+(i<current?' done':'');
+      t.appendChild(line);
+    }
+  });
+}
+
+/* ══════════════════════════════════════════════
+   THEME
+══════════════════════════════════════════════ */
+function toggleTheme(){
+  const html=document.documentElement;
+  const cur=html.getAttribute('data-theme');
+  html.setAttribute('data-theme',cur==='dark'?'light':'dark');
+}
+
+/* ══════════════════════════════════════════════
+   S1 — Is This a Dilemma?
+══════════════════════════════════════════════ */
+function s1Pick(choice){
+  if(s1Done) return;
+  const fb = document.getElementById('s1-feedback');
+  const cards = document.querySelectorAll('#s1-cards .card');
+  cards.forEach(c=>c.classList.remove('selected'));
+  document.querySelector('[data-c="'+choice+'"]').classList.add('selected');
+
+  const msgs = {
+    A:{cls:'wrong',  txt:"That's a difficult decision — but not an ethical dilemma. There's no conflict of values here, just a tradeoff of preferences. A genuine dilemma requires two legitimate values in conflict."},
+    B:{cls:'wrong',  txt:"That's a clear wrong. Expense fraud is unethical. When one option is obviously unethical, it's not a dilemma — it's a test of whether you'll do the right thing."},
+    C:{cls:'correct',txt:"That's a genuine ethical dilemma. Honesty pulls one way; loyalty to your company and client relationship pulls the other. Every option costs something real. That's the anatomy of a dilemma."}
+  };
+  const m = msgs[choice];
+  fb.className='feedback '+m.cls+' show';
+  fb.textContent = m.txt;
+
+  document.getElementById('s1-anatomy').style.display='block';
+  if(choice==='C'){ s1Done=true; unlock(1); }
+}
+
+/* ══════════════════════════════════════════════
+   S2 — 13 Challenges
+══════════════════════════════════════════════ */
+function buildS2(){
+  const grid = document.getElementById('s2-challenges');
+  if(grid.children.length) return;
+  CHALLENGES.forEach(c=>{
+    const div=document.createElement('div');
+    div.className='challenge-card';
+    div.innerHTML=`<div class="badge badge-sm">${c.n}</div><div><h4>${c.name}</h4><p>${c.desc}</p></div>`;
+    grid.appendChild(div);
+  });
+}
+function s2Region(r,el){
+  document.querySelectorAll('#s2-regions .region-tile').forEach(t=>t.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('s2-msg').style.display='block';
+  s2Done=true; unlock(2);
+}
+
+/* ══════════════════════════════════════════════
+   S3 — Values in Tension (T-chart)
+══════════════════════════════════════════════ */
+const VIT_ROUNDS = [
+  {
+    scenario: "A colleague and close friend has been submitting mileage reimbursements for trips she never took. You've noticed the pattern over two months. She recently confided that she's struggling with debt. Quarterly expense reports are due tomorrow.",
+    values: ["Loyalty","Accountability","Honesty","Compassion","Fairness","Trust"],
+    sideA: ["Loyalty","Compassion"],
+    sideB: ["Accountability","Honesty","Fairness","Trust"],
+    befgPair: ["Loyalty","Accountability"],
+    befgName: "Loyalty",
+    feedback: {
+      good: "Both of those values are genuinely at stake here. You're noticing the right kind of pull.",
+      ideal: "The field guide names this a <strong>Loyalty</strong> dilemma — personal commitment and organizational accountability pulling in opposite directions. Both are real obligations.",
+      miss: "Think about what you owe your friend <em>and</em> what you owe your organization. Those duties don't point the same direction here."
+    }
+  },
+  {
+    scenario: "Your team shipped a product last quarter with a defect that hasn't caused harm yet — but could. Full disclosure now triggers a mandatory recall and will likely cost 30 colleagues their jobs. Your engineers believe they can quietly fix it within 45 days.",
+    values: ["Honesty","Transparency","Protection","Prudence","Harm Prevention","Loyalty"],
+    sideA: ["Honesty","Transparency"],
+    sideB: ["Protection","Prudence","Harm Prevention","Loyalty"],
+    befgPair: ["Honesty","Harm Prevention"],
+    befgName: "Dissemblance",
+    feedback: {
+      good: "You've found the core pull. The question of whether to fully disclose — and at what cost — is exactly where this dilemma lives.",
+      ideal: "The field guide calls this <strong>Dissemblance</strong> — the tension between honesty and the harm that honesty might cause. Silence protects people here, but so does speaking up.",
+      miss: "Consider what full transparency would do — and what staying quiet would do. Both paths lead somewhere morally significant."
+    }
+  },
+  {
+    scenario: "A 14-year employee with an exemplary record made a serious lapse in judgment that cost the company its largest client. Company policy says dismissal is required. Everyone on your team is watching how you respond.",
+    values: ["Justice","Mercy","Consistency","Compassion","Accountability","Fairness"],
+    sideA: ["Justice","Consistency","Accountability","Fairness"],
+    sideB: ["Mercy","Compassion"],
+    befgPair: ["Justice","Mercy"],
+    befgName: "Showing Mercy",
+    feedback: {
+      good: "You've spotted the pull. There are legitimate reasons on both sides — and a real leader has to weigh them, not just apply the policy.",
+      ideal: "The field guide calls this <strong>Showing Mercy</strong> — weighing what someone deserves against what a compassionate response requires. Following the rule is just. Considering the person is also just.",
+      miss: "Think about what the rule requires and what the relationship asks for. They don't point the same direction — and that's what makes it a dilemma."
+    }
+  }
+];
+
+function buildVIT(){
+  if(vitDone) return;
+  vitRound = 0;
+  renderVITRound();
+}
+
+function renderVITRound(){
+  const r = VIT_ROUNDS[vitRound];
+  vitPendingChip = null;
+  vitZoneAName = null;
+  vitZoneBName = null;
+  vitDragging = null;
+  vitLocked = false;
+
+  document.getElementById('vit-round-label').textContent = `Situation ${vitRound+1} of ${VIT_ROUNDS.length}`;
+  document.getElementById('vit-scenario').innerHTML = r.scenario;
+
+  // Reset zones
+  const zA = document.getElementById('vit-zone-a');
+  const zB = document.getElementById('vit-zone-b');
+  zA.textContent = 'Drag or tap a value here';
+  zA.className = 't-col-zone';
+  zB.textContent = 'Drag or tap a value here';
+  zB.className = 't-col-zone';
+
+  // Build chip pool
+  const pool = document.getElementById('vit-chips');
+  pool.innerHTML = '';
+  r.values.forEach(v => {
+    const chip = document.createElement('div');
+    chip.className = 'chip';
+    chip.textContent = v;
+    chip.dataset.value = v;
+    chip.draggable = true;
+    chip.style.cursor = 'pointer';
+    chip.addEventListener('click', () => onVITChipClick(chip));
+    chip.addEventListener('dragstart', e => {
+      if(vitLocked) return;
+      vitDragging = chip;
+      e.dataTransfer.effectAllowed = 'move';
+      setTimeout(() => chip.style.opacity = '.3', 0);
+    });
+    chip.addEventListener('dragend', () => { chip.style.opacity = '1'; vitDragging = null; });
+    pool.appendChild(chip);
+  });
+
+  document.getElementById('vit-check-btn').style.display = 'none';
+  document.getElementById('vit-next-btn').style.display = 'none';
+  const fb = document.getElementById('vit-feedback');
+  fb.className = 'feedback'; fb.innerHTML = '';
+}
+
+function onVITChipClick(chip) {
+  if(vitLocked) return;
+  if(chip.style.display === 'none') return;
+  // Toggle selection
+  if(vitPendingChip === chip) {
+    chip.classList.remove('vit-selected');
+    vitPendingChip = null;
+    return;
+  }
+  if(vitPendingChip) vitPendingChip.classList.remove('vit-selected');
+  chip.classList.add('vit-selected');
+  vitPendingChip = chip;
+}
+
+function onVITChartClick(e) {
+  if(vitLocked || !vitPendingChip) return;
+  const zone = e.target.closest('.t-col-zone');
+  if(!zone) return;
+  const col = zone.id === 'vit-zone-a' ? 'a' : 'b';
+  placeVITChip(vitPendingChip, col);
+}
+
+function onVITChartDragover(e) {
+  if(vitLocked) return;
+  const zone = e.target.closest('.t-col-zone');
+  if(zone) { e.preventDefault(); zone.classList.add('drag-over'); }
+}
+
+function onVITChartDrop(e) {
+  const zone = e.target.closest('.t-col-zone');
+  if(!zone) return;
+  e.preventDefault();
+  zone.classList.remove('drag-over');
+  if(!vitLocked && vitDragging) {
+    const col = zone.id === 'vit-zone-a' ? 'a' : 'b';
+    placeVITChip(vitDragging, col);
+  }
+}
+
+function onVITChartDragleave(e) {
+  const zone = e.target.closest('.t-col-zone');
+  if(zone && !e.currentTarget.contains(e.relatedTarget)) zone.classList.remove('drag-over');
+}
+
+function placeVITChip(chip, col) {
+  const name = chip.dataset.value;
+  // If placing in col A and it's already filled, restore old chip to pool
+  if(col === 'a' && vitZoneAName) {
+    const old = document.querySelector(`#vit-chips .chip[data-value="${vitZoneAName}"]`);
+    if(old) old.style.display = '';
+    vitZoneAName = null;
+  }
+  if(col === 'b' && vitZoneBName) {
+    const old = document.querySelector(`#vit-chips .chip[data-value="${vitZoneBName}"]`);
+    if(old) old.style.display = '';
+    vitZoneBName = null;
+  }
+
+  if(col === 'a') vitZoneAName = name;
+  else vitZoneBName = name;
+
+  const zone = document.getElementById('vit-zone-' + col);
+  zone.className = 't-col-zone filled';
+  zone.textContent = name;
+
+  chip.style.display = 'none';
+  chip.classList.remove('vit-selected');
+  vitPendingChip = null;
+
+  document.getElementById('vit-check-btn').style.display = (vitZoneAName && vitZoneBName) ? 'inline-flex' : 'none';
+}
+
+function clearVITZones() {
+  if(vitLocked) return;
+  if(vitZoneAName) {
+    const c = document.querySelector(`#vit-chips .chip[data-value="${vitZoneAName}"]`);
+    if(c) c.style.display = '';
+    vitZoneAName = null;
+  }
+  if(vitZoneBName) {
+    const c = document.querySelector(`#vit-chips .chip[data-value="${vitZoneBName}"]`);
+    if(c) c.style.display = '';
+    vitZoneBName = null;
+  }
+  if(vitPendingChip) { vitPendingChip.classList.remove('vit-selected'); vitPendingChip = null; }
+  const zA = document.getElementById('vit-zone-a');
+  const zB = document.getElementById('vit-zone-b');
+  zA.className = 't-col-zone'; zA.textContent = 'Drag or tap a value here';
+  zB.className = 't-col-zone'; zB.textContent = 'Drag or tap a value here';
+  document.getElementById('vit-check-btn').style.display = 'none';
+}
+
+function checkVIT(){
+  vitLocked = true;
+  const r = VIT_ROUNDS[vitRound];
+  const sel = [vitZoneAName, vitZoneBName].filter(Boolean);
+  const onA = sel.filter(v => r.sideA.includes(v)).length;
+  const onB = sel.filter(v => r.sideB.includes(v)).length;
+  const isIdeal = sel.includes(r.befgPair[0]) && sel.includes(r.befgPair[1]);
+  const isGood = onA >= 1 && onB >= 1;
+
+  // Restore any hidden chips and highlight befgPair
+  document.querySelectorAll('#vit-chips .chip').forEach(c => {
+    c.style.display = '';
+    c.style.cursor = 'default';
+    if(r.befgPair.includes(c.dataset.value)) {
+      c.style.outline = '2px dashed var(--pine)';
+      c.style.opacity = '0.75';
+    }
+  });
+
+  const fb = document.getElementById('vit-feedback');
+  let cls, html;
+  if(isIdeal){
+    cls = 'correct';
+    html = r.feedback.ideal;
+  } else if(isGood){
+    cls = 'correct';
+    html = r.feedback.good + `<br><br>The field guide's core tension here: <strong>${r.befgPair[0]} ↔ ${r.befgPair[1]}</strong> — the <em>${r.befgName}</em> dilemma.`;
+  } else {
+    cls = 'wrong';
+    html = r.feedback.miss + `<br><br>The tension the field guide would name: <strong>${r.befgPair[0]} ↔ ${r.befgPair[1]}</strong>.`;
+  }
+  fb.className = 'feedback ' + cls + ' show';
+  fb.innerHTML = html;
+  document.getElementById('vit-check-btn').style.display = 'none';
+
+  const isLast = vitRound >= VIT_ROUNDS.length - 1;
+  const nextBtn = document.getElementById('vit-next-btn');
+  nextBtn.textContent = isLast ? 'Continue →' : 'Next situation →';
+  nextBtn.style.display = 'inline-flex';
+}
+
+function nextVITRound(){
+  vitRound++;
+  if(vitRound >= VIT_ROUNDS.length){
+    vitDone = true; unlock(3);
+    document.getElementById('continue-btn').disabled = false;
+  } else {
+    renderVITRound();
+  }
+}
+
+/* ══════════════════════════════════════════════
+   S4 — Accordion Anatomy
+══════════════════════════════════════════════ */
+const S3_STEPS = [
+  {num:"01",title:"What are the options?",  body:"Frank can comply and delete the penalty. He can refuse. He can ask to escalate or get guidance. He can comply but document his objection."},
+  {num:"02",title:"What value does each option protect?", body:"Complying protects the client relationship and Frank's job security. Refusing protects honesty, legal compliance, and professional integrity."},
+  {num:"03",title:"What does each option cost?", body:"Complying costs Frank's integrity and potentially exposes him to legal risk. Refusing may cost his job or create conflict with his supervisor."},
+  {num:"04",title:"Name the tension.", body:`<div class="tension-callout"><span>Authority vs. Integrity</span><br><span style="font-size:14px;font-weight:normal;font-family:-apple-system,sans-serif">Frank is caught between deference to legitimate authority and his duty to honest professional conduct. Both values are real. That's what makes this a dilemma — not just a hard choice.</span></div>`},
+];
+function buildS3(){
+  const wrap=document.getElementById('s3-steps');
+  if(wrap.children.length) return;
+  S3_STEPS.forEach((s,i)=>{
+    const item=document.createElement('div');
+    item.className='accordion-item';
+    item.innerHTML=`
+      <button class="accordion-trigger" onclick="openS3(${i},this)">
+        <span><span class="accordion-num">${s.num}</span>${s.title}</span>
+        <svg class="chevron" id="s3chev${i}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div class="accordion-body" id="s3body${i}"><div class="accordion-body-inner">${s.body}</div></div>
+    `;
+    wrap.appendChild(item);
+  });
+}
+function openS3(i,btn){
+  const body=document.getElementById('s3body'+i);
+  const chev=document.getElementById('s3chev'+i);
+  const isOpen=body.classList.contains('open');
+  body.classList.toggle('open',!isOpen);
+  chev.classList.toggle('open',!isOpen);
+  btn.classList.toggle('opened',!isOpen);
+  if(!isOpen) s3Opened.add(i);
+  if(s3Opened.size===4){ document.getElementById('s3-hint').style.display='none'; unlock(4); }
+}
+function toggleAcc(id,chevId){
+  const b=document.getElementById(id); const c=document.getElementById(chevId);
+  const o=b.classList.contains('open');
+  b.classList.toggle('open',!o); c.classList.toggle('open',!o);
+}
+
+/* ══════════════════════════════════════════════
+   S5 — Spot the Tension (T-chart value selection)
+══════════════════════════════════════════════ */
+let s4Pending = null;
+let s4Placed = {};
+
+function buildS4(){
+  s4Round = 0; s4Locked = false; s4Pending = null; s4Placed = {};
+  renderS4Round();
+}
+
+function renderS4Round(){
+  s4Locked = false; s4Pending = null; s4Placed = {};
+  const wrap = document.getElementById('s4-content');
+  wrap.innerHTML = '';
+  document.getElementById('s4-round-label').textContent = 'Round '+(s4Round+1)+' of '+TENSION_ROUNDS.length;
+  const r = TENSION_ROUNDS[s4Round];
+
+  // Scenario
+  const scenario = document.createElement('div');
+  scenario.className = 'scenario-box';
+  scenario.style.marginBottom = '16px';
+  scenario.innerHTML = `<strong>${r.title}.</strong> ${r.scenario}`;
+  wrap.appendChild(scenario);
+
+  const prompt = document.createElement('p');
+  prompt.style.cssText = 'font-size:13px;font-family:Georgia,serif;font-weight:600;color:var(--ink-soft);margin-bottom:10px;letter-spacing:.02em';
+  prompt.textContent = 'Place the two values in tension — one on each side.';
+  wrap.appendChild(prompt);
+
+  // T-chart
+  const chart = document.createElement('div');
+  chart.className = 't-chart';
+  chart.innerHTML = `
+    <div class="t-col" id="s4-col-a" data-col="a">
+      <div class="t-col-header">Value A</div>
+      <div class="t-col-zone" id="s4-zone-a">Tap a value, then tap here</div>
+    </div>
+    <div class="t-divider"></div>
+    <div class="t-col" id="s4-col-b" data-col="b">
+      <div class="t-col-header">Value B</div>
+      <div class="t-col-zone" id="s4-zone-b">Tap a value, then tap here</div>
+    </div>`;
+  wrap.appendChild(chart);
+
+  // Zones: click to place pending chip
+  ['a','b'].forEach(col => {
+    document.getElementById('s4-zone-'+col).addEventListener('click', () => {
+      if(!s4Pending || s4Locked) return;
+      placeS4Chip(col, s4Pending, r);
+    });
+  });
+
+  // Value chips
+  const pool = document.createElement('div');
+  pool.style.cssText = 'display:flex;flex-wrap:wrap;gap:9px;margin:14px 0';
+  r.values.forEach(v => {
+    const chip = document.createElement('div');
+    chip.className = 'chip';
+    chip.textContent = v;
+    chip.dataset.value = v;
+    chip.style.cursor = 'pointer';
+    chip.addEventListener('click', () => toggleS4Chip(chip, v));
+    pool.appendChild(chip);
+  });
+  wrap.appendChild(pool);
+
+  // Clear button
+  const clearBtn = document.createElement('button');
+  clearBtn.className = 'btn btn-ghost';
+  clearBtn.textContent = 'Clear';
+  clearBtn.style.cssText = 'font-size:12px;padding:4px 10px;margin-bottom:12px';
+  clearBtn.onclick = () => { s4Pending=null; s4Placed={}; renderS4Round(); };
+  wrap.appendChild(clearBtn);
+
+  // Check button (hidden)
+  const checkBtn = document.createElement('button');
+  checkBtn.className = 'btn btn-primary';
+  checkBtn.id = 's4-check-btn';
+  checkBtn.textContent = 'Check my thinking';
+  checkBtn.style.display = 'none';
+  checkBtn.onclick = () => checkS4Tension(r);
+  wrap.appendChild(checkBtn);
+
+  // Feedback
+  const fb = document.createElement('div');
+  fb.className = 'feedback'; fb.id = 's4-fb';
+  fb.style.marginTop = '12px';
+  wrap.appendChild(fb);
+
+  // Next button (hidden)
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'btn btn-primary';
+  nextBtn.id = 's4-next-btn';
+  nextBtn.style.cssText = 'display:none;margin-top:12px';
+  nextBtn.onclick = () => {
+    s4Round++;
+    if(s4Round >= TENSION_ROUNDS.length){ s4Done=true; unlock(5); showS4Summary(); }
+    else renderS4Round();
+  };
+  wrap.appendChild(nextBtn);
+}
+
+function toggleS4Chip(chip, v){
+  if(s4Locked) return;
+  // If already placed in a zone, ignore
+  if(s4Placed.a === v || s4Placed.b === v) return;
+  if(s4Pending === chip){
+    chip.classList.remove('vit-selected');
+    s4Pending = null;
+  } else {
+    document.querySelectorAll('#s4-content .chip.vit-selected').forEach(c=>c.classList.remove('vit-selected'));
+    chip.classList.add('vit-selected');
+    s4Pending = chip;
+  }
+}
+
+function placeS4Chip(col, chip, r){
+  const zone = document.getElementById('s4-zone-'+col);
+  const v = chip.dataset.value;
+  // If zone already filled, swap back old chip to pool style
+  const oldVal = s4Placed[col];
+  if(oldVal){
+    const oldChip = document.querySelector(`#s4-content .chip[data-value="${CSS.escape(oldVal)}"]`);
+    if(oldChip){ oldChip.style.display=''; oldChip.classList.remove('chip-correct','chip-wrong','vit-selected'); }
+  }
+  s4Placed[col] = v;
+  zone.textContent = v;
+  zone.className = 't-col-zone filled';
+  chip.classList.remove('vit-selected');
+  chip.style.display = 'none';
+  s4Pending = null;
+  if(s4Placed.a && s4Placed.b) document.getElementById('s4-check-btn').style.display='inline-flex';
+}
+
+function checkS4Tension(r){
+  s4Locked = true;
+  document.getElementById('s4-check-btn').style.display = 'none';
+  const a = s4Placed.a, b = s4Placed.b;
+  if(!a||!b) return;
+  const onA_a = r.sideA.includes(a), onB_a = r.sideB.includes(a);
+  const onA_b = r.sideA.includes(b), onB_b = r.sideB.includes(b);
+  const isIdeal = (a===r.idealPair[0]&&b===r.idealPair[1])||(a===r.idealPair[1]&&b===r.idealPair[0]);
+  const isGood = (onA_a||onB_a) && (onA_b||onB_b) && !( (onA_a&&onA_b)||(onB_a&&onB_b) );
+  // Color zones
+  ['a','b'].forEach(col => {
+    const zone = document.getElementById('s4-zone-'+col);
+    const v = s4Placed[col];
+    const onSideA = r.sideA.includes(v), onSideB = r.sideB.includes(v);
+    zone.style.borderColor = (onSideA||onSideB) ? 'var(--correct)' : 'var(--wrong)';
+    zone.style.background = (onSideA||onSideB) ? 'var(--correct-bg)' : 'var(--wrong-bg)';
+  });
+  const fb = document.getElementById('s4-fb');
+  let html, cls;
+  if(isIdeal){
+    cls='correct'; html = r.feedback_ideal;
+  } else if(isGood){
+    cls='correct'; html = r.feedback_good + `<br><br>The field guide's core tension: <strong>${r.idealPair[0]} ↔ ${r.idealPair[1]}</strong>.`;
+  } else {
+    cls='wrong'; html = r.feedback_miss + `<br><br>The core tension: <strong>${r.idealPair[0]} ↔ ${r.idealPair[1]}</strong>.`;
+  }
+  fb.className = 'feedback '+cls+' show';
+  fb.innerHTML = html;
+  const isLast = s4Round >= TENSION_ROUNDS.length - 1;
+  const nextBtn = document.getElementById('s4-next-btn');
+  nextBtn.textContent = isLast ? 'Continue →' : 'Next round →';
+  nextBtn.style.display = 'inline-flex';
+}
+
+function showS4Summary(){
+  const wrap=document.getElementById('s4-content');
+  wrap.innerHTML='<div class="callout"><strong>Three tensions named:</strong><ul style="margin-top:8px;list-style:none"><li style="margin-bottom:6px">→ Challenge 9 — Loyalty: <em>Loyalty ↔ Self-Interest</em></li><li style="margin-bottom:6px">→ Challenge 4 — Conflicts of Interest: <em>Personal Gain ↔ Professional Duty</em></li><li>→ Challenge 8 — Dissemblance: <em>Patient Wellbeing ↔ Professional Protocol</em></li></ul></div>';
+}
+
+/* ══════════════════════════════════════════════
+   S6 — Tension Spectrum Sliders
+══════════════════════════════════════════════ */
+function buildS5(){
+  const wrap=document.getElementById('s5-sliders');
+  if(wrap.children.length) return;
+  SLIDERS.forEach((s,i)=>{
+    const div=document.createElement('div');
+    div.className='slider-wrap card';
+    div.style.marginBottom='16px';
+    div.innerHTML=`
+      <h4 style="font-family:Georgia,serif;font-size:14px;margin-bottom:6px">${s.title}</h4>
+      <p style="font-size:13px;color:var(--ink-soft);margin-bottom:12px;line-height:1.5">${s.scenario}</p>
+      <div class="slider-labels"><span>${s.left}</span><span>${s.right}</span></div>
+      <input type="range" min="0" max="100" value="50" id="slider${i}" oninput="onSlider(${i},this.value)">
+      <div class="slider-readout" id="sr${i}">Drag the marker to place the tension.</div>
+      <div class="feedback" id="sobs${i}" style="margin-top:10px"></div>
+    `;
+    wrap.appendChild(div);
+  });
+}
+function onSlider(i,v){
+  const s=SLIDERS[i];
+  const pct=parseInt(v);
+  let label='';
+  if(pct<35) label='Strongly toward: '+s.left;
+  else if(pct<47) label='Leaning toward: '+s.left;
+  else if(pct<=53) label='Equal pull on both sides';
+  else if(pct<=65) label='Leaning toward: '+s.right;
+  else label='Strongly toward: '+s.right;
+  document.getElementById('sr'+i).textContent=label;
+  const obs=document.getElementById('sobs'+i);
+  obs.className='feedback neutral show'; obs.textContent=s.obs;
+  s5Moved.add(i);
+  if(s5Moved.size===SLIDERS.length){ s5Done=true; unlock(6); }
+}
+
+/* ══════════════════════════════════════════════
+   S7 — Stakeholder Spotter
+══════════════════════════════════════════════ */
+let s6State=[{sel:new Set(),revealed:false},{sel:new Set(),revealed:false},{sel:new Set(),revealed:false}];
+function buildS6(){
+  const wrap=document.getElementById('s6-content');
+  if(wrap.children.length) return;
+  STAKEHOLDERS_DATA.forEach((d,di)=>{
+    const div=document.createElement('div');
+    div.className='card'; div.style.marginBottom='16px';
+    let html=`<h4 style="font-family:Georgia,serif;font-size:14px;margin-bottom:4px">${d.title}</h4>
+      <p style="font-size:13px;color:var(--ink-soft);margin-bottom:12px">${d.scenario}</p>
+      <div id="stake-chips-${di}">`;
+    d.chips.forEach((c,ci)=>{
+      html+=`<button class="stake-chip" data-di="${di}" data-ci="${ci}" onclick="toggleStake(${di},${ci},this)">${c.name}</button>`;
+    });
+    html+=`</div>
+      <div style="margin-top:12px">
+        <button class="btn btn-ghost" style="font-size:13px;padding:8px 16px" onclick="revealStake(${di})">Reveal</button>
+      </div>
+      <div class="feedback" id="stake-fb-${di}" style="margin-top:10px"></div>`;
+    div.innerHTML=html;
+    wrap.appendChild(div);
+  });
+}
+function toggleStake(di,ci,btn){
+  if(s6State[di].revealed) return;
+  const set=s6State[di].sel;
+  if(set.has(ci)){ set.delete(ci); btn.classList.remove('selected'); }
+  else { set.add(ci); btn.classList.add('selected'); }
+}
+function revealStake(di){
+  if(s6State[di].revealed) return;
+  s6State[di].revealed=true;
+  const d=STAKEHOLDERS_DATA[di];
+  d.chips.forEach((c,ci)=>{
+    const btn=document.querySelector(`[data-di="${di}"][data-ci="${ci}"]`);
+    if(c.yes){ btn.classList.remove('selected'); btn.classList.add('revealed-yes'); }
+    else { btn.style.opacity='.4'; }
+  });
+  const fb=document.getElementById('stake-fb-'+di);
+  fb.className='feedback neutral show';
+  fb.innerHTML=`<strong>Often missed:</strong> ${d.missed_note}`;
+  s6Revealed++;
+  if(s6Revealed>=3){ s6Done=true; unlock(7); }
+}
+
+/* ══════════════════════════════════════════════
+   S8 — Field Map Sort (Drag & Drop)
+══════════════════════════════════════════════ */
+let s7Dragging=null;
+function buildS7(){
+  const pool=document.getElementById('s7-pool');
+  if(pool.children.length>0 && pool.querySelectorAll('.chip').length>0) return;
+  pool.innerHTML='';
+  CHALLENGES.forEach(c=>{
+    const chip=makeChip(c.name,'s7'); pool.appendChild(chip);
+  });
+  setupDropZones(['drop-authority','drop-truth','drop-relations','drop-conseq']);
+}
+function makeChip(text,pfx){
+  const chip=document.createElement('div');
+  chip.className='chip'; chip.textContent=text;
+  chip.draggable=true;
+  chip.dataset.name=text;
+  chip.dataset.pfx=pfx;
+  chip.addEventListener('dragstart',e=>{ s7Dragging=chip; e.dataTransfer.effectAllowed='move'; setTimeout(()=>chip.style.opacity='.3',0); });
+  chip.addEventListener('dragend',()=>{ chip.style.opacity='1'; s7Dragging=null; });
+  addTouchDrag(chip);
+  return chip;
+}
+function setupDropZones(ids){
+  ids.forEach(id=>{
+    const zone=document.getElementById(id);
+    zone.addEventListener('dragover',e=>{ e.preventDefault(); zone.classList.add('drag-over'); });
+    zone.addEventListener('dragleave',()=>zone.classList.remove('drag-over'));
+    zone.addEventListener('drop',e=>{ e.preventDefault(); zone.classList.remove('drag-over');
+      if(s7Dragging){
+        const reg=zone.dataset.region;
+        const chipsDiv=document.getElementById('chips-'+reg);
+        chipsDiv.appendChild(s7Dragging);
+        s7Placed[s7Dragging.dataset.name]=reg;
+        const placed=Object.keys(s7Placed).length;
+        if(placed===13) document.getElementById('s7-check-btn').style.display='inline-flex';
+      }
+    });
+  });
+}
+function checkMap(){
+  let wrong=0;
+  const correctMap={};
+  CHALLENGES.forEach(c=>{ correctMap[c.name]=c.region; });
+  Object.entries(s7Placed).forEach(([name,placed])=>{
+    const chip=document.querySelector(`#screen-8 .chip[data-name="${CSS.escape(name)}"]`);
+    if(!chip) return;
+    if(placed===correctMap[name]){
+      chip.classList.add('chip-correct');
+    } else {
+      wrong++;
+      chip.classList.add('chip-wrong');
+      chip.classList.add('shake');
+      setTimeout(()=>chip.classList.remove('shake'),500);
+      setTimeout(()=>{
+        chip.classList.remove('chip-wrong');
+        delete s7Placed[name];
+        document.getElementById('s7-pool').appendChild(chip);
+      },600);
+    }
+  });
+  const res=document.getElementById('s7-result');
+  if(wrong===0){
+    res.className='callout';
+    res.innerHTML='All 13 correctly placed. <strong>Note on Unfair Advantage:</strong> It sits at the edge of Truth &amp; Information and Consequences — the field guide places it in Consequences because the harm flows from the outcome, not from the information itself.';
+    s7Done=true; unlock(8);
+  } else {
+    res.className='feedback wrong show';
+    res.textContent=(13-wrong)+' of 13 correct — try the remaining '+wrong+'.';
+  }
+}
+
+
+/* ══════════════════════════════════════════════
+   S10 (was S12) — Neutralization Connection
+══════════════════════════════════════════════ */
+let s12Dragging=null;
+function buildS12(){
+  const pool=document.getElementById('s12-pool');
+  if(pool.children.length) return;
+  NEUTR_CHIPS.forEach(name=>{
+    const chip=document.createElement('div');
+    chip.className='chip'; chip.textContent=name; chip.dataset.name=name;
+    chip.draggable=true;
+    chip.addEventListener('dragstart',e=>{ s12Dragging=chip; e.dataTransfer.effectAllowed='move'; setTimeout(()=>chip.style.opacity='.3',0); });
+    chip.addEventListener('dragend',()=>{ chip.style.opacity='1'; s12Dragging=null; });
+    addTouchDrag(chip);
+    pool.appendChild(chip);
+  });
+  const slotsWrap=document.getElementById('s12-slots');
+  NEUTR_SLOTS.forEach((s,i)=>{
+    const div=document.createElement('div');
+    div.className='card'; div.style.marginBottom='12px';
+    div.innerHTML=`<h4 style="font-family:Georgia,serif;font-size:14px;margin-bottom:4px">${s.title}</h4>
+      <p style="font-size:12px;color:var(--ink-soft);margin-bottom:10px;font-style:italic">${s.prompt}</p>
+      <div class="chip-pool" style="min-height:42px" id="s12slot${i}" data-slot="${i}"></div>
+      <div class="feedback" id="s12sfb${i}" style="margin-top:8px"></div>`;
+    slotsWrap.appendChild(div);
+    const zone=div.querySelector('.chip-pool');
+    zone.addEventListener('dragover',e=>{ e.preventDefault(); zone.classList.add('drag-over'); });
+    zone.addEventListener('dragleave',()=>zone.classList.remove('drag-over'));
+    zone.addEventListener('drop',e=>{ e.preventDefault(); zone.classList.remove('drag-over');
+      if(s12Dragging){
+        zone.innerHTML=''; zone.appendChild(s12Dragging);
+        s12Placed[i]=s12Dragging.dataset.name;
+        if(Object.keys(s12Placed).length===NEUTR_SLOTS.length) document.getElementById('s12-check-btn').style.display='inline-flex';
+      }
+    });
+  });
+}
+function checkNeutralization(){
+  let wrong=0;
+  NEUTR_SLOTS.forEach((s,i)=>{
+    const placed=s12Placed[i];
+    const fb=document.getElementById('s12sfb'+i);
+    const chip=document.querySelector(`#s12slot${i} .chip`);
+    if(placed===s.correct){
+      if(chip) chip.classList.add('chip-correct');
+      fb.className='feedback correct show'; fb.textContent=s.exp;
+    } else {
+      wrong++;
+      if(chip){ chip.classList.add('chip-wrong'); chip.classList.add('shake'); setTimeout(()=>{ chip.classList.remove('chip-wrong','shake'); delete s12Placed[i]; document.getElementById('s12-pool').appendChild(chip); },600); }
+      fb.className='feedback wrong show'; fb.textContent='Not quite — think about the most natural thing a leader would tell themselves to avoid engaging with this specific dilemma.';
+    }
+  });
+  if(wrong===0){ s12Done=true; unlock(9); document.getElementById('s12-callout').style.display='block'; document.getElementById('s12-check-btn').style.display='none'; }
+  else { setTimeout(()=>document.getElementById('s12-check-btn').style.display='inline-flex',800); }
+}
+
+/* ══════════════════════════════════════════════
+   S11 (was S13) — Reference Card
+══════════════════════════════════════════════ */
+function buildRef(){
+  const tbody=document.getElementById('ref-table-body');
+  if(tbody.children.length) return;
+  unlock(10);
+  CHALLENGES.forEach(c=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td class="ref-num">${c.n}</td><td style="font-weight:600">${c.name}</td><td style="color:var(--ink-soft)">${c.desc}</td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+/* ══════════════════════════════════════════════
+   TOUCH DRAG (mobile)
+══════════════════════════════════════════════ */
+function addTouchDrag(el){
+  let ghost=null, startX=0, startY=0;
+  el.addEventListener('touchstart',e=>{
+    const t=e.touches[0]; startX=t.clientX; startY=t.clientY;
+    ghost=el.cloneNode(true);
+    ghost.className=el.className+' drag-ghost';
+    ghost.style.width=el.offsetWidth+'px';
+    ghost.style.left=(t.clientX-el.offsetWidth/2)+'px';
+    ghost.style.top=(t.clientY-20)+'px';
+    document.body.appendChild(ghost);
+    el.style.opacity='.3';
+  },{passive:true});
+  el.addEventListener('touchmove',e=>{
+    e.preventDefault();
+    const t=e.touches[0];
+    if(ghost){ ghost.style.left=(t.clientX-el.offsetWidth/2)+'px'; ghost.style.top=(t.clientY-20)+'px'; }
+    document.querySelectorAll('.drop-col,.chip-pool[id^="s12slot"]').forEach(z=>z.classList.remove('drag-over'));
+    const target=document.elementFromPoint(t.clientX,t.clientY);
+    const zone=target&&(target.closest('.drop-col')||target.closest('.chip-pool'));
+    if(zone) zone.classList.add('drag-over');
+  },{passive:false});
+  el.addEventListener('touchend',e=>{
+    const t=e.changedTouches[0];
+    if(ghost){ document.body.removeChild(ghost); ghost=null; }
+    el.style.opacity='1';
+    const target=document.elementFromPoint(t.clientX,t.clientY);
+    const zone=target&&(target.closest('.drop-col')||target.closest('.chip-pool[id^="s12slot"]'));
+    if(zone){
+      zone.classList.remove('drag-over');
+      if(zone.classList.contains('drop-col')){ const chipsDiv=zone.querySelector('[id^="chips-"]'); if(chipsDiv){ chipsDiv.appendChild(el); s7Placed[el.dataset.name]=zone.dataset.region; if(Object.keys(s7Placed).length===13) document.getElementById('s7-check-btn').style.display='inline-flex'; } }
+      else if(zone.id&&zone.id.startsWith('s12slot')){ const si=zone.dataset.slot; zone.innerHTML=''; zone.appendChild(el); s12Placed[si]=el.dataset.name; if(Object.keys(s12Placed).length===NEUTR_SLOTS.length) document.getElementById('s12-check-btn').style.display='inline-flex'; }
+    }
+  });
+}
+
+/* ══════════════════════════════════════════════
+   INIT
+══════════════════════════════════════════════ */
+screenOk[0]=true;
+updateUI();
+
+// Responsive title
+if(window.innerWidth>600) document.getElementById('act-title-mid').style.display='block';
+</script>
+</body>
+</html>
+
+</body></html>

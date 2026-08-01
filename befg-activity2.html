@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neutralization Techniques — Business Ethics Field Guide</title>
+<style>
+:root {
+  --ink:#1E1C18; --paper:#FFFEF9; --pine:#2A4A2F; --amber:#C47D0E;
+  --sienna:#7B2D2A; --smoke:#F1EDE4; --mist:#E8E3D8;
+  --ink-soft:rgba(30,28,24,.55); --pine-light:#EBF2EC;
+  --amber-light:#FDF3E0; --sienna-light:#FAE9E8;
+  --correct:#1A6B3A; --correct-bg:#E6F4EC;
+  --wrong:#92400E; --wrong-bg:#FEF3C7;
+  --radius:10px;
+  --shadow:0 2px 8px rgba(30,28,24,.10),0 1px 2px rgba(30,28,24,.06);
+  --shadow-md:0 4px 16px rgba(30,28,24,.13),0 2px 4px rgba(30,28,24,.08);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink:#EDE8DF; --paper:#18160F; --pine:#5FA066; --amber:#E09A20;
+    --sienna:#C05848; --smoke:#242118; --mist:#2E2A22;
+    --ink-soft:rgba(237,232,223,.5); --pine-light:#1A2C1C;
+    --amber-light:#2A2010; --sienna-light:#2C1412;
+    --correct:#5FA066; --correct-bg:#162218; --wrong:#E09A20; --wrong-bg:#251D08;
+  }
+}
+:root[data-theme="dark"] {
+  --ink:#EDE8DF; --paper:#18160F; --pine:#5FA066; --amber:#E09A20;
+  --sienna:#C05848; --smoke:#242118; --mist:#2E2A22;
+  --ink-soft:rgba(237,232,223,.5); --pine-light:#1A2C1C;
+  --amber-light:#2A2010; --sienna-light:#2C1412;
+  --correct:#5FA066; --correct-bg:#162218; --wrong:#E09A20; --wrong-bg:#251D08;
+}
+:root[data-theme="light"] {
+  --ink:#1E1C18; --paper:#FFFEF9; --pine:#2A4A2F; --amber:#C47D0E;
+  --sienna:#7B2D2A; --smoke:#F1EDE4; --mist:#E8E3D8;
+  --ink-soft:rgba(30,28,24,.55); --pine-light:#EBF2EC;
+  --amber-light:#FDF3E0; --sienna-light:#FAE9E8;
+  --correct:#1A6B3A; --correct-bg:#E6F4EC; --wrong:#92400E; --wrong-bg:#FEF3C7;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:var(--smoke);color:var(--ink);font-size:16px;line-height:1.6;padding-top:88px;padding-bottom:76px;min-height:100vh}
+h1,h2,h3,h4{font-family:Georgia,'Times New Roman',serif;text-wrap:balance;line-height:1.25}
+button{cursor:pointer;border:none;background:none;font:inherit}
+a{color:var(--pine)}
+
+header{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--paper);border-bottom:1px solid var(--mist);box-shadow:0 1px 0 var(--mist)}
+.header-top{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:48px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='48'%3E%3Cellipse cx='100' cy='24' rx='90' ry='18' fill='none' stroke='%232A4A2F' stroke-width='0.6' opacity='0.08'/%3E%3Cellipse cx='100' cy='24' rx='70' ry='12' fill='none' stroke='%232A4A2F' stroke-width='0.6' opacity='0.08'/%3E%3Cellipse cx='100' cy='24' rx='50' ry='7' fill='none' stroke='%232A4A2F' stroke-width='0.6' opacity='0.08'/%3E%3Cellipse cx='180' cy='10' rx='40' ry='14' fill='none' stroke='%232A4A2F' stroke-width='0.6' opacity='0.06'/%3E%3Cellipse cx='20' cy='38' rx='40' ry='14' fill='none' stroke='%232A4A2F' stroke-width='0.6' opacity='0.06'/%3E%3C/svg%3E");background-repeat:repeat-x;background-size:200px 48px}
+.brand{font-family:Georgia,serif;font-size:12px;font-weight:bold;letter-spacing:.06em;text-transform:uppercase;color:var(--sienna)}
+.activity-title{font-family:Georgia,serif;font-size:13px;color:var(--ink-soft)}
+.theme-toggle{font-size:17px;padding:4px;border-radius:6px;transition:background .2s}
+.theme-toggle:hover{background:var(--smoke)}
+.trail-bar{padding:8px 24px 10px;overflow-x:auto;scrollbar-width:none}
+.trail-bar::-webkit-scrollbar{display:none}
+.trail{display:flex;align-items:center;gap:0;min-width:max-content}
+.waypoint{display:flex;flex-direction:column;align-items:center;position:relative}
+.waypoint-dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--mist);background:var(--paper);display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-size:9px;font-weight:bold;color:var(--ink-soft);transition:all .3s;flex-shrink:0}
+.waypoint.done .waypoint-dot{background:var(--pine);border-color:var(--pine);color:#fff}
+.waypoint.active .waypoint-dot{background:var(--amber);border-color:var(--amber);color:#fff;box-shadow:0 0 0 3px var(--amber-light)}
+.trail-line{width:18px;height:2px;background:var(--mist);flex-shrink:0;transition:background .3s}
+.trail-line.done{background:var(--pine)}
+
+.screens-wrap{position:relative}
+.screen{position:absolute;top:0;left:0;right:0;opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .3s ease,transform .3s ease}
+.screen.active{position:relative;opacity:1;transform:translateY(0);pointer-events:all}
+.content{max-width:680px;margin:0 auto;padding:36px 24px 48px}
+
+.screen-eyebrow{font-family:'Courier New',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+.screen-title{font-size:26px;color:var(--ink);margin-bottom:8px}
+.screen-sub{color:var(--ink-soft);font-size:15px;margin-bottom:28px;max-width:56ch}
+
+.badge{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--amber);color:#fff;font-family:'Courier New',monospace;font-weight:bold;font-size:11px;flex-shrink:0}
+.badge-pine{background:var(--pine)}
+.badge-sm{width:22px;height:22px;font-size:10px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 28px;border-radius:var(--radius);font-weight:600;font-size:15px;transition:all .2s;white-space:nowrap}
+.btn-primary{background:var(--pine);color:#fff}
+.btn-primary:hover{filter:brightness(1.1)}
+.btn-primary:disabled{background:var(--mist);color:var(--ink-soft);cursor:not-allowed;filter:none}
+.btn-ghost{background:transparent;color:var(--ink-soft);border:1.5px solid var(--mist)}
+.btn-ghost:hover{border-color:var(--pine);color:var(--pine)}
+.btn-sm{padding:8px 16px;font-size:13px}
+
+.bottom-bar{position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--paper);border-top:1px solid var(--mist);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.screen-counter{font-family:'Courier New',monospace;font-size:12px;color:var(--ink-soft)}
+
+.scenario-box{background:var(--pine-light);border-left:3px solid var(--pine);border-radius:0 var(--radius) var(--radius) 0;padding:16px 18px;margin-bottom:20px;font-size:15px;line-height:1.7}
+.quote-box{background:var(--amber-light);border-left:3px solid var(--amber);border-radius:0 var(--radius) var(--radius) 0;padding:16px 18px;font-family:Georgia,serif;font-size:16px;font-style:italic;line-height:1.7;margin-bottom:20px}
+
+.accordion-item{border:1.5px solid var(--mist);border-radius:var(--radius);overflow:hidden;margin-bottom:8px;background:var(--paper)}
+.accordion-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;padding:14px 18px;font-family:Georgia,serif;font-size:15px;font-weight:bold;color:var(--ink);text-align:left;transition:background .2s}
+.accordion-trigger:hover{background:var(--smoke)}
+.accordion-trigger.opened{background:var(--pine-light);color:var(--pine)}
+.accordion-num{font-family:'Courier New',monospace;font-size:11px;font-weight:bold;color:var(--amber);margin-right:10px;flex-shrink:0}
+.chevron{width:18px;height:18px;color:var(--ink-soft);transition:transform .25s;flex-shrink:0}
+.chevron.open{transform:rotate(180deg)}
+.accordion-body{max-height:0;overflow:hidden;transition:max-height .4s ease;font-size:15px;line-height:1.7}
+.accordion-body.open{max-height:700px}
+.accordion-body-inner{padding:14px 18px 16px;border-top:1px solid var(--mist)}
+.tech-sub{display:flex;flex-direction:column;gap:8px;padding:10px 0 0}
+.tech-item{background:var(--smoke);border-radius:8px;padding:10px 12px}
+.tech-item-name{font-family:Georgia,serif;font-size:13px;font-weight:bold;color:var(--pine);margin-bottom:3px}
+.tech-item-def{font-size:13px;color:var(--ink-soft);line-height:1.5}
+
+.option-btn{width:100%;text-align:left;padding:14px 16px;border:1.5px solid var(--mist);border-radius:var(--radius);background:var(--paper);color:var(--ink);font-size:15px;line-height:1.5;margin-bottom:8px;transition:all .2s;display:flex;align-items:center;gap:12px}
+.option-btn:hover:not(:disabled){border-color:var(--pine);background:var(--pine-light)}
+.option-btn.opt-correct{border-color:var(--correct);background:var(--correct-bg);color:var(--correct)}
+.option-btn.opt-wrong{border-color:#D97706;background:var(--wrong-bg);color:var(--wrong)}
+.option-btn:disabled{cursor:default}
+.opt-letter{width:28px;height:28px;border-radius:50%;background:var(--smoke);display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-size:11px;font-weight:bold;flex-shrink:0}
+
+.feedback{padding:14px 16px;border-radius:var(--radius);font-size:14px;line-height:1.6;margin-top:12px;display:none}
+.feedback.show{display:block}
+.feedback.correct{background:var(--correct-bg);border:1px solid var(--correct);color:var(--correct)}
+.feedback.wrong{background:var(--wrong-bg);border:1px solid #D97706;color:var(--wrong)}
+.feedback.neutral{background:var(--pine-light);border:1px solid var(--pine);color:var(--pine)}
+
+.chip-pool{display:flex;flex-wrap:wrap;gap:8px;padding:14px;background:var(--smoke);border-radius:var(--radius);border:1.5px dashed var(--mist);min-height:54px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:var(--paper);border:1.5px solid var(--mist);border-radius:20px;font-size:13px;font-weight:600;cursor:grab;user-select:none;box-shadow:var(--shadow);transition:box-shadow .15s,transform .15s;white-space:nowrap}
+.chip:hover{box-shadow:var(--shadow-md);transform:translateY(-1px)}
+.chip.chip-selected{background:var(--amber);color:#fff;border-color:var(--amber);cursor:pointer}
+.chip.chip-correct{background:var(--correct-bg);border-color:var(--correct);color:var(--correct);cursor:default}
+.chip.chip-wrong{background:var(--wrong-bg);border-color:#D97706;color:var(--wrong)}
+.chip.chip-placed{opacity:.3;pointer-events:none}
+
+.fw-slot{border:1.5px solid var(--mist);border-radius:var(--radius);background:var(--paper);padding:12px 14px;margin-bottom:8px;display:flex;align-items:flex-start;gap:12px;min-height:56px;transition:background .2s,border-color .2s}
+.fw-slot.drag-over{border-color:var(--pine);background:var(--pine-light);outline:2px dashed var(--pine);outline-offset:2px}
+.fw-slot.slot-correct{border-color:var(--correct);background:var(--correct-bg)}
+.fw-slot.slot-wrong{border-color:#D97706;background:var(--wrong-bg)}
+.fw-slot-label{flex:0 0 220px;font-family:Georgia,serif;font-size:13px;font-weight:bold;color:var(--ink);line-height:1.4;padding-top:2px}
+.fw-slot-zone{flex:1;min-height:32px;border:2px dashed var(--mist);border-radius:6px;display:flex;align-items:center;padding:6px 10px;font-size:13px;color:var(--ink-soft);transition:all .15s;flex-wrap:wrap;gap:4px}
+.fw-slot-zone.has-chip{border-style:solid;border-color:var(--pine);background:var(--smoke)}
+
+.t-chart{display:flex;gap:0;margin-bottom:16px;border:1.5px solid var(--mist);border-radius:var(--radius);overflow:hidden}
+.t-col{flex:1;padding:12px}
+.t-col-header{font-family:Georgia,serif;font-size:13px;font-weight:600;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.t-divider{width:1.5px;background:var(--mist);flex-shrink:0}
+.t-drop-zone{min-height:80px;border:2px dashed var(--mist);border-radius:6px;padding:8px;display:flex;flex-wrap:wrap;align-content:flex-start;gap:6px;transition:border-color .15s,background .15s}
+.t-drop-zone.drag-over{border-color:var(--amber);background:var(--amber-light)}
+.t-drop-zone-label{font-size:12px;color:var(--ink-soft);width:100%;text-align:center;padding-top:8px}
+
+.callout{padding:14px 16px;background:var(--pine-light);border-left:3px solid var(--pine);border-radius:0 8px 8px 0;font-size:14px;line-height:1.6;color:var(--ink);margin-top:16px}
+.round-counter{font-family:'Courier New',monospace;font-size:12px;color:var(--amber);font-weight:bold;letter-spacing:.05em;text-transform:uppercase;margin-bottom:16px}
+.divider{border:none;border-top:1px solid var(--mist);margin:24px 0}
+
+.welcome-wrap{min-height:calc(100vh - 164px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 24px}
+.welcome-kicker{font-family:'Courier New',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
+.welcome-title{font-size:38px;color:var(--ink);margin-bottom:18px}
+.welcome-body{font-size:16px;color:var(--ink-soft);max-width:48ch;line-height:1.7;margin-bottom:36px}
+
+/* Sentence tap */
+.sent-tap{cursor:pointer;border-radius:4px;padding:1px 3px;margin:0 -3px;transition:background .2s}
+.sent-tap:hover{background:var(--amber-light);outline:1.5px solid var(--amber)}
+.sent-tap.sent-correct{background:var(--correct-bg);outline:2px solid var(--correct);color:var(--correct);font-weight:600}
+.sent-tap.sent-wrong{background:var(--wrong-bg);outline:2px solid #D97706;color:var(--wrong)}
+
+.ref-table{width:100%;border-collapse:collapse}
+.ref-table th{background:var(--sienna);color:#fff;font-family:Georgia,serif;font-size:13px;font-weight:bold;padding:10px 12px;text-align:left}
+.ref-table td{padding:9px 12px;font-size:13px;border-bottom:1px solid var(--mist);vertical-align:top}
+.ref-table tr:nth-child(even) td{background:var(--smoke)}
+
+.slider-wrap{background:var(--paper);border:1.5px solid var(--mist);border-radius:var(--radius);padding:18px;margin-bottom:12px}
+.slider-title{font-family:Georgia,serif;font-size:15px;font-weight:bold;margin-bottom:4px}
+.slider-def{font-size:13px;color:var(--ink-soft);margin-bottom:14px;line-height:1.5}
+.slider-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-soft);margin-bottom:6px}
+input[type=range]{-webkit-appearance:none;width:100%;height:6px;border-radius:3px;background:var(--mist);outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--paper);border:3px solid var(--pine);cursor:grab;box-shadow:0 1px 4px rgba(0,0,0,.15)}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--paper);border:3px solid var(--pine)}
+.slider-insight{margin-top:12px;display:none;font-size:13px;line-height:1.6;padding:10px 12px;background:var(--amber-light);border:1px solid var(--amber);border-radius:8px;color:var(--ink)}
+.slider-insight.show{display:block}
+
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}50%{transform:translateX(6px)}80%{transform:translateX(-4px)}}
+.shake{animation:shake .4s ease}
+
+@media (max-width:560px){
+  .fw-slot-label{flex:0 0 160px;font-size:12px}
+  .screen-title{font-size:22px}
+  .welcome-title{font-size:28px}
+  .t-chart{flex-direction:column}
+  .t-divider{width:auto;height:1.5px}
+}
+
+/* ─── Video Placeholder ──────────────────────── */
+.video-placeholder{position:relative;background:#141a14;border-radius:var(--radius);overflow:hidden;margin-bottom:20px;aspect-ratio:16/9;cursor:pointer;user-select:none;width:100%}
+.vp-texture{position:absolute;inset:0;background:radial-gradient(ellipse at 28% 55%,rgba(42,74,47,.35) 0%,transparent 58%),radial-gradient(ellipse at 75% 25%,rgba(196,125,14,.12) 0%,transparent 48%),linear-gradient(170deg,#1c2a1c 0%,#0e1210 100%)}
+.vp-badge-top{position:absolute;top:12px;left:12px;font-family:'Courier New',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);background:rgba(0,0,0,.65);padding:3px 8px;border-radius:4px;border:1px solid rgba(196,125,14,.5)}
+.vp-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.vp-play{width:60px;height:60px;background:var(--amber);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.5),0 0 0 8px rgba(196,125,14,.18);transition:transform .2s,box-shadow .2s}
+.video-placeholder:hover .vp-play{transform:scale(1.08);box-shadow:0 4px 24px rgba(0,0,0,.6),0 0 0 12px rgba(196,125,14,.25)}
+.vp-play-icon{width:0;height:0;border-style:solid;border-width:10px 0 10px 18px;border-color:transparent transparent transparent #fff;margin-left:4px}
+.vp-bottom{position:absolute;bottom:0;left:0;right:0;padding:32px 14px 12px;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,transparent 100%);display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+.vp-title{font-family:Georgia,serif;font-size:14px;color:#fff;line-height:1.3;text-shadow:0 1px 4px rgba(0,0,0,.7);flex:1}
+.vp-dur{font-family:'Courier New',monospace;font-size:11px;color:rgba(255,255,255,.85);background:rgba(0,0,0,.6);padding:2px 7px;border-radius:4px;flex-shrink:0}
+.vp-bar{position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(255,255,255,.15)}
+
+@media print {
+  header,.bottom-bar,.no-print,button:not(.print-btn){display:none !important}
+  body{background:white;padding:0}
+  .screen{position:static !important;opacity:1 !important;transform:none !important;pointer-events:all !important;display:none}
+  #screen-10{display:block !important}
+  .ref-table th{background:#7B2D2A !important;-webkit-print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-top">
+    <span class="brand">Merit Leadership</span>
+    <span class="activity-title">Neutralization Techniques</span>
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">◐</button>
+  </div>
+  <div class="trail-bar"><div class="trail" id="trail"></div></div>
+</header>
+
+<main class="screens-wrap" id="screens-wrap">
+
+<!-- S0: Welcome -->
+<div class="screen active" id="screen-0">
+  <div class="welcome-wrap">
+    <p class="welcome-kicker">Business Ethics Field Guide · Activity 2</p>
+    <h1 class="welcome-title">The Rationalizations We Use</h1>
+    <p class="welcome-body">When leaders face ethical obligations they'd rather avoid, they often reach for one of twelve well-documented rationalizations. The field guide calls them neutralization techniques — and awareness of them goes a long way toward resisting them.</p>
+    <div class="video-placeholder" style="max-width:480px;margin:0 auto 28px">
+      <div class="vp-texture"></div>
+      <span class="vp-badge-top">Teaching Video</span>
+      <div class="vp-center"><div class="vp-play"><div class="vp-play-icon"></div></div></div>
+      <div class="vp-bottom"><div class="vp-title">The Rationalizations Leaders Use</div><div class="vp-dur">1:50</div></div>
+      <div class="vp-bar"></div>
+    </div>
+    <button class="btn btn-primary" onclick="goTo(1)">Begin →</button>
+  </div>
+</div>
+
+<!-- S1: What is neutralization? -->
+<div class="screen" id="screen-1">
+  <div class="content">
+    <p class="screen-eyebrow">Teaching · What Is Neutralization?</p>
+    <h2 class="screen-title">Rationalization or Genuine Reason?</h2>
+    <p class="screen-sub">One of these statements is a neutralization technique — a rationalization that makes inaction feel acceptable. The other two are genuine ethical reasons. Tap the rationalization.</p>
+    <div class="video-placeholder">
+      <div class="vp-texture"></div>
+      <span class="vp-badge-top">Field Scenario</span>
+      <div class="vp-center"><div class="vp-play"><div class="vp-play-icon"></div></div></div>
+      <div class="vp-bottom"><div class="vp-title">Spotting a Neutralization</div><div class="vp-dur">0:55</div></div>
+      <div class="vp-bar"></div>
+    </div>
+    <div id="s1-opts" style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+      <button class="option-btn" onclick="s1Pick('A',this)"><span class="opt-letter">A</span><span>"I've reviewed the client reports and confirmed that the practice is causing concrete financial harm to a specific group. That's why I can't continue."</span></button>
+      <button class="option-btn" onclick="s1Pick('B',this)"><span class="opt-letter">B</span><span>"Look, nobody actually got hurt here. Clients didn't complain, nothing went wrong, and I don't see why we're treating this like a crisis."</span></button>
+      <button class="option-btn" onclick="s1Pick('C',this)"><span class="opt-letter">C</span><span>"I'm not able to approve this because it would require me to misrepresent the data we're presenting to the board."</span></button>
+    </div>
+    <div class="feedback" id="s1-fb"></div>
+    <div id="s1-explain" style="display:none;margin-top:16px">
+      <div class="callout">
+        <strong>What makes it a neutralization?</strong> Statement B doesn't engage with whether the action was right or wrong — it argues that because nothing visibly went wrong, there's nothing to address. That's the signature move of a neutralization technique: it sidesteps the ethical question rather than answering it. The field guide notes that these techniques are dangerous precisely because they feel reasonable at first glance.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S2: The 12 Techniques — Teaching -->
+<div class="screen" id="screen-2">
+  <div class="content">
+    <p class="screen-eyebrow">Teaching · The Twelve Techniques</p>
+    <h2 class="screen-title">Twelve Ways We Avoid Acting</h2>
+    <p class="screen-sub">The field guide identifies twelve neutralization techniques, grouped into three clusters. Open all three clusters and read the techniques inside each. Open all three to continue.</p>
+    <div class="video-placeholder">
+      <div class="vp-texture"></div>
+      <span class="vp-badge-top">Teaching Video</span>
+      <div class="vp-center"><div class="vp-play"><div class="vp-play-icon"></div></div></div>
+      <div class="vp-bottom"><div class="vp-title">Twelve Ways We Avoid Acting</div><div class="vp-dur">2:15</div></div>
+      <div class="vp-bar"></div>
+    </div>
+    <div id="s2-progress" style="font-family:'Courier New',monospace;font-size:12px;color:var(--amber);margin-bottom:14px;font-weight:bold">0 of 3 clusters opened</div>
+    <div id="s2-accordions"></div>
+    <div class="callout" style="margin-top:16px">
+      <strong>The field guide's promise.</strong> "Luckily, awareness goes a long way in neutralizing the neutralization techniques." Naming what you're doing — before you do it — is the most powerful tool you have.
+    </div>
+  </div>
+</div>
+
+<!-- S3: Name That Technique -->
+<div class="screen" id="screen-3">
+  <div class="content">
+    <p class="screen-eyebrow">Module 1 · Recognize It</p>
+    <h2 class="screen-title">Name That Technique</h2>
+    <p class="screen-sub">Read each quote from a fictional leader. Select the neutralization technique it demonstrates. Three rounds.</p>
+    <div class="video-placeholder">
+      <div class="vp-texture"></div>
+      <span class="vp-badge-top">Field Scenario</span>
+      <div class="vp-center"><div class="vp-play"><div class="vp-play-icon"></div></div></div>
+      <div class="vp-bottom"><div class="vp-title">Which Technique Is This?</div><div class="vp-dur">1:10</div></div>
+      <div class="vp-bar"></div>
+    </div>
+    <div class="round-counter" id="s3-round-label">Round 1 of 3</div>
+    <div id="s3-content"></div>
+  </div>
+</div>
+
+<!-- S4: Spot the Neutralization -->
+<div class="screen" id="screen-4">
+  <div class="content">
+    <p class="screen-eyebrow">Module 2 · Find It in the Wild</p>
+    <h2 class="screen-title">Spot the Neutralization</h2>
+    <p class="screen-sub">Read each story, then tap the sentence that contains the neutralization technique. Three rounds.</p>
+    <div class="round-counter" id="s4-round-label">Round 1 of 3</div>
+    <div id="s4-content"></div>
+  </div>
+</div>
+
+<!-- S5: Match Quote to Technique -->
+<div class="screen" id="screen-5">
+  <div class="content">
+    <p class="screen-eyebrow">Module 3 · Match</p>
+    <h2 class="screen-title">Six Quotes, Six Techniques</h2>
+    <p class="screen-sub">Drag each quote chip to the technique it represents — or tap a chip to select it (turns amber), then tap a slot. Match all six to continue.</p>
+    <div class="chip-pool" id="s5-pool" style="margin-bottom:16px"></div>
+    <div id="s5-slots"></div>
+    <button class="btn btn-ghost no-print" id="s5-check-btn" style="display:none;margin-top:12px" onclick="checkS5()">Check My Matches</button>
+    <div id="s5-result" style="margin-top:12px"></div>
+  </div>
+</div>
+
+<!-- S6: Which Cluster? -->
+<div class="screen" id="screen-6">
+  <div class="content">
+    <p class="screen-eyebrow">Module 4 · Cluster Sort</p>
+    <h2 class="screen-title">Which Cluster Does It Belong To?</h2>
+    <p class="screen-sub">Sort each technique chip into the correct cluster. Drag or tap a chip to select it (amber), then tap a column. Three rounds.</p>
+    <div class="round-counter" id="s6-round-label">Round 1 of 3</div>
+    <div id="s6-content"></div>
+  </div>
+</div>
+
+<!-- S7: Neutralization in Context -->
+<div class="screen" id="screen-7">
+  <div class="content">
+    <p class="screen-eyebrow">Module 5 · In Context</p>
+    <h2 class="screen-title">Which Technique Is Being Used?</h2>
+    <p class="screen-sub">For each situation, select the neutralization technique most likely being used. Three rounds.</p>
+    <div class="video-placeholder">
+      <div class="vp-texture"></div>
+      <span class="vp-badge-top">Field Scenario</span>
+      <div class="vp-center"><div class="vp-play"><div class="vp-play-icon"></div></div></div>
+      <div class="vp-bottom"><div class="vp-title">Neutralization in the Workplace</div><div class="vp-dur">1:35</div></div>
+      <div class="vp-bar"></div>
+    </div>
+    <div class="round-counter" id="s7-round-label">Situation 1 of 3</div>
+    <div id="s7-content"></div>
+  </div>
+</div>
+
+<!-- S8: Counter the Technique -->
+<div class="screen" id="screen-8">
+  <div class="content">
+    <p class="screen-eyebrow">Module 6 · Push Back</p>
+    <h2 class="screen-title">Counter the Rationalization</h2>
+    <p class="screen-sub">For each technique, select the response that most directly challenges it. Three rounds.</p>
+    <div class="video-placeholder">
+      <div class="vp-texture"></div>
+      <span class="vp-badge-top">Field Scenario</span>
+      <div class="vp-center"><div class="vp-play"><div class="vp-play-icon"></div></div></div>
+      <div class="vp-bottom"><div class="vp-title">Pushing Back on Rationalization</div><div class="vp-dur">1:20</div></div>
+      <div class="vp-bar"></div>
+    </div>
+    <div class="round-counter" id="s8-round-label">Technique 1 of 3</div>
+    <div id="s8-content"></div>
+  </div>
+</div>
+
+<!-- S9: Self-Assessment -->
+<div class="screen" id="screen-9">
+  <div class="content">
+    <p class="screen-eyebrow">Reflection · Self-Assessment</p>
+    <h2 class="screen-title">How Likely Are You to Use Each?</h2>
+    <p class="screen-sub">There are no right answers here. Move each slider to reflect your honest assessment of your own tendencies under pressure. The field guide's insight appears after each one.</p>
+    <div id="s9-sliders"></div>
+    <div id="s9-reveal-btn" style="display:none;margin-top:4px">
+      <button class="btn btn-primary" onclick="s9Complete()">See What I've Learned →</button>
+    </div>
+  </div>
+</div>
+
+<!-- S10: Reference Card -->
+<div class="screen" id="screen-10">
+  <div class="content">
+    <p class="screen-eyebrow">Your Field Guide</p>
+    <h2 class="screen-title">Keep This</h2>
+    <p class="screen-sub">Twelve techniques — and how to name them when you feel them pulling.</p>
+
+    <h3 style="font-family:Georgia,serif;font-size:16px;margin-bottom:10px">Denial Cluster</h3>
+    <div style="overflow-x:auto;margin-bottom:20px">
+      <table class="ref-table">
+        <thead><tr><th>#</th><th>Technique</th><th>The Self-Deception</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong>Denial of Responsibility</strong></td><td>"This wasn't my call — I was following direction."</td></tr>
+          <tr><td>2</td><td><strong>Denial of Injury</strong></td><td>"No one actually got hurt."</td></tr>
+          <tr><td>3</td><td><strong>Denial of the Victim</strong></td><td>"They had it coming."</td></tr>
+          <tr><td>4</td><td><strong>Denial of Negative Intent</strong></td><td>"I didn't mean for this to happen."</td></tr>
+          <tr><td>5</td><td><strong>Claims of Relative Acceptability</strong></td><td>"Others have done much worse."</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-family:Georgia,serif;font-size:16px;margin-bottom:10px">Appeal Cluster</h3>
+    <div style="overflow-x:auto;margin-bottom:20px">
+      <table class="ref-table">
+        <thead><tr><th>#</th><th>Technique</th><th>The Self-Deception</th></tr></thead>
+        <tbody>
+          <tr><td>6</td><td><strong>Appeal to Higher Loyalties</strong></td><td>"The end justified the means."</td></tr>
+          <tr><td>7</td><td><strong>Condemnation of the Condemners</strong></td><td>"The people criticizing me have their own problems."</td></tr>
+          <tr><td>8</td><td><strong>Moral Ledger</strong></td><td>"I've done so much good — I've earned some flexibility."</td></tr>
+          <tr><td>9</td><td><strong>Claim of Normalcy</strong></td><td>"Everyone in this industry does it."</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-family:Georgia,serif;font-size:16px;margin-bottom:10px">Postponement Cluster</h3>
+    <div style="overflow-x:auto;margin-bottom:20px">
+      <table class="ref-table">
+        <thead><tr><th>#</th><th>Technique</th><th>The Self-Deception</th></tr></thead>
+        <tbody>
+          <tr><td>10</td><td><strong>Postponement</strong></td><td>"Now isn't the right time."</td></tr>
+          <tr><td>11</td><td><strong>Defense of Necessity</strong></td><td>"I had no choice — the situation demanded it."</td></tr>
+          <tr><td>12</td><td><strong>Use of Euphemisms</strong></td><td>"We're not firing people — we're right-sizing."</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="divider">
+    <h3 style="font-family:Georgia,serif;font-size:16px;margin-bottom:10px">How to Resist</h3>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:flex-start;gap:14px"><span class="badge">1</span><span style="font-size:15px;padding-top:3px">Name it. Say out loud: "I'm about to use a neutralization technique."</span></div>
+      <div style="display:flex;align-items:flex-start;gap:14px"><span class="badge">2</span><span style="font-size:15px;padding-top:3px">Ask: "Would I be comfortable if this reasoning appeared on the front page?"</span></div>
+      <div style="display:flex;align-items:flex-start;gap:14px"><span class="badge">3</span><span style="font-size:15px;padding-top:3px">Ask: "Am I answering the ethical question — or avoiding it?"</span></div>
+      <div style="display:flex;align-items:flex-start;gap:14px"><span class="badge">4</span><span style="font-size:15px;padding-top:3px">Run the dilemma through the five frameworks in Activity 1.</span></div>
+    </div>
+
+    <div style="margin-top:32px;text-align:center">
+      <button class="btn btn-ghost print-btn no-print" onclick="window.print()">⬇ Print This Card</button>
+    </div>
+    <p style="font-size:13px;color:var(--ink-soft);text-align:center;margin-top:20px;font-style:italic">"Luckily, awareness goes a long way in neutralizing the neutralization techniques." — Business Ethics Field Guide</p>
+  </div>
+</div>
+
+</main>
+
+<div class="bottom-bar no-print">
+  <button class="btn btn-ghost" id="back-btn" onclick="goBack()">← Back</button>
+  <span class="screen-counter" id="screen-counter">Screen 1 of 11</span>
+  <button class="btn btn-primary" id="continue-btn" onclick="goNext()" disabled>Continue →</button>
+</div>
+
+<script>
+/* ═══════════════════════════ DATA ═══════════════════════════ */
+
+const CLUSTERS = [
+  {
+    id:'denial', name:'Denial Cluster',
+    sub:'We tell ourselves the harm or our responsibility for it doesn\'t really exist.',
+    techs:[
+      {id:'resp', name:'Denial of Responsibility', def:'Placing responsibility for our actions on someone or something else — often called the "agentic shift." Our brain insists we are not accountable.'},
+      {id:'inj',  name:'Denial of Injury',         def:'Telling ourselves that no one was hurt — or at least not hurt very much — by our actions.'},
+      {id:'vic',  name:'Denial of the Victim',     def:'Convincing ourselves that the harmed party was actually at fault, using ideas like "they should have known better" or "they had it coming."'},
+      {id:'neg',  name:'Denial of Negative Intent',def:'Admitting that actions hurt people but telling ourselves it\'s okay because we didn\'t mean to hurt them.'},
+      {id:'rel',  name:'Claims of Relative Acceptability', def:'Pointing to people who have done much worse to make our own actions seem acceptable by comparison.'},
+    ]
+  },
+  {
+    id:'appeal', name:'Appeal Cluster',
+    sub:'We invoke something — a principle, a comparison, a track record — to justify the action.',
+    techs:[
+      {id:'loy',  name:'Appeal to Higher Loyalties',        def:'Feeling fine about doing harm on the way to achieving or honoring something important. You\'ll know you\'re in this trap when harm feels acceptable because the goal is important enough.'},
+      {id:'con',  name:'Condemnation of the Condemners',    def:'Deflecting criticism by focusing on finding fault in the people or entities who might hold us accountable.'},
+      {id:'led',  name:'Moral Ledger',                      def:'Like a "cheat day" on a diet — giving ourselves permission to act less ethically because of the good we\'ve done in other areas.'},
+      {id:'nor',  name:'Claim of Normalcy',                 def:'The "everyone\'s doing it" excuse. By noting cultural, industry, or company norms, we convince ourselves our course of action is acceptable. (The field guide: "More often than not, everyone isn\'t doing it.")'},
+    ]
+  },
+  {
+    id:'post', name:'Postponement Cluster',
+    sub:'We defer, reframe, or disguise what we\'re actually doing.',
+    techs:[
+      {id:'post', name:'Postponement',          def:'Stalling on a decision and reasoning that if we make no decision, we\'re not responsible for the consequences. The field guide reminds us: choosing not to act is also an act.'},
+      {id:'nec',  name:'Defense of Necessity',  def:'Exaggerating the necessity of an action to feel better about doing it. More often than not, our brain has inflated how compelled we really were.'},
+      {id:'euph', name:'Use of Euphemisms',     def:'Subtle changes in language that disguise an action\'s full impact — even from ourselves. "Restructuring" feels different from "firing"; a "safety protocol deviation" carries less weight than a "debilitating accident."'},
+    ]
+  }
+];
+
+const S3_ROUNDS = [
+  {
+    quote:'"My manager specifically asked me to run the numbers this way. I don\'t set methodology — I execute what I\'m told."',
+    correct:'resp',
+    explain:'This is Denial of Responsibility — the speaker places accountability for the decision on their manager, removing themselves from the moral equation. The field guide calls this the "agentic shift."',
+    opts:['resp','loy','post','nor'],
+    names:{'resp':'Denial of Responsibility','loy':'Appeal to Higher Loyalties','post':'Postponement','nor':'Claim of Normalcy'}
+  },
+  {
+    quote:'"Yes, the client\'s estimate was off because of how we framed the data. But honestly, they should have done their own due diligence before making a decision that large."',
+    correct:'vic',
+    explain:'This is Denial of the Victim — the speaker redirects blame to the client, arguing that because they could have protected themselves, they bear responsibility for what happened.',
+    opts:['inj','vic','neg','led'],
+    names:{'inj':'Denial of Injury','vic':'Denial of the Victim','neg':'Denial of Negative Intent','led':'Moral Ledger'}
+  },
+  {
+    quote:'"I\'ve given this company twenty years. I built three of the practices that are generating revenue right now. I think I\'ve earned a little flexibility on this one contract."',
+    correct:'led',
+    explain:'This is the Moral Ledger — the speaker treats past ethical contributions as currency that can be spent to justify a current questionable action. The field guide: past good behavior doesn\'t purchase future permission.',
+    opts:['loy','rel','led','nor'],
+    names:{'loy':'Appeal to Higher Loyalties','rel':'Claims of Relative Acceptability','led':'Moral Ledger','nor':'Claim of Normalcy'}
+  }
+];
+
+const S4_ROUNDS = [
+  {
+    technique:'Claim of Normalcy',
+    intro:'Carter had been in procurement for twelve years, and he\'d seen the same vendor relationship practices at every company he\'d worked for.',
+    sentences:[
+      {t:'When an audit raised questions about his vendor selection process, he was surprised anyone thought it was a problem.', correct:false},
+      {t:'Everyone in the industry structured these supplier relationships the same way.', correct:true},
+      {t:'He scheduled a call with the auditors to explain how procurement typically worked.', correct:false},
+    ]
+  },
+  {
+    technique:'Postponement',
+    intro:'Priya\'s direct report had missed three deadlines in a row. A direct conversation was overdue.',
+    sentences:[
+      {t:'Priya had drafted a note twice but hadn\'t sent it.', correct:false},
+      {t:'With the product launch approaching, she decided to wait until things settled down — when she could give the conversation her full attention.', correct:true},
+      {t:'After the launch, a restructuring began, and the conversation never happened.', correct:false},
+    ]
+  },
+  {
+    technique:'Condemnation of the Condemners',
+    intro:'The compliance team had flagged concerns about a contract Sandra was about to approve.',
+    sentences:[
+      {t:'Sandra thought the terms were aggressive but defensible.', correct:false},
+      {t:'She spent the next two days compiling instances where compliance had flagged theoretical risks on deals that ultimately closed without incident.', correct:true},
+      {t:'She approved the contract that afternoon.', correct:false},
+    ]
+  }
+];
+
+const S5_CHIPS = [
+  {id:'led_q',  text:'"I\'ve spent twenty years building this firm\'s reputation. I think I\'ve earned some latitude here."', tech:'led'},
+  {id:'inj_q',  text:'"Nothing actually went wrong. No one was harmed — not a single complaint."',                            tech:'inj'},
+  {id:'rel_q',  text:'"Compared to what our main competitor did last year, what we\'re doing is nothing."',                 tech:'rel'},
+  {id:'euph_q', text:'"We\'re right-sizing the organization to align with our strategic priorities."',                      tech:'euph'},
+  {id:'nec_q',  text:'"We had no other choice — the situation absolutely demanded this."',                                  tech:'nec'},
+  {id:'neg_q',  text:'"I\'m sorry people were hurt. I genuinely never intended for that to happen."',                      tech:'neg'},
+];
+const S5_SLOTS = [
+  {id:'led',  label:'Moral Ledger'},
+  {id:'inj',  label:'Denial of Injury'},
+  {id:'rel',  label:'Claims of Relative Acceptability'},
+  {id:'euph', label:'Use of Euphemisms'},
+  {id:'nec',  label:'Defense of Necessity'},
+  {id:'neg',  label:'Denial of Negative Intent'},
+];
+
+const S6_ROUNDS = [
+  {
+    left:{id:'denial', label:'Denial Cluster'}, right:{id:'appeal', label:'Appeal Cluster'},
+    chips:[
+      {name:'Denial of Injury', cluster:'denial'},
+      {name:'Denial of the Victim', cluster:'denial'},
+      {name:'Appeal to Higher Loyalties', cluster:'appeal'},
+      {name:'Claim of Normalcy', cluster:'appeal'},
+    ]
+  },
+  {
+    left:{id:'appeal', label:'Appeal Cluster'}, right:{id:'post', label:'Postponement Cluster'},
+    chips:[
+      {name:'Condemnation of the Condemners', cluster:'appeal'},
+      {name:'Moral Ledger', cluster:'appeal'},
+      {name:'Postponement', cluster:'post'},
+      {name:'Use of Euphemisms', cluster:'post'},
+    ]
+  },
+  {
+    left:{id:'denial', label:'Denial Cluster'}, right:{id:'post', label:'Postponement Cluster'},
+    chips:[
+      {name:'Denial of Responsibility', cluster:'denial'},
+      {name:'Denial of Negative Intent', cluster:'denial'},
+      {name:'Defense of Necessity', cluster:'post'},
+      {name:'Claims of Relative Acceptability', cluster:'denial'},
+    ]
+  }
+];
+
+const S7_ROUNDS = [
+  {
+    scenario:'"Our entire sales team highlights product strengths in demos. We don\'t hide limitations — we just don\'t lead with them. When a rep was challenged on it, she said: \'I don\'t know why this would be any different from how every firm in our industry operates.\'"',
+    correct:'nor',
+    explain:'This is a Claim of Normalcy — the appeal to industry practice is meant to make the behavior feel acceptable, not to assess whether it actually is.',
+    opts:[
+      {id:'inj', label:'Denial of Injury'},
+      {id:'nor', label:'Claim of Normalcy'},
+      {id:'post', label:'Postponement'},
+      {id:'loy', label:'Appeal to Higher Loyalties'},
+    ]
+  },
+  {
+    scenario:'After a client complaint about misleading materials, a senior partner reviewed the situation and said: "Yes, the language was aggressive. But I want to note that two of our direct competitors have been sued over their materials this year. What we did was nothing by comparison."',
+    correct:'rel',
+    explain:'This is Claims of Relative Acceptability — the comparison to worse actors is meant to diminish the seriousness of this firm\'s own conduct, rather than address it directly.',
+    opts:[
+      {id:'resp', label:'Denial of Responsibility'},
+      {id:'con', label:'Condemnation of the Condemners'},
+      {id:'rel', label:'Claims of Relative Acceptability'},
+      {id:'led', label:'Moral Ledger'},
+    ]
+  },
+  {
+    scenario:'When a HR manager asked the department head to address a team member\'s persistent performance issues, the department head said: "This really isn\'t the right moment. We\'re in the middle of a critical product launch and I don\'t want to create disruption. Let\'s revisit this in Q3."',
+    correct:'post',
+    explain:'This is Postponement — the timing objection is real enough to feel reasonable, but the field guide notes that choosing not to act is also an act. Delay has consequences, and the person who delays owns them.',
+    opts:[
+      {id:'inj', label:'Denial of Injury'},
+      {id:'led', label:'Moral Ledger'},
+      {id:'nec', label:'Defense of Necessity'},
+      {id:'post', label:'Postponement'},
+    ]
+  }
+];
+
+const S8_ROUNDS = [
+  {
+    tech:'Denial of Responsibility',
+    quote:'"My director told me to handle it this way. I just followed the protocol I was given."',
+    opts:[
+      {t:'The outcome was harmful, so someone in the chain has to be accountable.', correct:false},
+      {t:'Accepting direction from a superior doesn\'t transfer your agency. You still chose to comply — and that choice is yours.', correct:true},
+      {t:'You should have escalated your concerns before acting.', correct:false},
+      {t:'Everyone has to follow instructions sometimes — that\'s how organizations work.', correct:false},
+    ],
+    explain:'The most direct counter to denial of responsibility is restoring agency. You chose to follow the direction — that choice was yours. The field guide calls this the "agentic shift," and naming it means refusing to let the shift happen.'
+  },
+  {
+    tech:'Claim of Normalcy',
+    quote:'"This is how the whole industry works. I\'d be at a competitive disadvantage if I did it differently."',
+    opts:[
+      {t:'Not everyone actually does it — and even if they did, that wouldn\'t make it right.', correct:true},
+      {t:'You should look for ways to differentiate your firm from competitors.', correct:false},
+      {t:'Industry norms evolve — this may not be acceptable for much longer.', correct:false},
+      {t:'You should check whether competitors have faced consequences for this practice.', correct:false},
+    ],
+    explain:'The Claim of Normalcy bundles two weak arguments together: that the practice is universal (often false) and that universality confers legitimacy (always false). The field guide\'s counter is simple — "more often than not, everyone isn\'t doing it" — and it reminds us that widespread wrongdoing is still wrongdoing.'
+  },
+  {
+    tech:'Postponement',
+    quote:'"This isn\'t a good time. Once we\'re past this quarter, I\'ll have the bandwidth to deal with it properly."',
+    opts:[
+      {t:'There will never be a perfect time, so you need to act now.', correct:false},
+      {t:'The field guide reminds us that choosing not to act is also an act — and the consequences of delay belong to the person who delayed.', correct:true},
+      {t:'You\'re letting perfect be the enemy of good.', correct:false},
+      {t:'Delay often makes the situation worse and harder to address.', correct:false},
+    ],
+    explain:'Postponement feels like prudence — "I\'ll handle it better when I\'m less busy." The counter isn\'t about urgency; it\'s about responsibility. The field guide is direct: inaction is a decision, and its consequences belong to the person who chose not to act.'
+  }
+];
+
+const S9_SLIDERS = [
+  {
+    tech:'Denial of Responsibility',
+    def:'Placing responsibility for your actions on someone or something else.',
+    insight:'This is one of the most common techniques in organizational settings — because authority structures do genuinely distribute responsibility. The challenge is recognizing that accepting direction doesn\'t erase your own moral agency. The field guide asks: did you choose to comply? Then the choice was yours.'
+  },
+  {
+    tech:'Claim of Normalcy',
+    def:'"Everyone does it" — appealing to industry or cultural norms to make an action feel acceptable.',
+    insight:'This technique is especially powerful in competitive industries where industry norms are real and widely followed. The field guide\'s test: if you wouldn\'t want to be publicly known for the practice, the claim of normalcy is doing moral work it shouldn\'t be allowed to do.'
+  },
+  {
+    tech:'Postponement',
+    def:'Stalling a decision, reasoning that if you make no decision, you\'re not responsible for what follows.',
+    insight:'Postponement is insidious because it masquerades as prudence — and sometimes the timing objection is real. The field guide\'s reminder: choosing not to act is also an act, and the consequences of delay belong to the person who delayed.'
+  },
+  {
+    tech:'Moral Ledger',
+    def:'Giving yourself permission to act less ethically in one domain because of the good you\'ve done in others.',
+    insight:'The moral ledger is especially appealing to leaders with genuinely good track records — because it feels earned. The field guide\'s point: past ethical behavior doesn\'t purchase future permission. Every situation deserves its own honest assessment.'
+  }
+];
+
+/* ═══════════════════════════ STATE ═══════════════════════════ */
+let current = 0;
+const TOTAL = 11;
+let screenOk = new Array(TOTAL).fill(false);
+screenOk[0] = true;
+
+let s1Done = false;
+let s2Opened = new Set();
+let s3Round = 0, s3RoundDone = [false,false,false];
+let s4Round = 0, s4RoundDone = [false,false,false];
+let s5Dragging = null, s5Pending = null, s5Placed = {}, s5Done = false;
+let s6Round = 0, s6RoundDone = [false,false,false], s6Pending = null, s6Dragging = null, s6LeftPlaced = [], s6RightPlaced = [];
+let s7Round = 0, s7RoundDone = [false,false,false];
+let s8Round = 0, s8RoundDone = [false,false,false];
+let s9Moved = new Set();
+
+/* ═══════════════════════════ NAV ═══════════════════════════ */
+function goTo(n){
+  document.getElementById('screen-'+current).classList.remove('active');
+  current=n;
+  const scr=document.getElementById('screen-'+current);
+  scr.classList.add('active'); window.scrollTo(0,0); updateUI();
+  if(n===10) unlock(10);
+  const b={2:buildS2,3:buildS3,4:buildS4,5:buildS5,6:buildS6,7:buildS7,8:buildS8,9:buildS9};
+  if(b[n]) b[n]();
+}
+function goNext(){ if(current<TOTAL-1) goTo(current+1); }
+function goBack(){ if(current>0) goTo(current-1); }
+function unlock(n){ screenOk[n]=true; if(current===n) document.getElementById('continue-btn').disabled=false; }
+function updateUI(){
+  document.getElementById('continue-btn').disabled=!screenOk[current];
+  document.getElementById('back-btn').style.visibility=current===0?'hidden':'visible';
+  document.getElementById('screen-counter').textContent='Screen '+(current+1)+' of '+TOTAL;
+  buildTrail();
+}
+function buildTrail(){
+  const t=document.getElementById('trail'); t.innerHTML='';
+  const labels=['Start','Neutralization?','12 Techniques','Name That','Spot It','Match','Clusters','In Context','Counter It','Self-Check','Reference'];
+  labels.forEach((lbl,i)=>{
+    const wp=document.createElement('div');
+    wp.className='waypoint'+(i<current?' done':i===current?' active':'');
+    const dot=document.createElement('div');
+    dot.className='waypoint-dot'; dot.textContent=i+1; dot.title=lbl;
+    wp.appendChild(dot); t.appendChild(wp);
+    if(i<labels.length-1){
+      const line=document.createElement('div');
+      line.className='trail-line'+(i<current?' done':'');
+      t.appendChild(line);
+    }
+  });
+}
+function toggleTheme(){ const h=document.documentElement; h.setAttribute('data-theme',h.getAttribute('data-theme')==='dark'?'light':'dark'); }
+
+/* ═══════════════════════════ S1 ═══════════════════════════ */
+function s1Pick(val,el){
+  if(s1Done) return;
+  const fb=document.getElementById('s1-fb');
+  document.querySelectorAll('#s1-opts .option-btn').forEach(b=>{b.disabled=true;});
+  if(val==='B'){
+    el.classList.add('opt-correct'); fb.className='feedback correct show';
+    fb.innerHTML='<strong>Correct.</strong> Statement B is a neutralization technique — specifically, Denial of Injury. It sidesteps the ethical question entirely by arguing that because nothing visibly went wrong, there\'s nothing to address. The other two statements engage directly with specific ethical reasons: confirmed harm, and a commitment to honesty.';
+    document.getElementById('s1-explain').style.display='block';
+    s1Done=true; unlock(1);
+  } else {
+    el.classList.add('opt-wrong'); fb.className='feedback wrong show';
+    fb.innerHTML='<strong>Not quite.</strong> That statement gives a genuine ethical reason — either a confirmed harm or an honesty commitment. A neutralization technique does something different: it sidesteps the ethical question rather than answering it. Look for the statement that avoids the question by arguing nothing actually went wrong.';
+    el.classList.add('shake');
+    setTimeout(()=>{ el.classList.remove('shake','opt-wrong'); el.disabled=false; fb.className='feedback'; },1200);
+  }
+}
+
+/* ═══════════════════════════ S2 ═══════════════════════════ */
+function buildS2(){
+  const wrap=document.getElementById('s2-accordions'); if(wrap.children.length) return;
+  CLUSTERS.forEach((cl,i)=>{
+    const item=document.createElement('div'); item.className='accordion-item';
+    const id='s2acc-'+i;
+    const techHtml=cl.techs.map(t=>`<div class="tech-item"><div class="tech-item-name">${t.name}</div><div class="tech-item-def">${t.def}</div></div>`).join('');
+    item.innerHTML=`
+      <button class="accordion-trigger" id="${id}-trigger" onclick="toggleS2(${i})">
+        <span><span class="accordion-num">${['01','02','03'][i]}</span>${cl.name} — <em style="font-weight:normal">${cl.sub}</em></span>
+        <svg class="chevron" id="${id}-chev" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div class="accordion-body" id="${id}-body">
+        <div class="accordion-body-inner"><div class="tech-sub">${techHtml}</div></div>
+      </div>`;
+    wrap.appendChild(item);
+  });
+}
+function toggleS2(i){
+  const id='s2acc-'+i;
+  const body=document.getElementById(id+'-body'); const chev=document.getElementById(id+'-chev'); const trig=document.getElementById(id+'-trigger');
+  const wasOpen=body.classList.contains('open');
+  body.classList.toggle('open'); chev.classList.toggle('open'); trig.classList.toggle('opened');
+  if(!wasOpen){ s2Opened.add(i); document.getElementById('s2-progress').textContent=s2Opened.size+' of 3 clusters opened'; }
+  if(s2Opened.size===3) unlock(2);
+}
+
+/* ═══════════════════════════ S3 ═══════════════════════════ */
+function buildS3(){ if(s3Round===0) renderS3Round(0); }
+function renderS3Round(r){
+  const rd=S3_ROUNDS[r];
+  document.getElementById('s3-round-label').textContent='Round '+(r+1)+' of 3';
+  const wrap=document.getElementById('s3-content'); wrap.innerHTML='';
+  const qb=document.createElement('div'); qb.className='quote-box'; qb.textContent=rd.quote; wrap.appendChild(qb);
+  const p=document.createElement('p'); p.style.cssText='font-family:Georgia,serif;font-size:15px;font-weight:bold;margin-bottom:14px'; p.textContent='Which technique is this?'; wrap.appendChild(p);
+  rd.opts.forEach((oid,j)=>{
+    const btn=document.createElement('button'); btn.className='option-btn';
+    btn.innerHTML=`<span class="opt-letter">${String.fromCharCode(65+j)}</span><span>${rd.names[oid]}</span>`;
+    btn.onclick=()=>s3Pick(r,oid===rd.correct,btn,wrap,rd.explain);
+    wrap.appendChild(btn);
+  });
+  const fb=document.createElement('div'); fb.className='feedback'; fb.id='s3-fb'; wrap.appendChild(fb);
+}
+function s3Pick(r,correct,btn,wrap,explain){
+  if(s3RoundDone[r]) return;
+  wrap.querySelectorAll('.option-btn').forEach(b=>b.disabled=true);
+  const fb=document.getElementById('s3-fb');
+  if(correct){
+    btn.classList.add('opt-correct'); fb.className='feedback correct show';
+    fb.innerHTML='<strong>Correct.</strong> '+explain;
+    s3RoundDone[r]=true;
+    if(r<2){ setTimeout(()=>{ s3Round=r+1; renderS3Round(r+1); },700); }
+    else{ unlock(3); }
+  } else {
+    btn.classList.add('opt-wrong'); fb.className='feedback wrong show';
+    fb.textContent='Not quite — think about what this specific language is doing. Is it denying reality, appealing to something else, or deferring?';
+    btn.classList.add('shake');
+    setTimeout(()=>{ btn.classList.remove('shake','opt-wrong'); wrap.querySelectorAll('.option-btn').forEach(b=>b.disabled=false); fb.className='feedback'; },1200);
+  }
+}
+
+/* ═══════════════════════════ S4 ═══════════════════════════ */
+function buildS4(){ renderS4Round(0); }
+function renderS4Round(r){
+  const rd=S4_ROUNDS[r];
+  document.getElementById('s4-round-label').textContent='Round '+(r+1)+' of 3';
+  const wrap=document.getElementById('s4-content'); wrap.innerHTML='';
+  const box=document.createElement('div'); box.className='scenario-box';
+  box.innerHTML=`<p style="margin-bottom:10px;color:var(--ink-soft);font-size:13px">Tap the sentence that contains the neutralization technique.</p><p style="margin-bottom:6px">${rd.intro}</p><p>`;
+  rd.sentences.forEach((s,j)=>{
+    const span=document.createElement('span'); span.className='sent-tap'; span.textContent=s.t+' ';
+    span.onclick=()=>s4Pick(r,j,s.correct,span,wrap,rd.technique);
+    box.querySelector('p:last-child').appendChild(span);
+  });
+  box.querySelector('p:last-child').appendChild(document.createElement('span'));
+  wrap.appendChild(box);
+  const fb=document.createElement('div'); fb.className='feedback'; fb.id='s4-fb'; wrap.appendChild(fb);
+}
+function s4Pick(r,idx,correct,el,wrap,techName){
+  if(s4RoundDone[r]) return;
+  if(correct){
+    el.classList.add('sent-correct');
+    const fb=document.getElementById('s4-fb'); fb.className='feedback correct show';
+    fb.innerHTML=`<strong>Found it.</strong> That sentence demonstrates <strong>${techName}</strong>. The other sentences describe facts or actions — this one is where the self-justification lives.`;
+    s4RoundDone[r]=true;
+    if(r<2){ setTimeout(()=>{ s4Round=r+1; renderS4Round(r+1); },800); }
+    else{ unlock(4); }
+  } else {
+    el.classList.add('sent-wrong'); el.classList.add('shake');
+    const fb=document.getElementById('s4-fb'); fb.className='feedback wrong show';
+    fb.textContent='That sentence describes a fact or action — not a rationalization. Look for the sentence where the character is telling themselves something about whether the situation is acceptable.';
+    setTimeout(()=>{ el.classList.remove('sent-wrong','shake'); fb.className='feedback'; },1200);
+  }
+}
+
+/* ═══════════════════════════ S5 — Match Quote to Technique ═══════════════════════════ */
+function buildS5(){
+  if(s5Done) return;
+  const pool=document.getElementById('s5-pool'); pool.innerHTML='';
+  s5Placed={}; s5Pending=null;
+  S5_CHIPS.forEach(c=>{
+    const chip=document.createElement('div'); chip.className='chip'; chip.id='s5chip-'+c.id;
+    chip.textContent=c.text; chip.draggable=true; chip.style.cursor='pointer';
+    chip.style.maxWidth='320px'; chip.style.whiteSpace='normal'; chip.style.lineHeight='1.4';
+    chip.addEventListener('click',()=>s5ChipClick(c.id));
+    chip.addEventListener('dragstart',e=>{ s5Dragging=c.id; e.dataTransfer.effectAllowed='move'; setTimeout(()=>chip.style.opacity='.3',0); });
+    chip.addEventListener('dragend',()=>{ chip.style.opacity='1'; s5Dragging=null; });
+    pool.appendChild(chip);
+  });
+  const wrap=document.getElementById('s5-slots'); wrap.innerHTML='';
+  S5_SLOTS.forEach(sl=>{
+    const slot=document.createElement('div'); slot.className='fw-slot'; slot.id='s5slot-'+sl.id;
+    slot.innerHTML=`<div class="fw-slot-label">${sl.label}</div><div class="fw-slot-zone" id="s5zone-${sl.id}">Drop here</div>`;
+    slot.addEventListener('dragover',e=>{ e.preventDefault(); slot.classList.add('drag-over'); });
+    slot.addEventListener('dragleave',()=>slot.classList.remove('drag-over'));
+    slot.addEventListener('drop',e=>{ e.preventDefault(); slot.classList.remove('drag-over'); if(s5Dragging) s5PlaceChip(s5Dragging,sl.id); });
+    slot.addEventListener('click',()=>{ if(s5Pending) s5PlaceChip(s5Pending,sl.id); });
+    wrap.appendChild(slot);
+  });
+}
+function s5ChipClick(id){
+  if(s5Done||s5Placed[id]) return;
+  const chip=document.getElementById('s5chip-'+id);
+  if(s5Pending===id){ chip.classList.remove('chip-selected'); s5Pending=null; return; }
+  if(s5Pending){ const p=document.getElementById('s5chip-'+s5Pending); if(p) p.classList.remove('chip-selected'); }
+  chip.classList.add('chip-selected'); s5Pending=id;
+}
+function s5PlaceChip(chipId,slotId){
+  if(s5Done) return;
+  Object.entries(s5Placed).forEach(([k,v])=>{ if(v===slotId&&k!==chipId){ delete s5Placed[k]; const c=document.getElementById('s5chip-'+k); if(c) c.classList.remove('chip-placed'); } });
+  if(s5Placed[chipId]){ const prev=document.getElementById('s5zone-'+s5Placed[chipId]); if(prev){prev.textContent='Drop here'; prev.classList.remove('has-chip');} }
+  s5Placed[chipId]=slotId;
+  const zone=document.getElementById('s5zone-'+slotId);
+  const cd=S5_CHIPS.find(c=>c.id===chipId);
+  zone.textContent=cd.text; zone.classList.add('has-chip');
+  const chip=document.getElementById('s5chip-'+chipId);
+  chip.classList.remove('chip-selected'); chip.classList.add('chip-placed');
+  s5Pending=null;
+  if(Object.keys(s5Placed).length===6) document.getElementById('s5-check-btn').style.display='inline-flex';
+}
+function checkS5(){
+  let correct=0;
+  S5_CHIPS.forEach(c=>{
+    const placed=s5Placed[c.id];
+    const slot=document.getElementById('s5slot-'+placed);
+    if(placed===c.tech){ correct++; if(slot) slot.classList.add('slot-correct'); }
+    else{ if(slot) slot.classList.add('slot-wrong'); }
+  });
+  const res=document.getElementById('s5-result');
+  if(correct===6){
+    res.className='feedback correct show'; res.textContent='All six matched. Each technique has a tell — a pattern of language that names what kind of rationalization is at work.';
+    s5Done=true; unlock(5);
+  } else {
+    res.className='feedback wrong show'; res.innerHTML=correct+' of 6 correct. Look at the mismatches and think about what each quote is actually doing — denying, appealing, or deferring. <button class="btn btn-ghost btn-sm" style="margin-top:8px;display:inline-flex" onclick="resetS5()">Reset</button>';
+  }
+}
+function resetS5(){ s5Placed={}; s5Done=false; buildS5(); document.getElementById('s5-check-btn').style.display='none'; document.getElementById('s5-result').className='feedback'; }
+
+/* ═══════════════════════════ S6 — Cluster Sort ═══════════════════════════ */
+function buildS6(){ renderS6Round(0); }
+function renderS6Round(r){
+  const rd=S6_ROUNDS[r];
+  document.getElementById('s6-round-label').textContent='Round '+(r+1)+' of 3';
+  const wrap=document.getElementById('s6-content'); wrap.innerHTML='';
+  s6Pending=null; s6LeftPlaced=[]; s6RightPlaced=[];
+
+  // Chip pool
+  const pool=document.createElement('div'); pool.className='chip-pool'; pool.style.marginBottom='14px';
+  rd.chips.forEach((c,j)=>{
+    const chip=document.createElement('div'); chip.className='chip'; chip.id='s6chip-'+r+'-'+j;
+    chip.dataset.cluster=c.cluster; chip.textContent=c.name; chip.draggable=true; chip.style.cursor='pointer';
+    chip.addEventListener('click',()=>s6ChipClick(r,j,c.cluster));
+    chip.addEventListener('dragstart',e=>{ s6Dragging={r,j,cluster:c.cluster}; e.dataTransfer.effectAllowed='move'; setTimeout(()=>chip.style.opacity='.3',0); });
+    chip.addEventListener('dragend',()=>{ chip.style.opacity='1'; s6Dragging=null; });
+    pool.appendChild(chip);
+  });
+  wrap.appendChild(pool);
+
+  // T-chart
+  const chart=document.createElement('div'); chart.className='t-chart'; chart.style.marginBottom='14px';
+  ['left','right'].forEach(side=>{
+    const col=document.createElement('div'); col.className='t-col';
+    const label=side==='left'?rd.left:rd.right;
+    col.innerHTML=`<div class="t-col-header">${label.label}</div>`;
+    const zone=document.createElement('div'); zone.className='t-drop-zone'; zone.id='s6zone-'+r+'-'+side;
+    zone.innerHTML='<span class="t-drop-zone-label">Drop chips here</span>';
+    zone.addEventListener('dragover',e=>{ e.preventDefault(); zone.classList.add('drag-over'); });
+    zone.addEventListener('dragleave',()=>zone.classList.remove('drag-over'));
+    zone.addEventListener('drop',e=>{ e.preventDefault(); zone.classList.remove('drag-over'); if(s6Dragging) s6PlaceChip(r,s6Dragging.j,s6Dragging.cluster,side); });
+    zone.addEventListener('click',()=>{ if(s6Pending!=null) s6PlaceChip(r,s6Pending.j,s6Pending.cluster,side); });
+    col.appendChild(zone); chart.appendChild(col);
+    if(side==='left'){ const div=document.createElement('div'); div.className='t-divider'; chart.appendChild(div); }
+  });
+  wrap.appendChild(chart);
+
+  const hint=document.createElement('p'); hint.style.cssText='font-size:13px;color:var(--ink-soft);font-family:Georgia,serif;margin-bottom:12px';
+  hint.textContent='Tap a chip to select it (turns amber), then tap a column — or drag directly.';
+  wrap.appendChild(hint);
+
+  const checkBtn=document.createElement('button'); checkBtn.className='btn btn-ghost no-print'; checkBtn.id='s6-check-btn'; checkBtn.style.display='none';
+  checkBtn.textContent='Check'; checkBtn.onclick=()=>checkS6(r,rd,wrap);
+  wrap.appendChild(checkBtn);
+
+  const fb=document.createElement('div'); fb.className='feedback'; fb.id='s6-fb'; wrap.appendChild(fb);
+}
+function s6ChipClick(r,j,cluster){
+  if(s6RoundDone[r]) return;
+  const chip=document.getElementById('s6chip-'+r+'-'+j);
+  if(chip.classList.contains('chip-placed')) return;
+  const prev=s6Pending;
+  if(prev&&prev.r===r&&prev.j===j){ chip.classList.remove('chip-selected'); s6Pending=null; return; }
+  if(prev){ const pc=document.getElementById('s6chip-'+prev.r+'-'+prev.j); if(pc) pc.classList.remove('chip-selected'); }
+  chip.classList.add('chip-selected'); s6Pending={r,j,cluster};
+}
+function s6PlaceChip(r,j,cluster,side){
+  if(s6RoundDone[r]) return;
+  const chip=document.getElementById('s6chip-'+r+'-'+j);
+  const zone=document.getElementById('s6zone-'+r+'-'+side);
+  // Remove label placeholder
+  zone.querySelectorAll('.t-drop-zone-label').forEach(el=>el.remove());
+  // Remove chip from other side if present
+  ['left','right'].forEach(s=>{ if(s!==side){ const oz=document.getElementById('s6zone-'+r+'-'+s); if(oz){ const existing=oz.querySelector('[data-j="'+j+'"]'); if(existing) oz.removeChild(existing); } } });
+  // Check if chip already in this zone
+  if(zone.querySelector('[data-j="'+j+'"]')) return;
+  const mini=document.createElement('div'); mini.className='chip'; mini.dataset.j=j; mini.dataset.cluster=cluster;
+  mini.style.cursor='default'; mini.style.fontSize='12px'; mini.style.padding='5px 10px';
+  mini.textContent=S6_ROUNDS[r].chips[j].name;
+  zone.appendChild(mini);
+  chip.classList.remove('chip-selected'); chip.classList.add('chip-placed');
+  s6Pending=null;
+  // Count total placed across both sides
+  const totalPlaced=document.querySelectorAll('#s6zone-'+r+'-left [data-j], #s6zone-'+r+'-right [data-j]').length;
+  if(totalPlaced===S6_ROUNDS[r].chips.length) document.getElementById('s6-check-btn').style.display='inline-flex';
+}
+function checkS6(r,rd,wrap){
+  const leftZone=document.getElementById('s6zone-'+r+'-left');
+  const rightZone=document.getElementById('s6zone-'+r+'-right');
+  let allCorrect=true;
+  leftZone.querySelectorAll('[data-cluster]').forEach(el=>{ if(el.dataset.cluster!==rd.left.id){allCorrect=false; el.style.background='var(--wrong-bg)'; el.style.borderColor='#D97706'; el.style.color='var(--wrong)';} else{el.style.background='var(--correct-bg)'; el.style.borderColor='var(--correct)'; el.style.color='var(--correct)';} });
+  rightZone.querySelectorAll('[data-cluster]').forEach(el=>{ if(el.dataset.cluster!==rd.right.id){allCorrect=false; el.style.background='var(--wrong-bg)'; el.style.borderColor='#D97706'; el.style.color='var(--wrong)';} else{el.style.background='var(--correct-bg)'; el.style.borderColor='var(--correct)'; el.style.color='var(--correct)';} });
+  const fb=document.getElementById('s6-fb');
+  if(allCorrect){
+    fb.className='feedback correct show'; fb.textContent='Correct. Each cluster groups techniques by what kind of self-justification they involve — denial, appeal, or deferral.';
+    s6RoundDone[r]=true;
+    if(r<2){ setTimeout(()=>{ s6Round=r+1; renderS6Round(r+1); },600); }
+    else{ unlock(6); }
+  } else {
+    fb.className='feedback wrong show'; fb.textContent='Some chips are in the wrong cluster. Think about the cluster\'s core logic — is this technique denying a reality, appealing to something external, or deferring action? Resetting so you can try again.';
+    setTimeout(()=>{ renderS6Round(r); },1800);
+  }
+}
+
+/* ═══════════════════════════ S7 — In Context ═══════════════════════════ */
+function buildS7(){ renderS7Round(0); }
+function renderS7Round(r){
+  const rd=S7_ROUNDS[r];
+  document.getElementById('s7-round-label').textContent='Situation '+(r+1)+' of 3';
+  const wrap=document.getElementById('s7-content'); wrap.innerHTML='';
+  const box=document.createElement('div'); box.className='scenario-box'; box.style.fontFamily='Georgia,serif'; box.style.fontStyle='italic'; box.textContent=rd.scenario; wrap.appendChild(box);
+  const p=document.createElement('p'); p.style.cssText='font-family:Georgia,serif;font-size:15px;font-weight:bold;margin-bottom:14px'; p.textContent='Which neutralization technique is being used?'; wrap.appendChild(p);
+  rd.opts.forEach((opt,j)=>{
+    const btn=document.createElement('button'); btn.className='option-btn';
+    btn.innerHTML=`<span class="opt-letter">${String.fromCharCode(65+j)}</span><span>${opt.label}</span>`;
+    btn.onclick=()=>s7Pick(r,opt.id===rd.correct,btn,wrap,rd.explain);
+    wrap.appendChild(btn);
+  });
+  const fb=document.createElement('div'); fb.className='feedback'; fb.id='s7-fb'; wrap.appendChild(fb);
+}
+function s7Pick(r,correct,btn,wrap,explain){
+  if(s7RoundDone[r]) return;
+  wrap.querySelectorAll('.option-btn').forEach(b=>b.disabled=true);
+  const fb=document.getElementById('s7-fb');
+  if(correct){
+    btn.classList.add('opt-correct'); fb.className='feedback correct show'; fb.innerHTML='<strong>Correct.</strong> '+explain;
+    s7RoundDone[r]=true;
+    if(r<2){ setTimeout(()=>{ s7Round=r+1; renderS7Round(r+1); },700); }
+    else{ unlock(7); }
+  } else {
+    btn.classList.add('opt-wrong'); fb.className='feedback wrong show'; fb.textContent='Not quite — consider what the speaker is actually doing: are they denying the harm exists, appealing to something external to justify the action, or deferring the decision?';
+    btn.classList.add('shake');
+    setTimeout(()=>{ btn.classList.remove('shake','opt-wrong'); wrap.querySelectorAll('.option-btn').forEach(b=>b.disabled=false); fb.className='feedback'; },1200);
+  }
+}
+
+/* ═══════════════════════════ S8 — Counter the Technique ═══════════════════════════ */
+function buildS8(){ renderS8Round(0); }
+function renderS8Round(r){
+  const rd=S8_ROUNDS[r];
+  document.getElementById('s8-round-label').textContent='Technique '+(r+1)+' of 3';
+  const wrap=document.getElementById('s8-content'); wrap.innerHTML='';
+  const label=document.createElement('p'); label.style.cssText='font-family:Courier New,monospace;font-size:11px;color:var(--amber);font-weight:bold;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px';
+  label.textContent=rd.tech; wrap.appendChild(label);
+  const qb=document.createElement('div'); qb.className='quote-box'; qb.textContent=rd.quote; wrap.appendChild(qb);
+  const p=document.createElement('p'); p.style.cssText='font-family:Georgia,serif;font-size:15px;font-weight:bold;margin-bottom:14px'; p.textContent='Which response most directly challenges this rationalization?'; wrap.appendChild(p);
+  rd.opts.forEach((opt,j)=>{
+    const btn=document.createElement('button'); btn.className='option-btn';
+    btn.innerHTML=`<span class="opt-letter">${String.fromCharCode(65+j)}</span><span>${opt.t}</span>`;
+    btn.onclick=()=>s8Pick(r,opt.correct,btn,wrap,rd.explain);
+    wrap.appendChild(btn);
+  });
+  const fb=document.createElement('div'); fb.className='feedback'; fb.id='s8-fb'; wrap.appendChild(fb);
+}
+function s8Pick(r,correct,btn,wrap,explain){
+  if(s8RoundDone[r]) return;
+  wrap.querySelectorAll('.option-btn').forEach(b=>b.disabled=true);
+  const fb=document.getElementById('s8-fb');
+  if(correct){
+    btn.classList.add('opt-correct'); fb.className='feedback correct show'; fb.innerHTML='<strong>Right.</strong> '+explain;
+    s8RoundDone[r]=true;
+    if(r<2){ setTimeout(()=>{ s8Round=r+1; renderS8Round(r+1); },700); }
+    else{ unlock(8); }
+  } else {
+    btn.classList.add('opt-wrong'); fb.className='feedback wrong show'; fb.textContent='That response is true but doesn\'t directly address the logic of the neutralization. Look for the answer that names and dismantles the specific self-justification being used.';
+    btn.classList.add('shake');
+    setTimeout(()=>{ btn.classList.remove('shake','opt-wrong'); wrap.querySelectorAll('.option-btn').forEach(b=>b.disabled=false); fb.className='feedback'; },1200);
+  }
+}
+
+/* ═══════════════════════════ S9 — Self-Assessment ═══════════════════════════ */
+function buildS9(){
+  const wrap=document.getElementById('s9-sliders'); if(wrap.children.length) return;
+  S9_SLIDERS.forEach((s,i)=>{
+    const box=document.createElement('div'); box.className='slider-wrap';
+    box.innerHTML=`
+      <div class="slider-title">${s.tech}</div>
+      <div class="slider-def">${s.def}</div>
+      <div class="slider-labels"><span>Very unlikely to use</span><span>Very likely to use</span></div>
+      <input type="range" min="0" max="100" value="50" id="s9sl-${i}">
+      <div class="slider-insight" id="s9ins-${i}"><strong>Field guide insight:</strong> ${s.insight}</div>`;
+    wrap.appendChild(box);
+    const inp=box.querySelector('input');
+    inp.addEventListener('change',()=>{
+      document.getElementById('s9ins-'+i).classList.add('show');
+      s9Moved.add(i);
+      if(s9Moved.size===4) document.getElementById('s9-reveal-btn').style.display='block';
+    });
+  });
+}
+function s9Complete(){ unlock(9); }
+
+/* ═══════════════════════════ INIT ═══════════════════════════ */
+updateUI();
+</script>
+</body>
+</html>
